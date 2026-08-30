@@ -1,0 +1,2887 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thinking Geographically — AP Human Geography Unit 1</title>
+<meta name="description" content="Complete, CED-aligned student notes for AP Human Geography Unit 1 (topics 1.1-1.7): maps and projections, geographic data, scales of analysis, spatial concepts, human-environmental interaction, and regional analysis. 22 original diagrams and 35 self-check questions.">
+<meta name="author" content="Jordan Evans">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thinking Geographically">
+<meta property="og:description" content="Complete, CED-aligned student notes for AP Human Geography Unit 1 (topics 1.1-1.7): maps and projections, geographic data, scales of analysis, spatial concepts, human-environmental interaction, and regional analysis. 22 original diagrams and 35 self-check questions.">
+<meta name="twitter:card" content="summary">
+
+<style>
+  html{-webkit-text-size-adjust:100%}
+  img{max-width:100%;height:auto}
+  [hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+
+<style>
+/* ============================================================
+   THINKING GEOGRAPHICALLY — AP Human Geography, Unit 1
+   Visual system: "atlas plate" — hypsometric tints, graticule
+   rules, legend-style keys, mono coordinates.
+   ============================================================ */
+
+:root{
+  color-scheme: light;
+
+  --paper:#F4F6F1;
+  --surface:#FFFFFF;
+  --surface-2:#EAEEE5;
+  --surface-3:#DFE5D9;
+
+  --ink:#132229;
+  --ink-2:#4C5F68;
+  --ink-3:#78888F;
+
+  --rule:#D4DACE;
+  --rule-2:#BAC4B7;
+
+  --accent:#0B6E77;      /* hydrography teal */
+  --accent-2:#0E8F99;
+  --accent-soft:#DBEBEA;
+  --accent-line:#8CC3C4;
+
+  --clay:#AC5C24;        /* relief / contour */
+  --clay-soft:#F6E3D2;
+  --clay-line:#E0AC7C;
+
+  --moss:#4C6A31;        /* vegetation */
+  --moss-soft:#E4EBD7;
+  --moss-line:#A9C286;
+
+  --plum:#7B3D66;        /* perceptual */
+  --plum-soft:#F1E2EC;
+  --plum-line:#C793B6;
+
+  --slate:#3A5A73;       /* political */
+  --slate-soft:#DFE7EE;
+  --slate-line:#9DB6C9;
+
+  --shadow-sm:0 1px 2px rgba(19,34,41,.06);
+  --shadow:0 1px 2px rgba(19,34,41,.05), 0 10px 28px -16px rgba(19,34,41,.32);
+
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --measure:66ch;
+  --rail-w:270px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+
+    --paper:#0D171B;
+    --surface:#14232A;
+    --surface-2:#1B2E36;
+    --surface-3:#233B45;
+
+    --ink:#E9EFEA;
+    --ink-2:#A3B6B9;
+    --ink-3:#7B9095;
+
+    --rule:#273B44;
+    --rule-2:#38525D;
+
+    --accent:#4EB9BE;
+    --accent-2:#7AD6D7;
+    --accent-soft:#123840;
+    --accent-line:#2E7B82;
+
+    --clay:#E0955C;
+    --clay-soft:#3A2818;
+    --clay-line:#8A5730;
+
+    --moss:#A2C577;
+    --moss-soft:#23301B;
+    --moss-line:#5F7C3E;
+
+    --plum:#D48CBB;
+    --plum-soft:#341F2D;
+    --plum-line:#8B5077;
+
+    --slate:#93B6D2;
+    --slate-soft:#1A2C39;
+    --slate-line:#4C6F8B;
+
+    --shadow-sm:0 1px 2px rgba(0,0,0,.35);
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -18px rgba(0,0,0,.85);
+  }
+}
+
+:root[data-theme="dark"]{
+  color-scheme: dark;
+
+  --paper:#0D171B;
+  --surface:#14232A;
+  --surface-2:#1B2E36;
+  --surface-3:#233B45;
+
+  --ink:#E9EFEA;
+  --ink-2:#A3B6B9;
+  --ink-3:#7B9095;
+
+  --rule:#273B44;
+  --rule-2:#38525D;
+
+  --accent:#4EB9BE;
+  --accent-2:#7AD6D7;
+  --accent-soft:#123840;
+  --accent-line:#2E7B82;
+
+  --clay:#E0955C;
+  --clay-soft:#3A2818;
+  --clay-line:#8A5730;
+
+  --moss:#A2C577;
+  --moss-soft:#23301B;
+  --moss-line:#5F7C3E;
+
+  --plum:#D48CBB;
+  --plum-soft:#341F2D;
+  --plum-line:#8B5077;
+
+  --slate:#93B6D2;
+  --slate-soft:#1A2C39;
+  --slate-line:#4C6F8B;
+
+  --shadow-sm:0 1px 2px rgba(0,0,0,.35);
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -18px rgba(0,0,0,.85);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--accent-soft);color:var(--ink)}
+
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:2.5px solid var(--accent-2);outline-offset:3px;border-radius:3px;
+}
+
+/* ---------- shell ---------- */
+
+.shell{
+  display:grid;
+  grid-template-columns:var(--rail-w) minmax(0,1fr);
+  gap:0;
+  max-width:1440px;
+  margin:0 auto;
+}
+
+/* ---------- rail ---------- */
+
+.rail{
+  position:sticky;
+  top:0;
+  align-self:start;
+  height:100vh;
+  overflow-y:auto;
+  padding:34px 20px 40px 30px;
+  border-right:1px solid var(--rule);
+  background:var(--paper);
+}
+.rail-brand{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  line-height:1.7;
+  margin-bottom:6px;
+}
+.rail-title{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:19px;
+  letter-spacing:-.018em;
+  line-height:1.18;
+  margin:0 0 22px;
+  color:var(--ink);
+}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+.rail a.nav{
+  display:grid;
+  grid-template-columns:40px 1fr;
+  align-items:baseline;
+  gap:10px;
+  padding:8px 10px 8px 8px;
+  border-radius:5px;
+  text-decoration:none;
+  color:var(--ink-2);
+  font-family:var(--display);
+  font-weight:500;
+  font-size:14.5px;
+  line-height:1.35;
+  letter-spacing:-.008em;
+  border-left:2px solid transparent;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.rail a.nav .n{
+  font-family:var(--mono);
+  font-size:11.5px;
+  font-weight:500;
+  color:var(--ink-3);
+  letter-spacing:.02em;
+}
+.rail a.nav:hover{background:var(--surface-2);color:var(--ink)}
+.rail a.nav[aria-current="true"]{
+  background:var(--accent-soft);
+  color:var(--ink);
+  border-left-color:var(--accent);
+  font-weight:600;
+}
+.rail a.nav[aria-current="true"] .n{color:var(--accent)}
+.rail-sep{
+  height:1px;background:var(--rule);margin:18px 0 14px;
+}
+.rail-note{
+  font-family:var(--mono);
+  font-size:10.5px;
+  line-height:1.75;
+  color:var(--ink-3);
+  letter-spacing:.02em;
+}
+
+/* ---------- main ---------- */
+
+main{min-width:0;padding:0 clamp(20px,4.2vw,72px) 120px}
+
+.wrap{max-width:820px;margin:0 auto}
+
+/* ---------- hero ---------- */
+
+.hero{
+  position:relative;
+  margin:0 calc(-1 * clamp(20px,4.2vw,72px)) 0;
+  padding:clamp(44px,7vw,92px) clamp(20px,4.2vw,72px) clamp(38px,5vw,60px);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:-1;
+  color:var(--accent);
+  opacity:.16;
+}
+:root[data-theme="dark"] .hero-grid{opacity:.22}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-grid{opacity:.22}}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 16px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+}
+.eyebrow .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);display:inline-block}
+h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(38px,6.4vw,68px);
+  line-height:.99;
+  letter-spacing:-.035em;
+  margin:0 0 20px;
+  text-wrap:balance;
+  max-width:15ch;
+}
+h1 em{font-style:normal;color:var(--accent);display:block}
+.deck{
+  font-size:clamp(18px,2.1vw,21.5px);
+  line-height:1.55;
+  color:var(--ink-2);
+  max-width:56ch;
+  margin:0 0 30px;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:0;
+  border:1px solid var(--rule);
+  border-radius:8px;
+  background:var(--surface);
+  overflow:hidden;
+  max-width:660px;
+  box-shadow:var(--shadow-sm);
+}
+.hero-meta div{
+  flex:1 1 150px;
+  padding:13px 16px;
+  border-right:1px solid var(--rule);
+}
+.hero-meta div:last-child{border-right:0}
+.hero-meta dt{
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 4px;
+}
+.hero-meta dd{
+  margin:0;font-family:var(--display);font-weight:600;font-size:15px;
+  letter-spacing:-.01em;color:var(--ink);
+}
+
+/* ---------- how to use ---------- */
+
+.howto{
+  margin:34px 0 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;
+}
+.howto .card{
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:8px;
+  padding:16px 17px;
+}
+.howto h3{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 7px;font-weight:600;
+}
+.howto p{margin:0;font-size:15.5px;line-height:1.5;color:var(--ink-2)}
+
+/* ---------- plates ---------- */
+
+.plate{
+  padding-top:clamp(56px,7vw,88px);
+  scroll-margin-top:20px;
+}
+.plate-head{
+  border-top:2px solid var(--ink);
+  padding-top:16px;
+  margin-bottom:26px;
+}
+.plate-num{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin-bottom:10px;
+}
+.plate-num b{
+  color:var(--accent);font-weight:600;letter-spacing:.14em;
+}
+h2{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(28px,4vw,40px);
+  line-height:1.05;
+  letter-spacing:-.03em;
+  margin:0 0 14px;
+  text-wrap:balance;
+}
+.lo{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--accent-soft);
+  border-radius:7px;
+  padding:12px 15px;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--ink);
+  max-width:var(--measure);
+}
+.lo .code{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+  color:var(--accent);white-space:nowrap;padding-top:3px;
+}
+
+h3.sub{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:22px;
+  letter-spacing:-.02em;
+  line-height:1.2;
+  margin:38px 0 12px;
+  color:var(--ink);
+  text-wrap:balance;
+}
+h4.sub{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:17px;
+  letter-spacing:-.01em;
+  margin:26px 0 8px;
+  color:var(--ink);
+}
+.plate p{max-width:var(--measure);margin:0 0 15px}
+.plate ul,.plate ol.list{max-width:var(--measure);margin:0 0 16px;padding-left:1.15em}
+.plate li{margin-bottom:7px}
+.plate li::marker{color:var(--accent)}
+
+strong{font-weight:600;color:var(--ink)}
+.term{
+  font-weight:600;
+  color:var(--ink);
+  border-bottom:2px solid var(--accent-line);
+}
+
+/* ---------- legend (vocabulary) ---------- */
+
+.legend{
+  margin:26px 0 8px;
+  border:1px solid var(--rule);
+  border-radius:9px;
+  background:var(--surface);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.legend-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 16px;
+  background:var(--surface-2);
+  border-bottom:1px solid var(--rule);
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  font-weight:600;
+}
+.legend dl{margin:0;display:grid;grid-template-columns:minmax(150px,auto) 1fr}
+.legend dt{
+  padding:11px 8px 11px 16px;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:15px;
+  letter-spacing:-.008em;
+  border-top:1px solid var(--rule);
+  display:flex;gap:9px;align-items:flex-start;
+}
+.legend dt:first-of-type,.legend dl>dt:first-child{border-top:0}
+.legend dd{
+  margin:0;
+  padding:11px 16px 11px 8px;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--ink-2);
+  border-top:1px solid var(--rule);
+}
+.legend dl>dt:first-child + dd{border-top:0}
+.swatch{
+  width:11px;height:11px;flex:0 0 11px;margin-top:6px;border-radius:2px;
+  background:var(--accent);
+}
+.sw-clay{background:var(--clay)}
+.sw-moss{background:var(--moss)}
+.sw-plum{background:var(--plum)}
+.sw-slate{background:var(--slate)}
+
+/* ---------- callouts ---------- */
+
+.callout{
+  margin:26px 0;
+  border-radius:9px;
+  padding:15px 18px 16px;
+  max-width:var(--measure);
+  border:1px solid var(--rule);
+  background:var(--surface);
+}
+.callout .tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:600;margin:0 0 6px;display:block;
+}
+.callout p:last-child{margin-bottom:0}
+.callout p{max-width:none}
+
+.trap{background:var(--clay-soft);border-color:var(--clay-line)}
+.trap .tag{color:var(--clay)}
+.pro{background:var(--moss-soft);border-color:var(--moss-line)}
+.pro .tag{color:var(--moss)}
+.link{background:var(--slate-soft);border-color:var(--slate-line)}
+.link .tag{color:var(--slate)}
+
+/* ---------- figures ---------- */
+
+figure{
+  margin:30px 0;
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:10px;
+  padding:20px 20px 16px;
+  box-shadow:var(--shadow-sm);
+}
+figure .scroller{overflow-x:auto;padding-bottom:4px}
+figure svg{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--rule);
+  font-size:15px;
+  line-height:1.5;
+  color:var(--ink-2);
+}
+figcaption b{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;display:block;margin-bottom:4px;
+}
+
+/* SVG utility classes — everything themes through tokens */
+svg text{font-family:var(--mono);font-size:12px;fill:var(--ink-2)}
+svg .t-ink{fill:var(--ink)}
+svg .t-mut{fill:var(--ink-3)}
+svg .t-acc{fill:var(--accent)}
+svg .t-clay{fill:var(--clay)}
+svg .t-moss{fill:var(--moss)}
+svg .t-plum{fill:var(--plum)}
+svg .t-slate{fill:var(--slate)}
+svg .t-inv{fill:var(--surface)}
+svg .t-inv2{fill:var(--paper)}
+svg .t-hd{font-family:var(--display);font-weight:700;font-size:13px;fill:var(--ink);letter-spacing:-.01em}
+svg .t-sm{font-size:10.5px}
+svg .t-lg{font-size:14px}
+svg .f-surf{fill:var(--surface)}
+svg .f-surf2{fill:var(--surface-2)}
+svg .f-surf3{fill:var(--surface-3)}
+svg .f-acc{fill:var(--accent)}
+svg .f-accs{fill:var(--accent-soft)}
+svg .f-clay{fill:var(--clay)}
+svg .f-clays{fill:var(--clay-soft)}
+svg .f-moss{fill:var(--moss)}
+svg .f-mosss{fill:var(--moss-soft)}
+svg .f-plum{fill:var(--plum)}
+svg .f-plums{fill:var(--plum-soft)}
+svg .f-slate{fill:var(--slate)}
+svg .f-slates{fill:var(--slate-soft)}
+svg .f-ink{fill:var(--ink)}
+svg .f-none{fill:none}
+svg .s-rule{stroke:var(--rule-2);fill:none;stroke-width:1}
+svg .s-ink{stroke:var(--ink);fill:none;stroke-width:1.5}
+svg .s-acc{stroke:var(--accent);fill:none;stroke-width:1.75}
+svg .s-clay{stroke:var(--clay);fill:none;stroke-width:1.75}
+svg .s-moss{stroke:var(--moss);fill:none;stroke-width:1.75}
+svg .s-plum{stroke:var(--plum);fill:none;stroke-width:1.75}
+svg .s-slate{stroke:var(--slate);fill:none;stroke-width:1.75}
+svg .s-thin{stroke-width:1}
+svg .dash{stroke-dasharray:5 4}
+
+/* ---------- comparison tables ---------- */
+
+.tbl-wrap{overflow-x:auto;margin:26px 0;border:1px solid var(--rule);border-radius:9px;background:var(--surface);box-shadow:var(--shadow-sm)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15.5px}
+thead th{
+  text-align:left;
+  font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;
+  color:var(--ink-2);
+  background:var(--surface-2);
+  padding:11px 14px;
+  border-bottom:1px solid var(--rule);
+  white-space:nowrap;
+}
+tbody td,tbody th{
+  padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.45;
+  text-align:left;
+}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+tbody th{
+  font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.008em;color:var(--ink);
+  white-space:nowrap;
+}
+td .mono,.mono{font-family:var(--mono);font-size:13px}
+
+.chip{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:4px;
+  white-space:nowrap;
+}
+.chip-good{background:var(--moss-soft);color:var(--moss);border:1px solid var(--moss-line)}
+.chip-bad{background:var(--clay-soft);color:var(--clay);border:1px solid var(--clay-line)}
+.chip-mid{background:var(--slate-soft);color:var(--slate);border:1px solid var(--slate-line)}
+
+/* ---------- check yourself ---------- */
+
+.check{
+  margin:34px 0 0;
+  border:1px solid var(--rule-2);
+  border-radius:10px;
+  background:var(--surface);
+  overflow:hidden;
+}
+.check-head{
+  padding:12px 18px;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+.check details{border-top:1px solid var(--rule)}
+.check details:first-of-type{border-top:0}
+.check summary{
+  cursor:pointer;
+  padding:14px 18px 14px 44px;
+  position:relative;
+  font-size:16.5px;
+  line-height:1.45;
+  list-style:none;
+  color:var(--ink);
+}
+.check summary::-webkit-details-marker{display:none}
+.check summary::before{
+  content:"";
+  position:absolute;left:18px;top:21px;
+  width:9px;height:9px;
+  border-right:2px solid var(--accent);
+  border-bottom:2px solid var(--accent);
+  transform:rotate(-45deg);
+  transition:transform .18s ease;
+}
+.check details[open] summary::before{transform:rotate(45deg);top:19px}
+.check summary:hover{background:var(--surface-2)}
+.check .ans{
+  padding:2px 18px 18px 44px;
+  font-size:16px;
+  line-height:1.55;
+  color:var(--ink-2);
+  border-top:1px dashed var(--rule);
+  margin-top:0;
+}
+.check .ans p{margin:12px 0 0;max-width:none}
+.check .ans p:first-child{margin-top:12px}
+
+/* ---------- exam kit ---------- */
+
+.kit{
+  margin-top:clamp(56px,7vw,88px);
+  border-top:2px solid var(--ink);
+  padding-top:16px;
+  scroll-margin-top:20px;
+}
+.stack{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:24px 0;
+}
+.stack .card{
+  border:1px solid var(--rule);border-radius:9px;background:var(--surface);padding:16px 17px;
+}
+.stack .card h4{
+  font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 6px;letter-spacing:-.012em;
+}
+.stack .card p{margin:0;font-size:15.5px;line-height:1.5;color:var(--ink-2);max-width:none}
+.stack .card .code{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px;font-weight:600}
+
+footer.foot{
+  margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;line-height:1.9;color:var(--ink-3);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .rail{
+    position:sticky;top:0;z-index:40;
+    height:auto;
+    border-right:0;border-bottom:1px solid var(--rule);
+    padding:12px 16px 11px;
+    background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(10px);
+  }
+  .rail-brand,.rail-title,.rail-sep,.rail-note{display:none}
+  .rail ol{flex-direction:row;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .rail ol::-webkit-scrollbar{display:none}
+  .rail a.nav{
+    grid-template-columns:auto;
+    white-space:nowrap;
+    border-left:0;
+    border:1px solid var(--rule);
+    padding:6px 11px;
+    font-size:13px;
+  }
+  .rail a.nav .n{display:none}
+  .rail a.nav[aria-current="true"]{border-color:var(--accent)}
+  .plate,.kit{scroll-margin-top:64px}
+}
+
+@media (max-width:620px){
+  body{font-size:16.5px}
+  :root{--measure:100%}
+  .legend dl{grid-template-columns:1fr}
+  .legend dt{padding:12px 16px 2px;border-top:1px solid var(--rule)}
+  .legend dd{padding:0 16px 12px;border-top:0}
+  .legend dl>dt:first-child + dd{border-top:0}
+  figure{padding:14px 12px 12px}
+  .check summary{padding-left:38px}
+  .check .ans{padding-left:38px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+
+html{scroll-behavior:smooth}
+
+@media print{
+  .rail{display:none}
+  .shell{grid-template-columns:1fr}
+  .check details{border-top:1px solid #ccc}
+  figure,.callout,.legend,.tbl-wrap{break-inside:avoid}
+  .plate{break-before:page}
+}
+</style>
+
+</head>
+<body>
+<div class="shell">
+
+<nav class="rail" aria-label="Unit contents">
+  <p class="rail-brand">AP Human Geography<br>Unit 1 · Plates 1.1–1.7</p>
+  <p class="rail-title">Thinking<br>Geographically</p>
+  <ol>
+    <li><a class="nav" href="#t11"><span class="n">1.1</span><span>Introduction to Maps</span></a></li>
+    <li><a class="nav" href="#t12"><span class="n">1.2</span><span>Geographic Data</span></a></li>
+    <li><a class="nav" href="#t13"><span class="n">1.3</span><span>The Power of Geographic Data</span></a></li>
+    <li><a class="nav" href="#t14"><span class="n">1.4</span><span>Spatial Concepts</span></a></li>
+    <li><a class="nav" href="#t15"><span class="n">1.5</span><span>Human–Environmental Interaction</span></a></li>
+    <li><a class="nav" href="#t16"><span class="n">1.6</span><span>Scales of Analysis</span></a></li>
+    <li><a class="nav" href="#t17"><span class="n">1.7</span><span>Regional Analysis</span></a></li>
+    <li><a class="nav" href="#kit"><span class="n">✦</span><span>Exam Kit</span></a></li>
+  </ol>
+  <div class="rail-sep"></div>
+  <p class="rail-note">Enduring understandings<br>IMP-1 · PSO-1 · SPS-1<br><br>Unit 1 is 8–10% of the<br>multiple-choice exam.</p>
+</nav>
+
+<main>
+
+<header class="hero">
+  <svg class="hero-grid" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1200 460">
+    <g stroke="currentColor" fill="none" stroke-width="1">
+      <line x1="0" y1="60" x2="1200" y2="60"/>
+      <line x1="0" y1="140" x2="1200" y2="140"/>
+      <line x1="0" y1="230" x2="1200" y2="230"/>
+      <line x1="0" y1="320" x2="1200" y2="320"/>
+      <line x1="0" y1="400" x2="1200" y2="400"/>
+      <path d="M60 0 C 20 150, 20 310, 60 460"/>
+      <path d="M250 0 C 220 150, 220 310, 250 460"/>
+      <path d="M440 0 C 425 150, 425 310, 440 460"/>
+      <line x1="620" y1="0" x2="620" y2="460"/>
+      <path d="M800 0 C 815 150, 815 310, 800 460"/>
+      <path d="M990 0 C 1020 150, 1020 310, 990 460"/>
+      <path d="M1180 0 C 1220 150, 1220 310, 1180 460"/>
+    </g>
+  </svg>
+
+  <p class="eyebrow">AP Human Geography <span class="dot"></span> Unit 1 <span class="dot"></span> Complete student notes</p>
+  <h1>Thinking <em>Geographically</em></h1>
+  <p class="deck">Everything in this course is built on one habit of mind: asking <em>where</em> something is, and then asking <em>why there</em> — and <em>so what</em>. These seven plates cover the tools, vocabulary, and reasoning moves that the rest of the year assumes you already own.</p>
+
+  <dl class="hero-meta">
+    <div><dt>Topics</dt><dd>1.1 – 1.7</dd></div>
+    <div><dt>Exam weight</dt><dd>8–10%</dd></div>
+    <div><dt>Big ideas</dt><dd>IMP-1 · PSO-1 · SPS-1</dd></div>
+    <div><dt>Diagrams</dt><dd>22 figures</dd></div>
+  </dl>
+</header>
+
+<div class="wrap">
+
+<div class="howto">
+  <div class="card">
+    <h3>Read the figures</h3>
+    <p>Every diagram here shows a mechanism, not a decoration. If you can redraw it from memory, you understand the concept.</p>
+  </div>
+  <div class="card">
+    <h3>Learn the traps</h3>
+    <p>Orange boxes are the specific mistakes that cost points on this unit. They are worth more than the definitions.</p>
+  </div>
+  <div class="card">
+    <h3>Answer before opening</h3>
+    <p>End-of-plate questions are written in the College Board's verb style. Answer out loud first, then check.</p>
+  </div>
+</div>
+
+<!-- ============================ 1.1 ============================ -->
+<section class="plate" id="t11">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.1</b> <span>Enduring understanding IMP-1</span></p>
+    <h2>Introduction to Maps</h2>
+    <div class="lo"><span class="code">IMP-1.A</span><span>Identify types of maps, the types of information presented in maps, and different spatial patterns and relationships portrayed in maps.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> a map is not a photograph of the world. It is an <em>argument</em> about the world — a flat, shrunken, simplified model built by a person who decided what to include, what to leave out, and how to squash a sphere onto a rectangle. Learning to read maps in this course means learning to read those decisions.</p>
+
+  <h3 class="sub">Two families of maps</h3>
+
+  <p>Every map you meet on the exam belongs to one of two families, and the first question a reader should ask is which one they are holding.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 720 300" role="img" aria-label="A branching chart dividing maps into reference maps, which show where things are, and thematic maps, which show how a variable is distributed, with the common subtypes of each." width="720">
+        <defs>
+          <marker id="ar11a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="f-acc"/>
+          </marker>
+        </defs>
+
+        <rect x="270" y="10" width="180" height="46" rx="6" class="f-accs" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="360" y="31" text-anchor="middle" class="t-hd">A MAP</text>
+        <text x="360" y="47" text-anchor="middle" class="t-sm t-mut">a selective, flattened model</text>
+
+        <path d="M360 56 L360 76 L170 76 L170 96" class="s-acc" marker-end="url(#ar11a)"/>
+        <path d="M360 56 L360 76 L550 76 L550 96" class="s-acc" marker-end="url(#ar11a)"/>
+
+        <rect x="40" y="100" width="260" height="54" rx="6" class="f-surf2" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="170" y="121" text-anchor="middle" class="t-hd">REFERENCE MAP</text>
+        <text x="170" y="139" text-anchor="middle" class="t-sm">answers “where <tspan font-style="italic">is</tspan> it?”</text>
+
+        <rect x="420" y="100" width="260" height="54" rx="6" class="f-surf2" stroke="var(--clay)" stroke-width="1.5"/>
+        <text x="550" y="121" text-anchor="middle" class="t-hd">THEMATIC MAP</text>
+        <text x="550" y="139" text-anchor="middle" class="t-sm">answers “how is it <tspan font-style="italic">distributed</tspan>?”</text>
+
+        <line x1="170" y1="154" x2="170" y2="172" class="s-rule"/>
+        <line x1="550" y1="154" x2="550" y2="172" class="s-rule"/>
+
+        <text x="170" y="192" text-anchor="middle" class="t-sm t-acc">POLITICAL · shows borders &amp; cities</text>
+        <text x="170" y="210" text-anchor="middle" class="t-sm t-acc">PHYSICAL · shows landforms</text>
+        <text x="170" y="228" text-anchor="middle" class="t-sm t-acc">ROAD · shows routes</text>
+        <text x="170" y="246" text-anchor="middle" class="t-sm t-acc">TOPOGRAPHIC · contour elevation</text>
+        <text x="170" y="264" text-anchor="middle" class="t-sm t-acc">PLAT / CADASTRAL · property lines</text>
+        <text x="170" y="282" text-anchor="middle" class="t-sm t-acc">LOCATOR · orients a reader</text>
+
+        <text x="550" y="192" text-anchor="middle" class="t-sm t-clay">CHOROPLETH · shaded units</text>
+        <text x="550" y="210" text-anchor="middle" class="t-sm t-clay">DOT DISTRIBUTION · one dot = n</text>
+        <text x="550" y="228" text-anchor="middle" class="t-sm t-clay">GRADUATED SYMBOL · size = value</text>
+        <text x="550" y="246" text-anchor="middle" class="t-sm t-clay">ISOLINE · lines of equal value</text>
+        <text x="550" y="264" text-anchor="middle" class="t-sm t-clay">CARTOGRAM · area = value</text>
+        <text x="550" y="282" text-anchor="middle" class="t-sm t-clay">FLOW-LINE · movement &amp; volume</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.1a</b> Reference maps are about <em>location</em>; thematic maps are about <em>pattern</em>. A road map that has been shaded to show county unemployment has stopped being a reference map and become a choropleth.</figcaption>
+  </figure>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Reference map types</span><span>1.1</span></div>
+    <dl>
+      <dt><span class="swatch"></span>Political map</dt><dd>Shows human-made boundaries — countries, states, counties — plus cities and capitals. The most common classroom wall map.</dd>
+      <dt><span class="swatch"></span>Physical map</dt><dd>Shows natural features: mountains, rivers, deserts, basins. Often uses hypsometric tints (green low, brown high).</dd>
+      <dt><span class="swatch"></span>Topographic map</dt><dd>Uses <span class="term">contour lines</span> connecting points of equal elevation. Lines close together = steep slope; far apart = gentle slope.</dd>
+      <dt><span class="swatch"></span>Road / navigation map</dt><dd>Prioritizes routes and connections. Distances are usually accurate; shapes may be simplified.</dd>
+      <dt><span class="swatch"></span>Plat (cadastral) map</dt><dd>Large-scale map of property lines and lot boundaries, used by assessors, developers, and title offices.</dd>
+      <dt><span class="swatch"></span>Locator map</dt><dd>A small inset that tells the reader where on Earth the main map sits.</dd>
+    </dl>
+  </div>
+
+  <h3 class="sub">The six thematic maps you must recognize on sight</h3>
+
+  <p>Free-response questions frequently ask you to <em>identify</em> a map type and then <em>explain</em> a strength or weakness of that type. Learn them as a set — each one solves a problem the others create.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 790 348" role="img" aria-label="Six small maps of the same imaginary six-region country, each drawn with a different thematic technique: choropleth shading, dot distribution, graduated symbols, isolines, cartogram, and flow lines." width="790">
+        <defs>
+          <marker id="ar11b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-clay"/>
+          </marker>
+          <g id="outline11">
+            <polygon points="20,26 58,16 100,20 134,32 136,64 130,80 102,92 60,96 24,92 16,58" class="f-none" stroke="var(--ink)" stroke-width="1.8"/>
+          </g>
+        </defs>
+
+        <g transform="translate(10,26)">
+          <text x="0" y="-10" class="t-hd">1 · CHOROPLETH</text>
+          <polygon points="20,26 58,16 56,52 16,58" class="f-accs"/>
+          <polygon points="58,16 100,20 100,56 56,52" fill="var(--accent-line)"/>
+          <polygon points="100,20 134,32 136,64 100,56" class="f-acc"/>
+          <polygon points="16,58 56,52 60,96 24,92" class="f-surf2"/>
+          <polygon points="56,52 100,56 102,92 60,96" class="f-accs"/>
+          <polygon points="100,56 136,64 130,80 102,92" fill="var(--accent-line)"/>
+          <g stroke="var(--rule-2)" stroke-width=".8" fill="none">
+            <path d="M58,16 L56,52 L60,96 M100,20 L100,56 L102,92 M16,58 L56,52 L100,56 L136,64"/>
+          </g>
+          <use href="#outline11"/>
+          <text x="0" y="118" class="t-sm t-mut">Shades whole units by rate.</text>
+          <text x="0" y="132" class="t-sm t-mut">Best for rates, not totals.</text>
+        </g>
+
+        <g transform="translate(265,26)">
+          <text x="0" y="-10" class="t-hd">2 · DOT DISTRIBUTION</text>
+          <polygon points="20,26 58,16 100,20 134,32 136,64 130,80 102,92 60,96 24,92 16,58" class="f-surf2"/>
+          <use href="#outline11"/>
+          <g class="f-acc">
+            <circle cx="38" cy="40" r="2.4"/><circle cx="46" cy="34" r="2.4"/><circle cx="33" cy="49" r="2.4"/>
+            <circle cx="52" cy="45" r="2.4"/><circle cx="41" cy="57" r="2.4"/><circle cx="29" cy="63" r="2.4"/>
+            <circle cx="48" cy="66" r="2.4"/><circle cx="36" cy="74" r="2.4"/><circle cx="55" cy="79" r="2.4"/>
+            <circle cx="44" cy="85" r="2.4"/><circle cx="27" cy="80" r="2.4"/><circle cx="60" cy="60" r="2.4"/>
+            <circle cx="82" cy="34" r="2.4"/><circle cx="93" cy="45" r="2.4"/><circle cx="76" cy="52" r="2.4"/>
+            <circle cx="112" cy="38" r="2.4"/><circle cx="121" cy="52" r="2.4"/><circle cx="105" cy="60" r="2.4"/>
+            <circle cx="90" cy="76" r="2.4"/><circle cx="116" cy="70" r="2.4"/>
+          </g>
+          <text x="0" y="118" class="t-sm t-mut">One dot = a set number.</text>
+          <text x="0" y="132" class="t-sm t-mut">Shows clustering; hides counts.</text>
+        </g>
+
+        <g transform="translate(520,26)">
+          <text x="0" y="-10" class="t-hd">3 · GRADUATED SYMBOL</text>
+          <polygon points="20,26 58,16 100,20 134,32 136,64 130,80 102,92 60,96 24,92 16,58" class="f-surf2"/>
+          <use href="#outline11"/>
+          <g class="f-clay" opacity=".72" stroke="var(--clay)" stroke-width="1">
+            <circle cx="42" cy="40" r="15"/>
+            <circle cx="80" cy="36" r="8"/>
+            <circle cx="116" cy="46" r="5"/>
+            <circle cx="42" cy="78" r="7"/>
+            <circle cx="82" cy="74" r="11"/>
+            <circle cx="115" cy="72" r="4"/>
+          </g>
+          <text x="0" y="118" class="t-sm t-mut">Circle size = the value.</text>
+          <text x="0" y="132" class="t-sm t-mut">Good for totals; can overlap.</text>
+        </g>
+
+        <g transform="translate(10,196)">
+          <text x="0" y="-10" class="t-hd">4 · ISOLINE</text>
+          <polygon points="20,26 58,16 100,20 134,32 136,64 130,80 102,92 60,96 24,92 16,58" class="f-surf2"/>
+          <g class="f-none" stroke="var(--moss)" stroke-width="1.4">
+            <path d="M22,40 C50,28 82,30 110,42 C126,50 128,68 108,80 C80,92 44,88 28,72 C20,62 20,48 22,40 Z"/>
+            <path d="M36,46 C56,38 80,40 100,48 C112,55 112,68 96,76 C74,84 50,80 40,68 C34,60 33,51 36,46 Z"/>
+            <path d="M52,54 C64,49 80,50 90,56 C97,61 96,68 86,72 C72,77 58,73 53,66 C50,61 50,56 52,54 Z"/>
+            <path d="M66,60 C73,58 81,59 85,63 C88,66 86,70 80,71 C72,73 66,70 65,66 Z"/>
+          </g>
+          <text x="72" y="68" text-anchor="middle" class="t-sm t-moss">40</text>
+          <text x="24" y="36" class="t-sm t-moss">10</text>
+          <use href="#outline11"/>
+          <text x="0" y="118" class="t-sm t-mut">Lines join equal values:</text>
+          <text x="0" y="132" class="t-sm t-mut">elevation, rain, pressure.</text>
+        </g>
+
+        <g transform="translate(265,196)">
+          <text x="0" y="-10" class="t-hd">5 · CARTOGRAM</text>
+          <polygon points="14,34 44,26 42,58 10,62" class="f-plums" stroke="var(--plum)" stroke-width="1.2"/>
+          <polygon points="44,26 112,22 112,58 42,58" class="f-plum" opacity=".55" stroke="var(--plum)" stroke-width="1.2"/>
+          <polygon points="112,22 132,40 136,60 112,58" class="f-plums" stroke="var(--plum)" stroke-width="1.2"/>
+          <polygon points="10,62 42,58 46,98 18,96" class="f-plums" stroke="var(--plum)" stroke-width="1.2"/>
+          <polygon points="42,58 112,58 110,96 46,98" class="f-plum" opacity=".8" stroke="var(--plum)" stroke-width="1.2"/>
+          <polygon points="112,58 136,60 132,84 110,96" class="f-plums" stroke="var(--plum)" stroke-width="1.2"/>
+          <polygon points="20,26 58,16 100,20 134,32 136,64 130,80 102,92 60,96 24,92 16,58" class="f-none" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="0" y="118" class="t-sm t-mut">Area stretched to a value.</text>
+          <text x="0" y="132" class="t-sm t-mut">Dashed = the true shape.</text>
+        </g>
+
+        <g transform="translate(520,196)">
+          <text x="0" y="-10" class="t-hd">6 · FLOW-LINE</text>
+          <polygon points="20,26 58,16 100,20 134,32 136,64 130,80 102,92 60,96 24,92 16,58" class="f-surf2"/>
+          <use href="#outline11"/>
+          <g class="f-none" stroke="var(--clay)">
+            <path d="M34,74 C 60,66 74,52 96,40" stroke-width="7" marker-end="url(#ar11b)"/>
+            <path d="M118,72 C 108,62 106,50 100,42" stroke-width="3.4" marker-end="url(#ar11b)"/>
+            <path d="M40,34 C 60,32 74,34 90,38" stroke-width="1.6" marker-end="url(#ar11b)"/>
+          </g>
+          <circle cx="99" cy="39" r="4" class="f-ink"/>
+          <text x="0" y="118" class="t-sm t-mut">Arrow width = volume:</text>
+          <text x="0" y="132" class="t-sm t-mut">migrants, trade, traffic.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.1b</b> One imaginary country, six ways. Notice that the choropleth and the cartogram show the same variable and disagree about which region looks important — that disagreement is the point of the technique.</figcaption>
+  </figure>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p><strong>Choropleth maps mislead when they map totals.</strong> A large rural county shaded dark because it has many people covers far more of your eye's attention than a tiny dense city with more people. Choropleths should map <em>rates</em> — people per square mile, percent unemployed, deaths per 100,000. If a question asks for a weakness of a choropleth, this is the answer: <em>it treats each unit as internally uniform and lets large areas dominate the visual impression.</em></p>
+  </div>
+
+  <h3 class="sub">What every map should tell you</h3>
+
+  <p>The parts of a map are testable in their own right, and they are also the checklist you use when a stimulus map appears on the exam.</p>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Map elements</span><span>read these first</span></div>
+    <dl>
+      <dt><span class="swatch sw-slate"></span>Title</dt><dd>States the variable, the place, and — critically — the <em>date</em>. Data has an expiration date.</dd>
+      <dt><span class="swatch sw-slate"></span>Legend / key</dt><dd>Translates symbol into meaning. Check the class breaks: a cartographer who chooses different cutoffs produces a different-looking map from identical data.</dd>
+      <dt><span class="swatch sw-slate"></span>Scale</dt><dd>Given three ways — a <span class="term">bar scale</span> (survives photocopying and resizing), a <span class="term">representative fraction</span> such as 1:24,000, or a <span class="term">written statement</span> ("one inch = one mile").</dd>
+      <dt><span class="swatch sw-slate"></span>Orientation</dt><dd>A compass rose or north arrow. North-up is a convention, not a law of nature.</dd>
+      <dt><span class="swatch sw-slate"></span>Graticule</dt><dd>The grid of <span class="term">latitude</span> (parallels, measured north–south from the Equator, 0°–90°) and <span class="term">longitude</span> (meridians, measured east–west from the Prime Meridian, 0°–180°).</dd>
+      <dt><span class="swatch sw-slate"></span>Source &amp; author</dt><dd>Who made it, from what data, and why. Every map has a purpose; some purposes are persuasion.</dd>
+      <dt><span class="swatch sw-slate"></span>Inset / locator</dt><dd>A secondary map giving broader context or zooming into a crowded corner.</dd>
+    </dl>
+  </div>
+
+  <h4 class="sub">Large scale vs. small scale</h4>
+
+  <p>This vocabulary feels backwards until you remember it is a fraction. In 1:10,000, one map unit equals ten thousand real units — that fraction (1/10,000) is <em>large</em> compared with 1/10,000,000. So a large-scale map covers a <em>small</em> area in <em>great</em> detail.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 620 230" role="img" aria-label="Two maps of the same city. The large-scale map at one to ten thousand shows individual buildings and street names in a few blocks. The small-scale map at one to two million shows the whole region with the city reduced to a single dot." width="620">
+        <g transform="translate(10,32)">
+          <text x="0" y="-12" class="t-hd">LARGE SCALE · 1:10,000</text>
+          <rect x="0" y="0" width="270" height="150" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <g stroke="var(--rule-2)" stroke-width="6" fill="none" opacity=".85">
+            <line x1="0" y1="52" x2="270" y2="52"/><line x1="0" y1="108" x2="270" y2="108"/>
+            <line x1="76" y1="0" x2="76" y2="150"/><line x1="184" y1="0" x2="184" y2="150"/>
+          </g>
+          <g class="f-clay" opacity=".8">
+            <rect x="12" y="12" width="22" height="16" rx="1.5"/><rect x="42" y="12" width="16" height="16" rx="1.5"/>
+            <rect x="12" y="34" width="30" height="10" rx="1.5"/><rect x="92" y="14" width="26" height="22" rx="1.5"/>
+            <rect x="126" y="14" width="18" height="14" rx="1.5"/><rect x="92" y="66" width="20" height="18" rx="1.5"/>
+            <rect x="126" y="68" width="34" height="14" rx="1.5"/><rect x="200" y="14" width="24" height="18" rx="1.5"/>
+            <rect x="200" y="66" width="18" height="24" rx="1.5"/><rect x="14" y="122" width="28" height="16" rx="1.5"/>
+            <rect x="96" y="120" width="40" height="18" rx="1.5"/><rect x="200" y="118" width="26" height="20" rx="1.5"/>
+          </g>
+          <g class="f-mosss"><rect x="228" y="112" width="34" height="30" rx="2"/></g>
+          <text x="232" y="132" class="t-sm t-moss">park</text>
+          <text x="82" y="46" class="t-sm t-mut">3RD ST</text>
+          <text x="190" y="102" class="t-sm t-mut">MAIN</text>
+          <text x="0" y="172" class="t-sm t-mut">Small area · high detail · buildings visible</text>
+        </g>
+
+        <g transform="translate(330,32)">
+          <text x="0" y="-12" class="t-hd">SMALL SCALE · 1:2,000,000</text>
+          <rect x="0" y="0" width="270" height="150" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <path d="M0,96 C40,88 66,102 96,96 C130,89 152,104 190,98 C226,92 248,100 270,96" class="s-acc s-thin" stroke-width="2"/>
+          <path d="M118,0 C112,30 124,52 118,78 C114,96 122,120 116,150" class="s-acc s-thin" stroke-width="1.4"/>
+          <g stroke="var(--rule-2)" stroke-width="1.5" fill="none" stroke-dasharray="6 4">
+            <line x1="0" y1="40" x2="270" y2="40"/><line x1="196" y1="0" x2="196" y2="150"/>
+          </g>
+          <circle cx="118" cy="78" r="6" class="f-clay"/>
+          <text x="130" y="82" class="t-sm t-ink">the same city</text>
+          <circle cx="46" cy="30" r="3.5" class="f-ink"/><text x="54" y="34" class="t-sm t-mut">Ashford</text>
+          <circle cx="224" cy="118" r="3.5" class="f-ink"/><text x="150" y="122" class="t-sm t-mut">Brennan</text>
+          <circle cx="232" cy="28" r="3.5" class="f-ink"/><text x="176" y="22" class="t-sm t-mut">Colwyn</text>
+          <text x="0" y="172" class="t-sm t-mut">Large area · low detail · city is one dot</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.1c</b> Scale is a ratio, so the words are counter-intuitive. Large scale, small area. Small scale, large area. The same city is a neighborhood on the left and a dot on the right.</figcaption>
+  </figure>
+
+  <h3 class="sub">Projections: the unavoidable lie</h3>
+
+  <p>You cannot flatten an orange peel without tearing or stretching it, and you cannot flatten Earth without distorting something. Every projection distorts at least one of four properties, and cartographers choose <em>which</em> distortion they are willing to accept:</p>
+
+  <ul>
+    <li><strong>Shape</strong> — do continents look like themselves? (Preserved by <em>conformal</em> projections.)</li>
+    <li><strong>Area</strong> — is Greenland the right size relative to Africa? (Preserved by <em>equal-area</em> projections.)</li>
+    <li><strong>Distance</strong> — is the measured gap between two points true? (Preserved by <em>equidistant</em> projections, and only from certain points.)</li>
+    <li><strong>Direction</strong> — does a compass bearing on the map match one in the world?</li>
+  </ul>
+
+  <p>No projection preserves all four. Many preserve only one.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 770 250" role="img" aria-label="Three grids showing Tissot's indicatrix. On the globe every circle is identical. On Mercator the circles stay circular but swell enormously toward the poles, exaggerating area. On an equal-area projection every circle keeps the same area but is squashed into ellipses, distorting shape." width="770">
+        <g transform="translate(14,34)">
+          <text x="0" y="-12" class="t-hd">THE TRUTH · a globe</text>
+          <circle cx="94" cy="82" r="74" class="f-surf2" stroke="var(--rule-2)" stroke-width="1.2"/>
+          <g class="f-none" stroke="var(--rule-2)" stroke-width=".9">
+            <path d="M24,58 A 118 118 0 0 1 164,58"/><line x1="20" y1="82" x2="168" y2="82"/><path d="M24,106 A 118 118 0 0 0 164,106"/>
+            <ellipse cx="94" cy="82" rx="25" ry="74"/><ellipse cx="94" cy="82" rx="53" ry="74"/><line x1="94" y1="8" x2="94" y2="156"/>
+          </g>
+          <g class="f-acc" opacity=".72">
+            <circle cx="94" cy="82" r="9"/><circle cx="52" cy="82" r="9"/><circle cx="136" cy="82" r="9"/>
+            <circle cx="94" cy="44" r="9"/><circle cx="94" cy="120" r="9"/>
+            <circle cx="60" cy="48" r="9"/><circle cx="128" cy="48" r="9"/>
+          </g>
+          <text x="0" y="182" class="t-sm t-mut">Every circle: same size,</text>
+          <text x="0" y="196" class="t-sm t-mut">same shape.</text>
+        </g>
+
+        <g transform="translate(262,34)">
+          <text x="0" y="-12" class="t-hd">MERCATOR · conformal</text>
+          <rect x="0" y="0" width="200" height="164" rx="3" class="f-surf2" stroke="var(--rule-2)" stroke-width="1.2"/>
+          <g class="f-none" stroke="var(--rule-2)" stroke-width=".9">
+            <line x1="0" y1="26" x2="200" y2="26"/><line x1="0" y1="62" x2="200" y2="62"/>
+            <line x1="0" y1="82" x2="200" y2="82"/><line x1="0" y1="102" x2="200" y2="102"/><line x1="0" y1="138" x2="200" y2="138"/>
+            <line x1="50" y1="0" x2="50" y2="164"/><line x1="100" y1="0" x2="100" y2="164"/><line x1="150" y1="0" x2="150" y2="164"/>
+          </g>
+          <g class="f-clay" opacity=".72">
+            <circle cx="100" cy="82" r="8"/><circle cx="40" cy="82" r="8"/><circle cx="160" cy="82" r="8"/>
+            <circle cx="100" cy="46" r="13"/><circle cx="100" cy="118" r="13"/>
+            <circle cx="34" cy="18" r="22"/><circle cx="166" cy="18" r="22"/>
+            <circle cx="34" cy="146" r="22"/><circle cx="166" cy="146" r="22"/>
+          </g>
+          <text x="0" y="182" class="t-sm t-mut">Shape kept; polar area</text>
+          <text x="0" y="196" class="t-sm t-mut">wildly inflated.</text>
+        </g>
+
+        <g transform="translate(512,34)">
+          <text x="0" y="-12" class="t-hd">GALL–PETERS · equal-area</text>
+          <rect x="0" y="0" width="200" height="164" rx="3" class="f-surf2" stroke="var(--rule-2)" stroke-width="1.2"/>
+          <g class="f-none" stroke="var(--rule-2)" stroke-width=".9">
+            <line x1="0" y1="34" x2="200" y2="34"/><line x1="0" y1="62" x2="200" y2="62"/>
+            <line x1="0" y1="82" x2="200" y2="82"/><line x1="0" y1="102" x2="200" y2="102"/><line x1="0" y1="130" x2="200" y2="130"/>
+            <line x1="50" y1="0" x2="50" y2="164"/><line x1="100" y1="0" x2="100" y2="164"/><line x1="150" y1="0" x2="150" y2="164"/>
+          </g>
+          <g class="f-moss" opacity=".72">
+            <ellipse cx="100" cy="82" rx="7" ry="10"/><ellipse cx="40" cy="82" rx="7" ry="10"/><ellipse cx="160" cy="82" rx="7" ry="10"/>
+            <ellipse cx="100" cy="48" rx="8.5" ry="8.2"/><ellipse cx="100" cy="116" rx="8.5" ry="8.2"/>
+            <ellipse cx="36" cy="16" rx="15" ry="4.7"/><ellipse cx="164" cy="16" rx="15" ry="4.7"/>
+            <ellipse cx="36" cy="148" rx="15" ry="4.7"/><ellipse cx="164" cy="148" rx="15" ry="4.7"/>
+          </g>
+          <text x="0" y="182" class="t-sm t-mut">Area kept; every shape</text>
+          <text x="0" y="196" class="t-sm t-mut">stretched or flattened.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.1d</b> Tissot's indicatrix makes the trade-off visible. Identical circles drawn on the globe are re-drawn on each flat map. Mercator keeps them circular (true shape) by letting them balloon (false area); an equal-area projection keeps their area constant by squashing them (false shape). Neither is "wrong" — they are answers to different questions.</figcaption>
+  </figure>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption class="sr-only"></caption>
+      <thead>
+        <tr><th scope="col">Projection</th><th scope="col">Preserves</th><th scope="col">Distorts</th><th scope="col">Built for</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Mercator</th><td><span class="chip chip-good">Shape</span> <span class="chip chip-good">Direction</span></td><td><span class="chip chip-bad">Area, badly at high latitude</span></td><td>Sea navigation — a straight line is a constant compass bearing (a <span class="mono">rhumb line</span>).</td></tr>
+        <tr><th scope="row">Gall–Peters</th><td><span class="chip chip-good">Area</span></td><td><span class="chip chip-bad">Shape</span> <span class="chip chip-bad">Distance</span></td><td>Arguing that equatorial regions are visually shortchanged by Mercator.</td></tr>
+        <tr><th scope="row">Robinson</th><td><span class="chip chip-mid">Compromise — nothing exactly</span></td><td><span class="chip chip-mid">A little of everything</span></td><td>General-purpose world maps that simply need to look reasonable.</td></tr>
+        <tr><th scope="row">Winkel Tripel</th><td><span class="chip chip-mid">Compromise, minimal overall error</span></td><td><span class="chip chip-mid">A little of everything</span></td><td>The standard world reference map (adopted by National Geographic in 1998).</td></tr>
+        <tr><th scope="row">Goode's homolosine</th><td><span class="chip chip-good">Area</span> <span class="chip chip-good">Shape (within lobes)</span></td><td><span class="chip chip-bad">Continuity — oceans are cut open</span></td><td>Thematic world maps of land data where interruption is acceptable.</td></tr>
+        <tr><th scope="row">Fuller / Dymaxion</th><td><span class="chip chip-good">Area</span> <span class="chip chip-good">Shape</span></td><td><span class="chip chip-bad">Direction</span> <span class="chip chip-bad">Compass sense</span></td><td>Showing Earth's landmasses as one connected "island" with no obvious up.</td></tr>
+        <tr><th scope="row">Azimuthal (polar)</th><td><span class="chip chip-good">Direction from the center</span></td><td><span class="chip chip-bad">Area &amp; shape near the rim</span></td><td>Air routes and polar views; the UN emblem uses one.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout link">
+    <span class="tag">Why it matters beyond the map</span>
+    <p>Projection choice is a political act with real consequences. A Mercator classroom map makes Europe and North America look comparable to continents several times their size, and generations of students absorbed that impression without ever being told a choice had been made. When an FRQ asks you to "explain the geographic effect" of a map design, this is the kind of effect it means: maps shape what people believe is big, central, and important.</p>
+  </div>
+
+  <h3 class="sub">Reading spatial patterns</h3>
+
+  <p>Once you can identify a map, the next skill is describing what the map <em>shows</em> — in the specific vocabulary the rubric rewards.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 720 200" role="img" aria-label="Four boxes with the same number of dots arranged in four patterns: clustered in one corner, evenly dispersed, arranged along a line, and randomly scattered." width="720">
+        <g transform="translate(10,30)">
+          <text x="0" y="-11" class="t-hd">CLUSTERED</text>
+          <rect x="0" y="0" width="140" height="112" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g class="f-acc">
+            <circle cx="42" cy="38" r="3.4"/><circle cx="52" cy="46" r="3.4"/><circle cx="36" cy="50" r="3.4"/>
+            <circle cx="48" cy="30" r="3.4"/><circle cx="58" cy="38" r="3.4"/><circle cx="44" cy="60" r="3.4"/>
+            <circle cx="58" cy="56" r="3.4"/><circle cx="30" cy="40" r="3.4"/><circle cx="66" cy="46" r="3.4"/>
+            <circle cx="50" cy="70" r="3.4"/><circle cx="36" cy="28" r="3.4"/><circle cx="64" cy="64" r="3.4"/>
+          </g>
+          <text x="0" y="132" class="t-sm t-mut">Clumped in one place.</text>
+        </g>
+        <g transform="translate(185,30)">
+          <text x="0" y="-11" class="t-hd">DISPERSED</text>
+          <rect x="0" y="0" width="140" height="112" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g class="f-clay">
+            <circle cx="24" cy="22" r="3.4"/><circle cx="70" cy="22" r="3.4"/><circle cx="116" cy="22" r="3.4"/>
+            <circle cx="24" cy="56" r="3.4"/><circle cx="70" cy="56" r="3.4"/><circle cx="116" cy="56" r="3.4"/>
+            <circle cx="24" cy="90" r="3.4"/><circle cx="70" cy="90" r="3.4"/><circle cx="116" cy="90" r="3.4"/>
+            <circle cx="47" cy="39" r="3.4"/><circle cx="93" cy="39" r="3.4"/><circle cx="47" cy="73" r="3.4"/>
+          </g>
+          <text x="0" y="132" class="t-sm t-mut">Spread evenly.</text>
+        </g>
+        <g transform="translate(360,30)">
+          <text x="0" y="-11" class="t-hd">LINEAR</text>
+          <rect x="0" y="0" width="140" height="112" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <line x1="14" y1="94" x2="128" y2="20" class="s-rule" stroke-dasharray="4 4"/>
+          <g class="f-moss">
+            <circle cx="20" cy="90" r="3.4"/><circle cx="32" cy="82" r="3.4"/><circle cx="44" cy="74" r="3.4"/>
+            <circle cx="56" cy="66" r="3.4"/><circle cx="68" cy="58" r="3.4"/><circle cx="80" cy="50" r="3.4"/>
+            <circle cx="92" cy="42" r="3.4"/><circle cx="104" cy="34" r="3.4"/><circle cx="116" cy="26" r="3.4"/>
+            <circle cx="38" cy="70" r="3.4"/><circle cx="74" cy="64" r="3.4"/><circle cx="98" cy="46" r="3.4"/>
+          </g>
+          <text x="0" y="132" class="t-sm t-mut">Along a road or river.</text>
+        </g>
+        <g transform="translate(535,30)">
+          <text x="0" y="-11" class="t-hd">RANDOM</text>
+          <rect x="0" y="0" width="140" height="112" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g class="f-plum">
+            <circle cx="18" cy="30" r="3.4"/><circle cx="62" cy="18" r="3.4"/><circle cx="104" cy="34" r="3.4"/>
+            <circle cx="126" cy="66" r="3.4"/><circle cx="88" cy="58" r="3.4"/><circle cx="34" cy="62" r="3.4"/>
+            <circle cx="52" cy="92" r="3.4"/><circle cx="98" cy="94" r="3.4"/><circle cx="22" cy="96" r="3.4"/>
+            <circle cx="120" cy="16" r="3.4"/><circle cx="70" cy="72" r="3.4"/><circle cx="42" cy="42" r="3.4"/>
+          </g>
+          <text x="0" y="132" class="t-sm t-mut">No discernible order.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.1e</b> All four boxes hold twelve dots in the same area, so their <em>density</em> is identical. What differs is <em>concentration</em> and <em>pattern</em>. Using the right word here is often worth the point.</figcaption>
+  </figure>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Pattern vocabulary</span><span>use these exact words</span></div>
+    <dl>
+      <dt><span class="swatch"></span>Density</dt><dd>How many per unit of area. Twelve dots in a box is the same density however they are arranged.</dd>
+      <dt><span class="swatch"></span>Concentration</dt><dd>How tightly packed they are within that area. Clustered = concentrated; dispersed = not.</dd>
+      <dt><span class="swatch"></span>Pattern</dt><dd>The geometric arrangement — linear, centralized, grid-like, random.</dd>
+      <dt><span class="swatch sw-clay"></span>Absolute distance</dt><dd>A measurable gap: 412 kilometers.</dd>
+      <dt><span class="swatch sw-clay"></span>Relative distance</dt><dd>Distance expressed in cost, time, or effort: "about five hours" or "two transfers away."</dd>
+      <dt><span class="swatch sw-clay"></span>Absolute direction</dt><dd>Cardinal and intermediate compass directions: north, southeast.</dd>
+      <dt><span class="swatch sw-clay"></span>Relative direction</dt><dd>Culturally framed direction: "out west," "back East," "the Global South."</dd>
+      <dt><span class="swatch sw-moss"></span>Elevation</dt><dd>Height above sea level, usually shown by contour lines, shading, or color tint.</dd>
+    </dl>
+  </div>
+
+  <div class="callout pro">
+    <span class="tag">Exam technique</span>
+    <p>When a stimulus map appears, narrate it in this order before you write a word: <em>What kind of map is it? What is the variable and the date? Where are the highs? Where are the lows? What is the pattern — clustered, dispersed, linear? What is missing?</em> Half of the FRQ points in this unit come from describing a pattern precisely rather than explaining it cleverly.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.1</span><span>5 items</span></div>
+    <details>
+      <summary>Identify the map type that would best show the total number of hospital beds in each of a country's provinces, and justify the choice.</summary>
+      <div class="ans">
+        <p>A <strong>graduated (proportional) symbol map</strong>. Total counts are best shown by symbol size, because the symbol is independent of how large the province happens to be.</p>
+        <p>A choropleth would be a poor choice for this variable: shading whole provinces by a raw total lets a physically enormous province dominate the map even if it has few beds per person. If the variable were reworded as <em>beds per 10,000 residents</em> — a rate — a choropleth would then be appropriate.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain why a cartographer producing a world map of forest cover would choose Goode's homolosine over Mercator.</summary>
+      <div class="ans">
+        <p>Forest cover is an <strong>area-based</strong> variable: the map's job is to let a reader compare how much forest exists in one region against another. Mercator inflates area toward the poles by an enormous factor, so boreal forest in Canada and Russia would appear far larger relative to tropical forest than it truly is, producing a false impression.</p>
+        <p>Goode's homolosine is equal-area, so any two regions that look equally large on the map really are equally large. The cost is that the oceans are interrupted — an acceptable trade when the data being mapped is on land.</p>
+      </div>
+    </details>
+    <details>
+      <summary>A map of coffee shops in a city shows twelve shops downtown and twelve scattered across the suburbs. Compare the density and concentration of the two groups.</summary>
+      <div class="ans">
+        <p>If the downtown covers a much smaller area than the suburbs, the downtown shops have a <strong>higher density</strong> (more shops per square kilometer) <em>and</em> a <strong>higher concentration</strong> (they are clustered close together). The suburban shops are <strong>dispersed</strong>.</p>
+        <p>Note the trap: the two groups have the same <em>count</em>. Count is not density. Density always requires an area in the denominator.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Why is the phrase "1:24,000 is a large-scale map" not a contradiction?</summary>
+      <div class="ans">
+        <p>Because scale is a fraction. 1/24,000 is a larger number than 1/1,000,000. A larger fraction means less shrinking, which means more detail over less ground. So 1:24,000 shows a small area at large scale — for example, a single U.S. Geological Survey topographic quadrangle covering a few dozen square miles with individual buildings and contour lines visible.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Describe two ways in which "all maps are selective" and give a consequence of each.</summary>
+      <div class="ans">
+        <p><strong>Selection of features.</strong> A cartographer decides which roads, towns, and rivers are important enough to draw. A tourist map that omits public housing while labeling every boutique produces a city that visitors experience as smaller and wealthier than it is.</p>
+        <p><strong>Selection of classes and colors.</strong> Choosing five income brackets rather than three, or putting a break at $50,000 rather than $55,000, can move a whole county from light to dark. Two honest cartographers with the same data can produce maps that support opposite claims.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 1.2 ============================ -->
+<section class="plate" id="t12">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.2</b> <span>Enduring understanding IMP-1</span></p>
+    <h2>Geographic Data</h2>
+    <div class="lo"><span class="code">IMP-1.B</span><span>Identify different methods of geographic data collection.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> geographic data is any information attached to a location. The moment a fact carries a <em>where</em> — a coordinate, an address, a census tract, a country — it becomes something a geographer can map, layer, and compare. This plate is about where that information comes from, and every method carries its own strengths and its own blind spots.</p>
+
+  <h3 class="sub">Two axes, four kinds of data</h3>
+
+  <p>Data collection varies along two independent questions: <em>Is the information counted or described?</em> and <em>Was it gathered on the ground or from a distance?</em> Sorting a source into this grid is a fast way to predict what it will be good at.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 640 400" role="img" aria-label="A two-by-two matrix. The horizontal axis runs from quantitative to qualitative data; the vertical axis runs from field collected to remotely collected. Each quadrant lists example sources." width="640">
+        <defs>
+          <marker id="ar12a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--ink-3)"/>
+          </marker>
+        </defs>
+
+        <text x="330" y="16" text-anchor="middle" class="t-hd">QUANTITATIVE · counted, measured, in numbers</text>
+        <text x="330" y="392" text-anchor="middle" class="t-hd">QUALITATIVE · described, interpreted, in words &amp; images</text>
+        <text x="14" y="200" text-anchor="middle" class="t-hd" transform="rotate(-90 14 200)">REMOTE  ←→  IN THE FIELD</text>
+
+        <line x1="40" y1="204" x2="620" y2="204" stroke="var(--rule-2)" stroke-width="1.5"/>
+        <line x1="330" y1="30" x2="330" y2="378" stroke="var(--rule-2)" stroke-width="1.5"/>
+
+        <!-- Q1: field + quantitative -->
+        <rect x="44" y="34" width="272" height="160" rx="7" class="f-accs" stroke="var(--accent-line)"/>
+        <text x="60" y="56" class="t-hd t-acc">FIELD · QUANTITATIVE</text>
+        <text x="60" y="80" class="t-sm">Traffic and pedestrian counts</text>
+        <text x="60" y="98" class="t-sm">Structured surveys &amp; questionnaires</text>
+        <text x="60" y="116" class="t-sm">Soil, water, and air samples</text>
+        <text x="60" y="134" class="t-sm">Census enumeration &amp; door-knocking</text>
+        <text x="60" y="152" class="t-sm">Land-use inventories, block by block</text>
+        <text x="60" y="176" class="t-sm t-mut">Strength: precise, comparable, verifiable.</text>
+
+        <!-- Q2: field + qualitative -->
+        <rect x="44" y="214" width="272" height="160" rx="7" class="f-plums" stroke="var(--plum-line)"/>
+        <text x="60" y="236" class="t-hd t-plum">FIELD · QUALITATIVE</text>
+        <text x="60" y="260" class="t-sm">Personal interviews &amp; oral histories</text>
+        <text x="60" y="278" class="t-sm">Participant observation, field notes</text>
+        <text x="60" y="296" class="t-sm">Landscape analysis &amp; sketch mapping</text>
+        <text x="60" y="314" class="t-sm">Ground-level photography</text>
+        <text x="60" y="332" class="t-sm">Travel narratives, journals, letters</text>
+        <text x="60" y="356" class="t-sm t-mut">Strength: meaning, motive, lived experience.</text>
+
+        <!-- Q3: remote + quantitative -->
+        <rect x="344" y="34" width="272" height="160" rx="7" class="f-mosss" stroke="var(--moss-line)"/>
+        <text x="360" y="56" class="t-hd t-moss">REMOTE · QUANTITATIVE</text>
+        <text x="360" y="80" class="t-sm">Satellite &amp; aerial remote sensing</text>
+        <text x="360" y="98" class="t-sm">GNSS / GPS coordinate logging</text>
+        <text x="360" y="116" class="t-sm">LiDAR elevation models</text>
+        <text x="360" y="134" class="t-sm">Cell-phone and transit movement data</text>
+        <text x="360" y="152" class="t-sm">Government &amp; agency statistical tables</text>
+        <text x="360" y="176" class="t-sm t-mut">Strength: broad coverage, repeatable.</text>
+
+        <!-- Q4: remote + qualitative -->
+        <rect x="344" y="214" width="272" height="160" rx="7" class="f-clays" stroke="var(--clay-line)"/>
+        <text x="360" y="236" class="t-hd t-clay">REMOTE · QUALITATIVE</text>
+        <text x="360" y="260" class="t-sm">Media reports &amp; news coverage</text>
+        <text x="360" y="278" class="t-sm">Policy documents &amp; planning reports</text>
+        <text x="360" y="296" class="t-sm">Photographic interpretation</text>
+        <text x="360" y="314" class="t-sm">Social media posts, geotagged text</text>
+        <text x="360" y="332" class="t-sm">Historical maps &amp; archival records</text>
+        <text x="360" y="356" class="t-sm t-mut">Strength: reach across time and distance.</text>
+
+        <line x1="330" y1="378" x2="330" y2="386" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#ar12a)"/>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.2a</b> Strong geographic research usually draws from more than one quadrant. Satellite imagery can tell you that a neighborhood lost half its tree canopy; only an interview tells you the residents fought the removal and lost.</figcaption>
+  </figure>
+
+  <h3 class="sub">The three geospatial technologies</h3>
+
+  <p>The College Board names these explicitly, and exam questions routinely ask you to pick the right technology for a stated task. Keep the verbs straight: <strong>GPS locates, remote sensing observes, GIS analyzes.</strong></p>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Geospatial technologies</span><span>IMP-1.B.2</span></div>
+    <dl>
+      <dt><span class="swatch"></span>GIS</dt><dd><span class="term">Geographic Information System</span> — software that stores, layers, and analyzes spatial data. Its defining power is the <em>overlay</em>: stack flood zones on top of school locations on top of household income and ask a question no single layer could answer.</dd>
+      <dt><span class="swatch sw-moss"></span>GNSS / GPS</dt><dd><span class="term">Global Navigation Satellite System</span> — a constellation of satellites broadcasting timed signals. A receiver compares arrival times from four or more satellites to fix its own latitude, longitude, and elevation. GPS is the U.S. system; Galileo (EU), GLONASS (Russia), and BeiDou (China) are the others.</dd>
+      <dt><span class="swatch sw-clay"></span>Remote sensing</dt><dd>Collecting information about Earth's surface <em>without touching it</em> — from satellites, aircraft, or drones. Detects land-cover change, deforestation, urban sprawl, crop stress, ice loss, and disaster damage, and can revisit the same place on a schedule to build a time series.</dd>
+      <dt><span class="swatch sw-slate"></span>Online mapping &amp; visualization</dt><dd>Consumer-facing platforms — web maps, routing apps, virtual globes, interactive dashboards — that put geospatial data in the hands of people who are not geographers.</dd>
+    </dl>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 620 384" role="img" aria-label="A stack of five map layers drawn in perspective — parcels, roads, hydrology, flood zone, and household income — combining into a single analyzed map at the bottom, illustrating GIS overlay." width="620">
+        <defs>
+          <marker id="ar12b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-acc"/>
+          </marker>
+        </defs>
+
+        <text x="20" y="18" class="t-hd">GIS OVERLAY · one place, five layers, one answer</text>
+
+        <g transform="translate(30,34)">
+          <!-- layer 5 income -->
+          <g transform="translate(0,0)">
+            <polygon points="0,40 150,0 300,40 150,80" class="f-plums" stroke="var(--plum)" stroke-width="1.2"/>
+            <polygon points="30,38 105,19 150,31 78,50" class="f-plum" opacity=".45"/>
+            <polygon points="160,34 225,17 268,29 200,47" class="f-plum" opacity=".8"/>
+            <text x="316" y="42" class="t-sm t-plum">household income</text>
+          </g>
+          <!-- layer 4 flood -->
+          <g transform="translate(0,52)">
+            <polygon points="0,40 150,0 300,40 150,80" class="f-accs" stroke="var(--accent)" stroke-width="1.2"/>
+            <path d="M46,50 C 92,36 130,46 172,30 C 202,20 230,26 254,22" stroke="var(--accent)" stroke-width="12" fill="none" opacity=".45" stroke-linecap="round"/>
+            <text x="316" y="42" class="t-sm t-acc">100-year flood zone</text>
+          </g>
+          <!-- layer 3 hydrology -->
+          <g transform="translate(0,104)">
+            <polygon points="0,40 150,0 300,40 150,80" class="f-surf" stroke="var(--rule-2)" stroke-width="1.2"/>
+            <path d="M36,54 C 88,36 128,48 174,30 C 208,18 240,28 266,22" class="s-acc" stroke-width="2.4"/>
+            <text x="316" y="42" class="t-sm t-mut">rivers &amp; streams</text>
+          </g>
+          <!-- layer 2 roads -->
+          <g transform="translate(0,156)">
+            <polygon points="0,40 150,0 300,40 150,80" class="f-surf" stroke="var(--rule-2)" stroke-width="1.2"/>
+            <g stroke="var(--ink-3)" stroke-width="2" fill="none">
+              <line x1="34" y1="45" x2="222" y2="16"/><line x1="76" y1="63" x2="264" y2="34"/>
+              <line x1="62" y1="24" x2="112" y2="66"/><line x1="180" y1="16" x2="230" y2="58"/>
+            </g>
+            <text x="316" y="42" class="t-sm t-mut">street network</text>
+          </g>
+          <!-- layer 1 parcels -->
+          <g transform="translate(0,208)">
+            <polygon points="0,40 150,0 300,40 150,80" class="f-surf2" stroke="var(--rule-2)" stroke-width="1.2"/>
+            <g stroke="var(--rule-2)" stroke-width=".9" fill="none">
+              <line x1="52" y1="52" x2="196" y2="14"/><line x1="98" y1="64" x2="242" y2="26"/>
+              <line x1="46" y1="30" x2="112" y2="66"/><line x1="118" y1="14" x2="186" y2="50"/><line x1="192" y1="16" x2="248" y2="46"/>
+            </g>
+            <text x="316" y="42" class="t-sm t-mut">parcels &amp; buildings</text>
+          </g>
+
+          <line x1="150" y1="288" x2="150" y2="302" class="s-acc" marker-end="url(#ar12b)"/>
+          <text x="12" y="316" class="t-sm t-acc">“Which occupied homes sit in the flood zone, and which</text>
+          <text x="12" y="332" class="t-sm t-acc">of their residents can least afford to relocate?”</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.2b</b> No single layer answers the question at the bottom. The analytical power of GIS is that layers share a coordinate system, so they can be queried against one another — this is what "spatial analysis" means in practice.</figcaption>
+  </figure>
+
+  <p>Inside those layers, data takes one of two shapes. <span class="term">Vector</span> data stores discrete features as points (a well), lines (a river), or polygons (a county) — sharp edges, small files, ideal for boundaries. <span class="term">Raster</span> data stores the world as a grid of cells, each holding a value — ideal for continuous surfaces like elevation, temperature, or a satellite image, where a value exists everywhere.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 560 220" role="img" aria-label="A diagram of GPS trilateration. Three satellites each define a circle of possible positions based on signal travel time; the receiver is at the single point where all three circles intersect." width="560">
+        <text x="16" y="18" class="t-hd">GPS · position by trilateration</text>
+
+        <g class="f-none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="5 4" opacity=".85">
+          <circle cx="150" cy="70" r="112"/>
+          <circle cx="392" cy="58" r="128"/>
+          <circle cx="268" cy="206" r="96"/>
+        </g>
+
+        <g class="f-slate">
+          <rect x="138" y="52" width="24" height="16" rx="2"/>
+          <rect x="128" y="56" width="10" height="8" rx="1"/><rect x="162" y="56" width="10" height="8" rx="1"/>
+          <rect x="380" y="40" width="24" height="16" rx="2"/>
+          <rect x="370" y="44" width="10" height="8" rx="1"/><rect x="404" y="44" width="10" height="8" rx="1"/>
+          <rect x="256" y="188" width="24" height="16" rx="2"/>
+          <rect x="246" y="192" width="10" height="8" rx="1"/><rect x="280" y="192" width="10" height="8" rx="1"/>
+        </g>
+        <text x="118" y="44" class="t-sm t-slate">SAT 1</text>
+        <text x="360" y="32" class="t-sm t-slate">SAT 2</text>
+        <text x="236" y="216" class="t-sm t-slate">SAT 3</text>
+
+        <line x1="150" y1="70" x2="262" y2="114" class="s-rule" stroke-dasharray="3 3"/>
+        <line x1="392" y1="58" x2="272" y2="112" class="s-rule" stroke-dasharray="3 3"/>
+        <line x1="268" y1="206" x2="267" y2="122" class="s-rule" stroke-dasharray="3 3"/>
+        <text x="186" y="86" class="t-sm t-mut">0.067 s</text>
+        <text x="316" y="80" class="t-sm t-mut">0.071 s</text>
+        <text x="278" y="168" class="t-sm t-mut">0.063 s</text>
+
+        <circle cx="267" cy="116" r="7" class="f-clay"/>
+        <circle cx="267" cy="116" r="13" class="f-none" stroke="var(--clay)" stroke-width="1.5"/>
+        <text x="288" y="112" class="t-sm t-clay">receiver: 38.0406° N, 84.5037° W</text>
+        <text x="288" y="128" class="t-sm t-mut">a fourth satellite adds elevation</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.2c</b> Each satellite's signal travel time defines a sphere of possible positions. Three spheres narrow it to a point; a fourth resolves elevation and corrects the receiver's cheap clock. This is why GPS accuracy collapses in urban canyons and dense forest — the receiver loses line of sight to enough satellites.</figcaption>
+  </figure>
+
+  <h3 class="sub">Where the data comes from — and what it leaves out</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Source</th><th scope="col">What it captures well</th><th scope="col">Built-in limitation</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">National census</th><td>Complete, comparable population counts at fine geographic units; the backbone of most demographic mapping.</td><td>Expensive and infrequent (often every ten years); undercounts renters, migrants, and people without stable housing.</td></tr>
+        <tr><th scope="row">Field survey</th><td>Questions tailored exactly to the researcher's problem.</td><td>Sample may not represent the population; people misreport, especially on sensitive topics.</td></tr>
+        <tr><th scope="row">Personal interview</th><td>Motives, meanings, and local knowledge no dataset records.</td><td>Small numbers; hard to generalize; shaped by who agreed to talk.</td></tr>
+        <tr><th scope="row">Satellite imagery</th><td>Consistent global coverage; change over time at identical locations.</td><td>Sees surfaces, not causes; clouds block optical sensors; resolution sets the smallest visible feature.</td></tr>
+        <tr><th scope="row">Landscape analysis</th><td>Reads the built environment as evidence — signage, architecture, fencing, land use.</td><td>Interpretive; two observers can read the same street differently.</td></tr>
+        <tr><th scope="row">Media &amp; policy documents</th><td>Official intentions, public debate, and the language a society uses about a place.</td><td>Reflects the priorities of whoever produced them; silences are not neutral.</td></tr>
+        <tr><th scope="row">Geotagged social media</th><td>Enormous volume, near real time, fine spatial detail.</td><td>Skews young, urban, and connected; the map shows who posts, not who lives there.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p><strong>Do not confuse GPS with GIS.</strong> They differ by one letter and by their entire function. GPS answers "where am I?" — it produces coordinates. GIS answers "what is the relationship between these things?" — it consumes coordinates, along with imagery, census tables, and boundaries, and analyzes them together. A phone uses GPS to place a blue dot; a city uses GIS to decide where the next fire station should go.</p>
+  </div>
+
+  <div class="callout pro">
+    <span class="tag">Exam technique</span>
+    <p>When a question asks which technology a professional should use, translate the task into a verb. Tracking a shipping container's route → <em>locate</em> → GNSS/GPS. Measuring how much rainforest disappeared between 2005 and 2025 → <em>observe repeatedly from above</em> → remote sensing. Choosing the best site for a new hospital given roads, population, and existing facilities → <em>analyze layers together</em> → GIS.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.2</span><span>4 items</span></div>
+    <details>
+      <summary>A researcher wants to know why a neighborhood's grocery stores closed. Explain why census data alone is insufficient and identify a method that would fill the gap.</summary>
+      <div class="ans">
+        <p>Census data is <strong>quantitative and remote</strong>: it can establish that the neighborhood lost population, aged, or lost income — the conditions surrounding the closures. It cannot record a store owner's reasoning, a landlord's rent increase, or a chain's regional strategy.</p>
+        <p><strong>Personal interviews</strong> with former owners, employees, and residents — a field, qualitative method — would supply motive and sequence. Combining the two gives both the pattern and the explanation, which is exactly what an FRQ asking you to "explain" is after.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Describe one advantage and one limitation of using geotagged social media posts to map where tourists go in a city.</summary>
+      <div class="ans">
+        <p><strong>Advantage:</strong> volume and immediacy. Millions of posts with precise coordinates and timestamps reveal hour-by-hour movement patterns that a survey could never afford to collect.</p>
+        <p><strong>Limitation:</strong> the sample is self-selected. The map records people who post publicly with location on — skewing toward younger, wealthier, smartphone-carrying visitors — and toward photogenic sites. A tourist who spends the afternoon in a quiet museum and posts nothing is invisible.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain how remote sensing can document deforestation more effectively than field observation.</summary>
+      <div class="ans">
+        <p>Remote sensing covers vast, often inaccessible territory in a single pass, and — crucially — it can revisit the exact same coordinates on a fixed schedule for decades. That produces a consistent <strong>time series</strong> in which change is directly measurable, without the political and physical difficulty of sending observers into remote or contested forest.</p>
+        <p>Field observation remains necessary for <em>ground truthing</em>: confirming that what the sensor classified as "cleared land" is actually cleared, and not cloud shadow or seasonal leaf drop.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Identify the three geospatial technologies a city planner would use to plan a bus rapid transit line, and state each one's job.</summary>
+      <div class="ans">
+        <p><strong>Remote sensing</strong> — aerial or satellite imagery to see existing land use, building density, and where development is expanding along the corridor.</p>
+        <p><strong>GNSS/GPS</strong> — to record precise coordinates for proposed stops, survey the route, and later track buses in real time.</p>
+        <p><strong>GIS</strong> — to overlay population density, employment centers, current ridership, income, and zoning so that alternative alignments can be compared and the highest-benefit route selected.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 1.3 ============================ -->
+<section class="plate" id="t13">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.3</b> <span>Enduring understanding IMP-1</span></p>
+    <h2>The Power of Geographic Data</h2>
+    <div class="lo"><span class="code">IMP-1.C</span><span>Explain the geographical effects of decisions made using geographical information.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> maps do not merely record the world — they are used to <em>change</em> it. Once geographic data enters a decision, it reallocates money, votes, services, and risk across real places. This plate is short in the CED and heavy on the exam, because it is where the course stops being descriptive and starts being consequential.</p>
+
+  <h3 class="sub">Four decision-makers, one dataset</h3>
+
+  <p>The CED asks you to recognize geographic data in use "at all scales" by four kinds of decision-maker. The same population dataset serves all four, for entirely different ends.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Decision-maker</th><th scope="col">Typical use of geographic data</th><th scope="col">Geographic effect on the ground</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Personal</th><td>Choosing a route home, comparing school attendance zones before renting, checking a flood map before buying, finding the nearest clinic.</td><td>Individual decisions aggregate into migration streams, school enrollment shifts, and rising or falling neighborhood demand.</td></tr>
+        <tr><th scope="row">Business</th><td>Site selection for a new store, delivery routing, market segmentation, deciding which blocks receive advertising or same-day service.</td><td>Investment concentrates where models predict returns and withdraws where they do not, deepening the gap between served and underserved areas.</td></tr>
+        <tr><th scope="row">Organizational<br><span class="mono t-mut">NGOs, nonprofits, agencies</span></th><td>Mapping disease outbreaks, targeting disaster relief, prioritizing land for conservation, locating food-assistance sites.</td><td>Aid arrives where the data points; communities that are poorly surveyed can be genuinely invisible in a crisis.</td></tr>
+        <tr><th scope="row">Governmental</th><td>Drawing electoral districts, zoning land, siting infrastructure and landfills, allocating federal funds, planning evacuation, setting school boundaries.</td><td>Legally binding lines that determine representation, property value, exposure to hazards, and access to public services for decades.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Case study: the same voters, three different governments</h3>
+
+  <p>Nothing demonstrates the power of geographic data more cleanly than <span class="term">redistricting</span> — redrawing electoral boundaries, in the United States usually after each decennial census. Below, twenty-five voters never move and never change their minds. Only the lines move. Watch the outcome flip.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 790 300" role="img" aria-label="Three five-by-five grids of the same twenty-five voters, fifteen ochre and ten teal, divided into five districts three different ways. Horizontal districts give ochre three seats to two. Vertical districts give ochre all five. Irregular snaking districts give teal three seats to two despite teal being the minority." width="790">
+        <g transform="translate(16,48)">
+          <text x="0" y="-26" class="t-hd">PLAN A · districts by row</text>
+          <text x="0" y="-10" class="t-sm t-mut">compact; follows settlement</text>
+          <rect x="0" y="0" width="130" height="52" class="f-accs"/><rect x="0" y="52" width="130" height="78" class="f-clays"/><g class="f-acc"><circle cx="13" cy="13" r="7"/><circle cx="39" cy="13" r="7"/><circle cx="65" cy="13" r="7"/><circle cx="91" cy="13" r="7"/><circle cx="117" cy="13" r="7"/><circle cx="13" cy="39" r="7"/><circle cx="39" cy="39" r="7"/><circle cx="65" cy="39" r="7"/><circle cx="91" cy="39" r="7"/><circle cx="117" cy="39" r="7"/></g><g class="f-clay"><circle cx="13" cy="65" r="7"/><circle cx="39" cy="65" r="7"/><circle cx="65" cy="65" r="7"/><circle cx="91" cy="65" r="7"/><circle cx="117" cy="65" r="7"/><circle cx="13" cy="91" r="7"/><circle cx="39" cy="91" r="7"/><circle cx="65" cy="91" r="7"/><circle cx="91" cy="91" r="7"/><circle cx="117" cy="91" r="7"/><circle cx="13" cy="117" r="7"/><circle cx="39" cy="117" r="7"/><circle cx="65" cy="117" r="7"/><circle cx="91" cy="117" r="7"/><circle cx="117" cy="117" r="7"/></g>
+          <g fill="none" stroke="var(--ink)" stroke-width="2.4">
+            <rect x="0" y="0" width="130" height="26"/><rect x="0" y="26" width="130" height="26"/>
+            <rect x="0" y="52" width="130" height="26"/><rect x="0" y="78" width="130" height="26"/><rect x="0" y="104" width="130" height="26"/>
+          </g>
+          <text x="0" y="154" class="t-hd">OUTCOME</text>
+          <rect x="0" y="162" width="78" height="18" class="f-clay"/>
+          <rect x="78" y="162" width="52" height="18" class="f-acc"/>
+          <text x="0" y="198" class="t-sm t-clay">Ochre 3 seats</text>
+          <text x="0" y="214" class="t-sm t-acc">Teal 2 seats</text>
+          <text x="0" y="236" class="t-sm t-mut">Roughly proportional.</text>
+        </g>
+
+        <g transform="translate(270,48)">
+          <text x="0" y="-26" class="t-hd">PLAN B · districts by column</text>
+          <text x="0" y="-10" class="t-sm t-mut">equally compact — erases teal</text>
+          <rect x="0" y="0" width="130" height="52" class="f-accs"/><rect x="0" y="52" width="130" height="78" class="f-clays"/><g class="f-acc"><circle cx="13" cy="13" r="7"/><circle cx="39" cy="13" r="7"/><circle cx="65" cy="13" r="7"/><circle cx="91" cy="13" r="7"/><circle cx="117" cy="13" r="7"/><circle cx="13" cy="39" r="7"/><circle cx="39" cy="39" r="7"/><circle cx="65" cy="39" r="7"/><circle cx="91" cy="39" r="7"/><circle cx="117" cy="39" r="7"/></g><g class="f-clay"><circle cx="13" cy="65" r="7"/><circle cx="39" cy="65" r="7"/><circle cx="65" cy="65" r="7"/><circle cx="91" cy="65" r="7"/><circle cx="117" cy="65" r="7"/><circle cx="13" cy="91" r="7"/><circle cx="39" cy="91" r="7"/><circle cx="65" cy="91" r="7"/><circle cx="91" cy="91" r="7"/><circle cx="117" cy="91" r="7"/><circle cx="13" cy="117" r="7"/><circle cx="39" cy="117" r="7"/><circle cx="65" cy="117" r="7"/><circle cx="91" cy="117" r="7"/><circle cx="117" cy="117" r="7"/></g>
+          <g fill="none" stroke="var(--ink)" stroke-width="2.4">
+            <rect x="0" y="0" width="26" height="130"/><rect x="26" y="0" width="26" height="130"/>
+            <rect x="52" y="0" width="26" height="130"/><rect x="78" y="0" width="26" height="130"/><rect x="104" y="0" width="26" height="130"/>
+          </g>
+          <text x="0" y="154" class="t-hd">OUTCOME</text>
+          <rect x="0" y="162" width="130" height="18" class="f-clay"/>
+          <text x="0" y="198" class="t-sm t-clay">Ochre 5 seats</text>
+          <text x="0" y="214" class="t-sm t-acc">Teal 0 seats</text>
+          <text x="0" y="236" class="t-sm t-mut">CRACKING · teal split thin.</text>
+        </g>
+
+        <g transform="translate(524,48)">
+          <text x="0" y="-26" class="t-hd">PLAN C · irregular districts</text>
+          <text x="0" y="-10" class="t-sm t-mut">drawn to a target, not a place</text>
+          <rect x="0" y="0" width="130" height="52" class="f-accs"/><rect x="0" y="52" width="130" height="78" class="f-clays"/><g class="f-acc"><circle cx="13" cy="13" r="7"/><circle cx="39" cy="13" r="7"/><circle cx="65" cy="13" r="7"/><circle cx="91" cy="13" r="7"/><circle cx="117" cy="13" r="7"/><circle cx="13" cy="39" r="7"/><circle cx="39" cy="39" r="7"/><circle cx="65" cy="39" r="7"/><circle cx="91" cy="39" r="7"/><circle cx="117" cy="39" r="7"/></g><g class="f-clay"><circle cx="13" cy="65" r="7"/><circle cx="39" cy="65" r="7"/><circle cx="65" cy="65" r="7"/><circle cx="91" cy="65" r="7"/><circle cx="117" cy="65" r="7"/><circle cx="13" cy="91" r="7"/><circle cx="39" cy="91" r="7"/><circle cx="65" cy="91" r="7"/><circle cx="91" cy="91" r="7"/><circle cx="117" cy="91" r="7"/><circle cx="13" cy="117" r="7"/><circle cx="39" cy="117" r="7"/><circle cx="65" cy="117" r="7"/><circle cx="91" cy="117" r="7"/><circle cx="117" cy="117" r="7"/></g>
+          <g fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round">
+            <path d="M0,0 L26,0 L26,26 L52,26 L52,78 L0,78 Z"/>
+            <path d="M26,0 L78,0 L78,52 L104,52 L104,78 L52,78 L52,26 L26,26 Z"/>
+            <path d="M78,0 L130,0 L130,78 L104,78 L104,52 L78,52 Z"/>
+            <rect x="0" y="78" width="130" height="26"/>
+            <rect x="0" y="104" width="130" height="26"/>
+          </g>
+          <text x="0" y="154" class="t-hd">OUTCOME</text>
+          <rect x="0" y="162" width="52" height="18" class="f-clay"/>
+          <rect x="52" y="162" width="78" height="18" class="f-acc"/>
+          <text x="0" y="198" class="t-sm t-acc">Teal 3 seats</text>
+          <text x="0" y="214" class="t-sm t-clay">Ochre 2 seats</text>
+          <text x="0" y="236" class="t-sm t-mut">PACKING · ochre stuffed in two.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.3a</b> Twenty-five voters — fifteen ochre, ten teal — with every district holding exactly five people and every district contiguous. Plan A yields a 3–2 ochre majority, Plan B a 5–0 ochre sweep, Plan C a 3–2 <em>teal</em> majority from a 40% minority. All three are legal-looking on their face. The dataset never changed; only the geography of the lines did.</figcaption>
+  </figure>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Redistricting vocabulary</span><span>1.3 · returns in Unit 4</span></div>
+    <dl>
+      <dt><span class="swatch sw-slate"></span>Reapportionment</dt><dd>Redistributing the fixed 435 U.S. House seats among the states after each census. States that grow gain seats; states that lag lose them.</dd>
+      <dt><span class="swatch sw-slate"></span>Redistricting</dt><dd>Redrawing the district boundaries <em>within</em> a state to match the new seat count and equalize population.</dd>
+      <dt><span class="swatch sw-plum"></span>Gerrymandering</dt><dd>Redistricting deliberately shaped to advantage a group. The name comes from an 1812 Massachusetts district that observers said resembled a salamander.</dd>
+      <dt><span class="swatch sw-plum"></span>Cracking</dt><dd>Splitting a bloc of opposing voters across many districts so they are a minority in each and win none.</dd>
+      <dt><span class="swatch sw-plum"></span>Packing</dt><dd>Concentrating opposing voters into a few overwhelming districts so their surplus votes are wasted elsewhere.</dd>
+      <dt><span class="swatch sw-plum"></span>Stacking</dt><dd>Combining a dense minority population with a larger surrounding majority population to dilute its voting power.</dd>
+    </dl>
+  </div>
+
+  <h3 class="sub">Data becomes destiny: the feedback loop</h3>
+
+  <p>The subtlest geographic effect of data is <em>self-fulfilling</em>. A map is drawn from a judgment; the map drives investment; the investment changes the place; the changed place makes the original judgment look correct. Understanding this loop is what separates a description of a map from an explanation of its consequences.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 620 300" role="img" aria-label="A four-step cycle: a neighborhood is classified as high risk on a map, lenders and insurers act on that classification, disinvestment lowers property values and services, and the resulting statistics appear to confirm the original classification, closing the loop." width="620">
+        <defs>
+          <marker id="ar13a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-clay"/>
+          </marker>
+        </defs>
+
+        <rect x="22" y="26" width="240" height="86" rx="8" class="f-surf2" stroke="var(--rule-2)" stroke-width="1.2"/>
+        <text x="40" y="50" class="t-hd">1 · CLASSIFY</text>
+        <text x="40" y="72" class="t-sm">A map grades neighborhoods by “risk,”</text>
+        <text x="40" y="88" class="t-sm">using criteria that encode who lives there</text>
+        <text x="40" y="104" class="t-sm">as much as what is built there.</text>
+
+        <rect x="356" y="26" width="240" height="86" rx="8" class="f-surf2" stroke="var(--rule-2)" stroke-width="1.2"/>
+        <text x="374" y="50" class="t-hd">2 · ACT ON IT</text>
+        <text x="374" y="72" class="t-sm">Lenders, insurers, retailers and</text>
+        <text x="374" y="88" class="t-sm">agencies use the grades to decide</text>
+        <text x="374" y="104" class="t-sm">where money and service go.</text>
+
+        <rect x="356" y="182" width="240" height="86" rx="8" class="f-clays" stroke="var(--clay-line)" stroke-width="1.2"/>
+        <text x="374" y="206" class="t-hd t-clay">3 · THE PLACE CHANGES</text>
+        <text x="374" y="228" class="t-sm">Housing stock ages without capital.</text>
+        <text x="374" y="244" class="t-sm">Businesses leave; tax base shrinks.</text>
+        <text x="374" y="260" class="t-sm">Public services thin out.</text>
+
+        <rect x="22" y="182" width="240" height="86" rx="8" class="f-clays" stroke="var(--clay-line)" stroke-width="1.2"/>
+        <text x="40" y="206" class="t-hd t-clay">4 · THE DATA “CONFIRMS” IT</text>
+        <text x="40" y="228" class="t-sm">New statistics show low values and</text>
+        <text x="40" y="244" class="t-sm">high vacancy — which the next map</text>
+        <text x="40" y="260" class="t-sm">reads as proof the grade was right.</text>
+
+        <g class="f-none" stroke="var(--clay)" stroke-width="2">
+          <path d="M262 69 L346 69" marker-end="url(#ar13a)"/>
+          <path d="M476 112 L476 172" marker-end="url(#ar13a)"/>
+          <path d="M356 225 L272 225" marker-end="url(#ar13a)"/>
+          <path d="M142 182 L142 122" marker-end="url(#ar13a)"/>
+        </g>
+        <text x="152" y="152" class="t-sm t-clay">the loop closes</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.3b</b> The mechanism behind mid-century U.S. mortgage <span class="mono">redlining</span> and behind many modern algorithmic risk scores. The loop matters for the exam because it explains how a decision made with geographic data can produce a <em>durable spatial pattern</em> that outlives the decision itself.</figcaption>
+  </figure>
+
+  <div class="callout link">
+    <span class="tag">Everyday examples worth memorizing</span>
+    <p><strong>Emergency management:</strong> flood-zone maps determine insurance premiums, building codes, and evacuation orders — so a line on a map can decide whether a house is affordable and whether its occupants are told to leave.<br>
+    <strong>Public health:</strong> John Snow's 1854 map of cholera deaths in London clustered around a single water pump, which redirected the entire theory of disease transmission — the founding example of spatial analysis solving a problem no table of numbers could.<br>
+    <strong>Retail:</strong> a chain that maps income, traffic counts, and competitor locations may open in a wealthy suburb and skip a lower-income district — contributing to <em>food deserts</em> and <em>retail deserts</em> that the next round of data records as low demand.</p>
+  </div>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p>The verb in this learning objective is <strong>explain the geographical effects</strong>, not "describe the technology." A response that says "the government uses GIS to redistrict" earns nothing. A response that says "using GIS, a legislature can pack opposing voters into two districts, which reduces that group's representation in the legislature and shifts state policy for a decade" earns the point, because it names a decision, a mechanism, and a spatial consequence.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.3</span><span>4 items</span></div>
+    <details>
+      <summary>Using Figure 1.3a, explain how cracking and packing produce opposite-looking maps but the same underlying goal.</summary>
+      <div class="ans">
+        <p><strong>Cracking</strong> (Plan B) slices a bloc thin so it never reaches a majority anywhere: teal is 40% of the electorate and 40% of every district, so it wins nothing. <strong>Packing</strong> (Plan C) does the reverse to ochre — jamming it into two districts it wins by 5–0 while losing the other three narrowly.</p>
+        <p>Both techniques pursue the same goal: <em>wasting the other side's votes</em>. Cracking wastes them by spreading them below the threshold; packing wastes them by piling up margins far above the threshold. The map-maker only needs a majority in a majority of districts, not a majority of voters.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain one way a business decision made with geographic data can produce an unequal geographic outcome.</summary>
+      <div class="ans">
+        <p>A grocery chain runs a GIS site-selection model weighting median household income, car ownership, and projected sales per square foot. Low-income neighborhoods score poorly and are skipped.</p>
+        <p>The geographic effect: residents there face longer trips, higher prices at small stores, and worse produce access — a <strong>food desert</strong>. That, in turn, lowers the neighborhood's attractiveness in the next round of modeling. The model did not intend inequality; it inherited it from the input data and then reproduced it in space.</p>
+      </div>
+    </details>
+    <details>
+      <summary>An aid organization maps a cyclone's damage using satellite imagery and cell-phone activity. Identify one group likely to be underrepresented and explain the consequence.</summary>
+      <div class="ans">
+        <p>Remote villages with little cell coverage — and the elderly or poorest residents who own no phone — generate almost no signal in the dataset. Satellite imagery may also miss damage under heavy cloud cover, which often persists after a storm.</p>
+        <p><strong>Consequence:</strong> relief is routed toward the areas that are visible in the data, which are disproportionately connected and urban. The invisible communities wait longer, and their absence from the record can also reduce the reconstruction funding they later receive.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Why is the census an unusually high-stakes dataset in the United States?</summary>
+      <div class="ans">
+        <p>Because it drives three cascading allocations at once. It determines <strong>reapportionment</strong> of House seats among states; it supplies the population counts used for <strong>redistricting</strong> within states; and it is the denominator for hundreds of billions of dollars in annual federal funding formulas for schools, roads, and health programs.</p>
+        <p>Therefore an undercount in a particular place is not a statistical footnote — it is a decade of lost representation and lost money for that place.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 1.4 ============================ -->
+<section class="plate" id="t14">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.4</b> <span>Enduring understanding PSO-1</span></p>
+    <h2>Spatial Concepts</h2>
+    <div class="lo"><span class="code">PSO-1.A</span><span>Define major geographic concepts that illustrate spatial relationships.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> this plate is the vocabulary the rest of the course speaks in. Every unit that follows — migration, agriculture, cities, development — is an application of these seven or eight ideas to a particular subject. Learn them now with precision and the next six units get noticeably easier.</p>
+
+  <h3 class="sub">Location: two ways to answer "where?"</h3>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Location</span><span>PSO-1.A.1</span></div>
+    <dl>
+      <dt><span class="swatch"></span>Absolute location</dt><dd>A precise, fixed position on Earth that never changes: <span class="mono">41.8781° N, 87.6298° W</span>, or a street address, or a township-and-range description. Useful because it is unambiguous.</dd>
+      <dt><span class="swatch"></span>Relative location</dt><dd>Position described in relation to other places: "two hours downriver from the capital," "on the wrong side of the tracks," "the last town before the border." Relative location <em>changes</em> when the world around a place changes, even if the place does not move.</dd>
+      <dt><span class="swatch sw-clay"></span>Site</dt><dd>The <em>internal</em> physical and human characteristics of a place: terrain, soil, climate, water supply, elevation, natural harbor, available labor. Answers "what is it like <em>here</em>?"</dd>
+      <dt><span class="swatch sw-clay"></span>Situation</dt><dd>A place's location <em>relative to its surroundings and its connections</em> — trade routes, neighboring cities, transport links. Answers "what is it near, and what does it connect?"</dd>
+      <dt><span class="swatch sw-moss"></span>Toponym</dt><dd>The name of a place. Names are evidence: they record who arrived, what they valued, and who was displaced.</dd>
+    </dl>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 660 260" role="img" aria-label="Two views of the same city. The site panel shows its internal physical features — a river confluence, flat terrace, hills, and fertile soil. The situation panel shows the same city as a node connected by routes to four other cities and a port." width="660">
+        <defs>
+          <marker id="ar14a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="f-slate"/>
+          </marker>
+        </defs>
+
+        <!-- SITE -->
+        <g transform="translate(14,40)">
+          <text x="0" y="-20" class="t-hd t-clay">SITE · what is here</text>
+          <text x="0" y="-4" class="t-sm t-mut">the internal, physical character of the place</text>
+          <rect x="0" y="8" width="290" height="180" rx="6" class="f-mosss" stroke="var(--rule-2)"/>
+          <path d="M0,60 C60,52 96,74 130,96 L130,196 L0,196 Z" class="f-clays" opacity=".85"/>
+          <path d="M290,52 C240,48 210,72 176,96 L176,196 L290,196 Z" class="f-clays" opacity=".85"/>
+          <path d="M116,8 C126,60 120,120 132,196" class="s-acc" stroke-width="9" stroke-linecap="round" opacity=".55"/>
+          <path d="M262,20 C218,52 190,74 176,110 C168,136 172,166 178,196" class="s-acc" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+          <rect x="130" y="96" width="46" height="100" class="f-surf2" opacity=".9"/>
+          <g class="f-ink">
+            <rect x="136" y="122" width="10" height="14"/><rect x="150" y="116" width="9" height="20"/>
+            <rect x="162" y="124" width="9" height="12"/><rect x="138" y="146" width="12" height="12"/>
+            <rect x="156" y="148" width="14" height="10"/>
+          </g>
+          <text x="8" y="30" class="t-sm t-clay">upland ridge</text>
+          <text x="200" y="30" class="t-sm t-clay">upland ridge</text>
+          <text x="6" y="176" class="t-sm t-moss">fertile floodplain</text>
+          <text x="128" y="86" class="t-sm t-ink">flat terrace</text>
+          <text x="88" y="120" class="t-sm t-acc" transform="rotate(-72 88 120)">river</text>
+          <text x="0" y="212" class="t-sm t-mut">Defensible, well-watered, buildable, farmable.</text>
+        </g>
+
+        <!-- SITUATION -->
+        <g transform="translate(348,40)">
+          <text x="0" y="-20" class="t-hd t-slate">SITUATION · what it is near</text>
+          <text x="0" y="-4" class="t-sm t-mut">the same city as a node in a wider network</text>
+          <rect x="0" y="8" width="290" height="180" rx="6" class="f-slates" stroke="var(--rule-2)"/>
+          <g class="f-none" stroke="var(--slate)" stroke-width="1.6" marker-end="url(#ar14a)" marker-start="url(#ar14a)">
+            <line x1="60" y1="46" x2="132" y2="90"/>
+            <line x1="236" y1="42" x2="164" y2="88"/>
+            <line x1="46" y1="150" x2="130" y2="108"/>
+            <line x1="246" y1="152" x2="166" y2="110"/>
+            <line x1="148" y1="88" x2="148" y2="34"/>
+          </g>
+          <circle cx="148" cy="99" r="13" class="f-clay"/>
+          <text x="148" y="103" text-anchor="middle" class="t-sm t-inv">CITY</text>
+          <g class="f-slate">
+            <circle cx="54" cy="42" r="5"/><circle cx="242" cy="38" r="5"/>
+            <circle cx="40" cy="154" r="5"/><circle cx="252" cy="156" r="5"/><circle cx="148" cy="28" r="5"/>
+          </g>
+          <text x="18" y="34" class="t-sm t-slate">grain belt</text>
+          <text x="234" y="30" class="t-sm t-slate">mines</text>
+          <text x="14" y="174" class="t-sm t-slate">seaport</text>
+          <text x="216" y="176" class="t-sm t-slate">capital</text>
+          <text x="148" y="18" text-anchor="middle" class="t-sm t-slate">rail junction</text>
+          <text x="0" y="212" class="t-sm t-mut">Situation is why it grew.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.4a</b> Site explains why a settlement began where it did; situation explains whether it became important. A city's site is essentially permanent — but its situation can improve (a new canal, a new highway) or collapse (a silted harbor, a rerouted railway), which is why some once-great cities are now small towns.</figcaption>
+  </figure>
+
+  <h3 class="sub">Space, place, and flows</h3>
+
+  <p><span class="term">Space</span> is the geometric extent between things — measurable, neutral, describable in distance and direction. <span class="term">Place</span> is space that has been given meaning by people: a set of physical and human characteristics plus the feelings attached to them. The transformation of space into place happens through experience, memory, and use.</p>
+
+  <ul>
+    <li><strong>Sense of place</strong> — the distinctive character people perceive in a location. A neighborhood with a recognizable architecture, soundscape, and set of rituals has a strong sense of place.</li>
+    <li><strong>Placelessness</strong> — the loss of that distinctiveness where the built environment is interchangeable: the same chains, signage, and layout that could be anywhere.</li>
+    <li><strong>Spatial interaction</strong> — the movement and exchange that connects places. It requires <em>complementarity</em> (one place has what another wants), <em>transferability</em> (the cost of moving it is bearable), and the absence of an <em>intervening opportunity</em> (a closer source that satisfies the need first).</li>
+  </ul>
+
+  <p><span class="term">Flows</span> are what actually moves through space: people (migration, commuting, tourism), goods (trade, supply chains), capital (investment, remittances), and information (news, ideas, culture, disease). When the exam shows a flow-line map, it is asking you to read a flow.</p>
+
+  <h3 class="sub">Distance decay and the friction of distance</h3>
+
+  <p><span class="term">Friction of distance</span> is the simple fact that crossing space costs something — money, time, effort, risk. <span class="term">Distance decay</span> is the consequence: interaction between two places <em>declines as the distance between them increases</em>. It is not a law with a fixed rate; the shape of the curve depends on the technology available.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 660 300" role="img" aria-label="A line graph with interaction on the vertical axis and distance from origin on the horizontal axis. A steep curve labelled high friction falls almost to zero within a short distance; a shallower curve labelled low friction stays high much farther out, showing how improved transport and communication flatten distance decay." width="660">
+        <defs>
+          <marker id="ar14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--ink-2)"/>
+          </marker>
+        </defs>
+
+        <line x1="70" y1="242" x2="628" y2="242" stroke="var(--ink-2)" stroke-width="1.4" marker-end="url(#ar14b)"/>
+        <line x1="70" y1="242" x2="70" y2="30" stroke="var(--ink-2)" stroke-width="1.4" marker-end="url(#ar14b)"/>
+        <g stroke="var(--rule)" stroke-width="1">
+          <line x1="70" y1="200" x2="620" y2="200"/><line x1="70" y1="158" x2="620" y2="158"/>
+          <line x1="70" y1="116" x2="620" y2="116"/><line x1="70" y1="74" x2="620" y2="74"/>
+        </g>
+        <text x="62" y="46" text-anchor="end" class="t-sm t-mut">high</text>
+        <text x="62" y="238" text-anchor="end" class="t-sm t-mut">none</text>
+        <text x="22" y="150" text-anchor="middle" class="t-hd" transform="rotate(-90 22 150)">INTERACTION</text>
+        <text x="346" y="282" text-anchor="middle" class="t-hd">DISTANCE FROM ORIGIN  →</text>
+
+        <path d="M70,44 C 108,150 140,208 200,228 C 280,240 420,241 620,242" class="s-clay" stroke-width="2.6"/>
+        <path d="M70,44 C 130,98 200,128 280,152 C 380,180 500,198 620,208" class="s-acc" stroke-width="2.6"/>
+
+        <line x1="440" y1="188" x2="440" y2="240" stroke="var(--plum)" stroke-width="1.6" stroke-dasharray="4 4"/>
+        <circle cx="440" cy="188" r="4" class="f-acc"/><circle cx="440" cy="240" r="4" class="f-clay"/>
+        <path d="M398,206 L432,212" stroke="var(--plum)" stroke-width="1.2" fill="none"/>
+        <text x="192" y="192" class="t-sm t-plum">time–space compression</text>
+        <text x="192" y="206" class="t-sm t-mut">is this gap: identical distance,</text>
+        <text x="192" y="220" class="t-sm t-mut">far less friction</text>
+
+        <rect x="404" y="44" width="216" height="76" rx="6" class="f-surf" stroke="var(--rule-2)"/>
+        <line x1="418" y1="68" x2="446" y2="68" stroke="var(--accent)" stroke-width="2.6"/>
+        <text x="456" y="66" class="t-sm t-acc">LOW FRICTION</text>
+        <text x="456" y="79" class="t-sm t-mut">rail, air, fibre optic</text>
+        <line x1="418" y1="99" x2="446" y2="99" stroke="var(--clay)" stroke-width="2.6"/>
+        <text x="456" y="97" class="t-sm t-clay">HIGH FRICTION</text>
+        <text x="456" y="110" class="t-sm t-mut">walking, cart, sail</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.4b</b> Distance decay is a curve, not a cliff, and technology changes its steepness. Note carefully: the horizontal axis has not changed. The kilometers are identical. What changed is how much those kilometers <em>cost</em>.</figcaption>
+  </figure>
+
+  <h3 class="sub">Time–space compression: the shrinking world</h3>
+
+  <p><span class="term">Time–space compression</span> (also called time–space convergence) is the reduction in the time it takes for something or someone to travel between two places, caused by improvements in transportation and communication. Absolute distance is fixed; <em>relative</em> distance collapses.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 640 250" role="img" aria-label="Four horizontal bars showing travel time between the same two cities across four eras: sailing ship six weeks, steamship ten days, propeller aircraft twenty-four hours, jet aircraft seven hours. A note states the absolute distance of 5,900 kilometers never changed." width="640">
+        <text x="14" y="18" class="t-hd">THE SAME TWO CITIES · 5,900 km apart in every row</text>
+
+        <g transform="translate(14,38)">
+          <text x="0" y="14" class="t-sm t-mut">1750 · sailing ship</text>
+          <rect x="150" y="2" width="452" height="16" rx="3" class="f-clay" opacity=".85"/>
+          <text x="158" y="15" class="t-sm t-inv">6 WEEKS</text>
+        </g>
+        <g transform="translate(14,84)">
+          <text x="0" y="14" class="t-sm t-mut">1900 · steamship</text>
+          <rect x="150" y="2" width="176" height="16" rx="3" class="f-clay" opacity=".85"/>
+          <text x="158" y="15" class="t-sm t-inv">10 DAYS</text>
+        </g>
+        <g transform="translate(14,130)">
+          <text x="0" y="14" class="t-sm t-mut">1950 · propeller aircraft</text>
+          <rect x="150" y="2" width="42" height="16" rx="3" class="f-acc"/>
+          <text x="200" y="15" class="t-sm t-acc">24 HOURS</text>
+        </g>
+        <g transform="translate(14,176)">
+          <text x="0" y="14" class="t-sm t-mut">today · jet aircraft</text>
+          <rect x="150" y="2" width="14" height="16" rx="3" class="f-acc"/>
+          <text x="172" y="15" class="t-sm t-acc">7 HOURS</text>
+        </g>
+        <g transform="translate(14,218)">
+          <text x="0" y="14" class="t-sm t-mut">today · a message</text>
+          <rect x="150" y="2" width="3" height="16" rx="1.5" class="f-plum"/>
+          <text x="160" y="15" class="t-sm t-plum">INSTANT — and this is what changes culture fastest</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.4c</b> Bar length is travel time, drawn to scale. Time–space compression is why cultural traits, capital, fashions, and pathogens now diffuse globally in days rather than generations — a mechanism you will use again in Units 3, 4, and 7.</figcaption>
+  </figure>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p><strong>Time–space compression does not shrink distance — it shrinks the <em>friction</em> of distance, and it does so unevenly.</strong> A financial analyst in one global city is minutes from another; a farmer forty kilometers away on an unpaved road may be effectively farther from that city than they were fifty years ago, because everyone else got faster. Geographers call this uneven compression, and saying so in an FRQ is worth more than reciting the definition.</p>
+  </div>
+
+  <div class="callout pro">
+    <span class="tag">Exam technique</span>
+    <p>These terms are tested by <em>application</em>, not recall. Practice converting a scenario into a term: "fewer people from Ohio vacation in Maine than in Michigan" → distance decay. "A steel town declined after the interstate bypassed it" → deteriorating situation. "The corner store closed once the highway made the supercenter a ten-minute drive" → intervening opportunity plus reduced friction of distance.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.4</span><span>5 items</span></div>
+    <details>
+      <summary>Distinguish between the site and the situation of a port city, and explain which is more likely to change over a century.</summary>
+      <div class="ans">
+        <p><strong>Site</strong> is the port's internal physical setting: a deep sheltered natural harbor, a flat shoreline for docks, a river mouth providing fresh water. <strong>Situation</strong> is its connection to the wider world: which shipping lanes reach it, which hinterland it drains, which rail and road corridors terminate there.</p>
+        <p><strong>Situation</strong> changes far more readily. Site is largely fixed by physical geography (though dredging and landfill can modify it), while a new canal, a competing port, containerization, or a shifted trade route can transform a city's situation within a decade — which is why several historically dominant ports are now minor.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain how distance decay would appear on a map of customers at a small-town hardware store.</summary>
+      <div class="ans">
+        <p>Customer dots would be <strong>densest immediately around the store</strong> and would thin steadily outward, with the thinning accelerating at first and then leveling off — the shape of the curve in Figure 1.4b. Beyond a certain range almost no customers appear.</p>
+        <p>The pattern would also be <strong>distorted by the road network and by competitors</strong>: the customer field stretches farther along a highway (lower friction along that line) and is cut off abruptly in the direction of a rival store, which acts as an intervening opportunity.</p>
+      </div>
+    </details>
+    <details>
+      <summary>A rural village and a global financial district both gained high-speed internet in the same year. Explain why time–space compression affected them differently.</summary>
+      <div class="ans">
+        <p>Compression depends on more than the technology being present — it depends on being <strong>plugged into networks that others also use</strong>. The financial district was already densely connected by air routes, capital flows, and institutional relationships, so faster data multiplied existing interaction.</p>
+        <p>The village may have gained the connection without the complementary infrastructure — reliable power, nearby airports, local capital, or trading partners who want what it produces. The result is <strong>uneven compression</strong>: relative distance collapses for the already-connected and shrinks far less for everyone else, which can widen rather than narrow spatial inequality.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Define "place" in a way that distinguishes it from "space," and give an example of placelessness.</summary>
+      <div class="ans">
+        <p><strong>Space</strong> is measurable extent — the neutral geometry between locations. <strong>Place</strong> is space invested with meaning: a specific location with physical and human characteristics that people recognize, name, and feel something about.</p>
+        <p><strong>Placelessness</strong> appears where the landscape gives no clue as to where you are: a highway interchange with the same fuel stations, the same fast-food architecture, and the same signage found in a thousand other interchanges. The location exists; the sense of a distinct place does not.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Identify the three conditions required for spatial interaction and apply them to a country importing coffee.</summary>
+      <div class="ans">
+        <p><strong>Complementarity:</strong> the importing country wants coffee and cannot grow it at scale; the exporting country has a surplus. A supply and a demand must match.</p>
+        <p><strong>Transferability:</strong> coffee is compact, non-perishable once roasted or dried, and high in value per unit weight, so shipping costs are a small share of price — the trade is economically bearable.</p>
+        <p><strong>Absence of an intervening opportunity:</strong> if a nearer producer could supply the same quality at lower delivered cost, trade would shift there instead. The absence of that closer alternative is what keeps the distant flow alive.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 1.5 ============================ -->
+<section class="plate" id="t15">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.5</b> <span>Enduring understanding PSO-1</span></p>
+    <h2>Human–Environmental Interaction</h2>
+    <div class="lo"><span class="code">PSO-1.B</span><span>Explain how major geographic concepts illustrate spatial relationships.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> human geography sits at the hinge between people and the physical world, and the discipline's understanding of that hinge has changed dramatically. The core of this plate is a single intellectual shift — from believing the environment <em>determines</em> what a society becomes to recognizing that it <em>constrains a set of options</em> a society then chooses among.</p>
+
+  <h3 class="sub">From determinism to possibilism</h3>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 760 340" role="img" aria-label="Two models side by side. Environmental determinism shows a single one-way arrow from environment to a fixed societal outcome. Possibilism shows the environment producing a fan of several possible outcomes, one of which is selected by culture, technology, and choice, with a feedback arrow running from society back to the environment." width="760">
+        <defs>
+          <marker id="ar15a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-clay"/>
+          </marker>
+          <marker id="ar15b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-moss"/>
+          </marker>
+          <marker id="ar15c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-slate"/>
+          </marker>
+        </defs>
+
+        <g transform="translate(14,34)">
+          <text x="0" y="-14" class="t-hd t-clay">ENVIRONMENTAL DETERMINISM · discredited</text>
+          <rect x="0" y="0" width="290" height="280" rx="8" class="f-clays" stroke="var(--clay-line)"/>
+          <rect x="26" y="30" width="106" height="52" rx="6" class="f-surf" stroke="var(--clay)" stroke-width="1.4"/>
+          <text x="79" y="52" text-anchor="middle" class="t-hd">THE</text>
+          <text x="79" y="68" text-anchor="middle" class="t-hd">ENVIRONMENT</text>
+          <text x="79" y="98" text-anchor="middle" class="t-sm t-mut">climate, terrain,</text>
+          <text x="79" y="112" text-anchor="middle" class="t-sm t-mut">latitude, soil</text>
+
+          <line x1="132" y1="56" x2="176" y2="56" class="s-clay" stroke-width="3" marker-end="url(#ar15a)"/>
+          <text x="154" y="42" text-anchor="middle" class="t-sm t-clay">causes</text>
+
+          <rect x="182" y="30" width="90" height="52" rx="6" class="f-clay" opacity=".9"/>
+          <text x="227" y="52" text-anchor="middle" class="t-hd t-inv">ONE FIXED</text>
+          <text x="227" y="68" text-anchor="middle" class="t-hd t-inv">OUTCOME</text>
+
+          <line x1="26" y1="142" x2="272" y2="142" stroke="var(--clay-line)"/>
+          <text x="26" y="166" class="t-sm">The claim: physical conditions —</text>
+          <text x="26" y="182" class="t-sm">above all climate — dictate a</text>
+          <text x="26" y="198" class="t-sm">people's character, intelligence,</text>
+          <text x="26" y="214" class="t-sm">and level of development.</text>
+          <text x="26" y="230" class="t-sm">Society gets no say at all.</text>
+          <text x="26" y="256" class="t-sm t-clay">Ratzel, Semple and Huntington,</text>
+          <text x="26" y="270" class="t-sm t-clay">c. 1890–1930.</text>
+        </g>
+
+        <g transform="translate(330,34)">
+          <text x="0" y="-14" class="t-hd t-moss">POSSIBILISM · the modern view</text>
+          <rect x="0" y="0" width="416" height="280" rx="8" class="f-mosss" stroke="var(--moss-line)"/>
+
+          <rect x="18" y="52" width="88" height="46" rx="6" class="f-surf" stroke="var(--moss)" stroke-width="1.4"/>
+          <text x="62" y="71" text-anchor="middle" class="t-hd">THE</text>
+          <text x="62" y="87" text-anchor="middle" class="t-hd">ENVIRONMENT</text>
+          <text x="62" y="116" text-anchor="middle" class="t-sm t-mut">sets the limits</text>
+
+          <text x="120" y="24" class="t-sm t-moss">offers a RANGE of possibilities</text>
+          <g class="f-none" stroke="var(--moss)" stroke-width="2" marker-end="url(#ar15b)">
+            <path d="M106,66 C 130,52 140,42 156,38"/>
+            <path d="M106,72 C 132,70 140,68 156,68"/>
+            <path d="M106,79 C 132,88 140,96 156,98"/>
+            <path d="M106,85 C 130,106 140,122 156,128"/>
+          </g>
+
+          <rect x="164" y="26" width="86" height="24" rx="4" class="f-surf" stroke="var(--rule-2)"/>
+          <text x="207" y="42" text-anchor="middle" class="t-sm">irrigate it</text>
+          <rect x="164" y="56" width="86" height="24" rx="4" class="f-moss"/>
+          <text x="207" y="72" text-anchor="middle" class="t-sm t-inv">terrace it</text>
+          <rect x="164" y="86" width="86" height="24" rx="4" class="f-surf" stroke="var(--rule-2)"/>
+          <text x="207" y="102" text-anchor="middle" class="t-sm">graze it</text>
+          <rect x="164" y="116" width="86" height="24" rx="4" class="f-surf" stroke="var(--rule-2)"/>
+          <text x="207" y="132" text-anchor="middle" class="t-sm">leave it</text>
+
+          <line x1="256" y1="68" x2="284" y2="68" class="s-moss" stroke-width="2.4" marker-end="url(#ar15b)"/>
+          <text x="292" y="56" class="t-sm t-moss">CULTURE,</text>
+          <text x="292" y="70" class="t-sm t-moss">TECHNOLOGY</text>
+          <text x="292" y="84" class="t-sm t-moss">&amp; CHOICE</text>
+          <text x="292" y="98" class="t-sm t-mut">select one</text>
+
+          <path d="M207,144 L207,168 L120,168" class="s-slate" stroke-width="2" fill="none"/>
+          <path d="M120,168 C 84,168 62,158 62,132" class="s-slate" stroke-width="2" marker-end="url(#ar15c)" fill="none"/>
+          <text x="18" y="196" class="t-sm t-slate">…and the society's choice then reshapes</text>
+          <text x="18" y="210" class="t-sm t-slate">the environment itself.</text>
+
+          <line x1="18" y1="228" x2="398" y2="228" stroke="var(--moss-line)"/>
+          <text x="18" y="252" class="t-sm">The environment still has a vote — it just no</text>
+          <text x="18" y="268" class="t-sm">longer has the only vote. Vidal de la Blache; Sauer.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.5a</b> The difference that matters is the number of arrows. Determinism draws one, running one way, ending in a single result. Possibilism draws a fan of options, a human filter that selects among them, and a return arrow — because societies do not merely respond to environments, they remake them.</figcaption>
+  </figure>
+
+  <div class="callout link">
+    <span class="tag">Why determinism was abandoned</span>
+    <p>Two reasons, and the exam rewards naming both. <strong>Empirically</strong> it fails: societies in nearly identical environments develop radically different economies, religions, and political systems, and the same environment supports different outcomes in different centuries as technology changes. <strong>Ethically and historically</strong>, environmental determinism was used to rank peoples — asserting that temperate climates produced "vigorous" civilizations and tropical climates did not — which supplied a scientific-sounding justification for colonial rule and racial hierarchy. Modern geography rejects it on both grounds.</p>
+  </div>
+
+  <p>Two refinements sit beyond possibilism and are worth knowing by name. <span class="term">Cultural ecology</span> studies how a society's beliefs and practices adapt to its environment. <span class="term">Political ecology</span> adds power to the picture, asking who decides how land and resources are used, and who bears the environmental cost of those decisions — often not the same people who receive the benefit.</p>
+
+  <h3 class="sub">Natural resources</h3>
+
+  <p>A <span class="term">natural resource</span> is any material in nature that a society has the technology and the desire to use. That definition has a hidden edge: <em>resources are culturally defined</em>. Petroleum was a nuisance seeping into farm fields before the internal combustion engine made it the most valuable substance on Earth; lithium and cobalt became strategic only once batteries mattered.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 700 250" role="img" aria-label="Three columns classifying natural resources: perpetual renewable resources such as solar and wind, potentially renewable resources such as forests and groundwater that renew only if harvest stays below regeneration, and nonrenewable resources such as fossil fuels and metal ores. A small inset shows a tank with a regeneration inflow and a harvest outflow." width="660">
+        <defs>
+          <marker id="ar15d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-acc"/>
+          </marker>
+          <marker id="ar15e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-clay"/>
+          </marker>
+        </defs>
+
+        <g transform="translate(12,30)">
+          <rect x="0" y="0" width="216" height="196" rx="8" class="f-mosss" stroke="var(--moss-line)"/>
+          <text x="16" y="26" class="t-hd t-moss">PERPETUAL</text>
+          <text x="16" y="44" class="t-sm t-mut">effectively inexhaustible</text>
+          <text x="16" y="72" class="t-sm">Solar radiation</text>
+          <text x="16" y="90" class="t-sm">Wind</text>
+          <text x="16" y="108" class="t-sm">Tidal &amp; wave energy</text>
+          <text x="16" y="126" class="t-sm">Geothermal heat</text>
+          <text x="16" y="160" class="t-sm t-moss">Human use does not</text>
+          <text x="16" y="174" class="t-sm t-moss">reduce the supply.</text>
+        </g>
+
+        <g transform="translate(242,30)">
+          <rect x="0" y="0" width="216" height="196" rx="8" class="f-accs" stroke="var(--accent-line)"/>
+          <text x="16" y="26" class="t-hd t-acc">POTENTIALLY RENEWABLE</text>
+          <text x="16" y="44" class="t-sm t-mut">renewable only if well managed</text>
+          <text x="16" y="72" class="t-sm">Forests &amp; timber</text>
+          <text x="16" y="90" class="t-sm">Fisheries</text>
+          <text x="16" y="108" class="t-sm">Fertile topsoil</text>
+          <text x="16" y="126" class="t-sm">Groundwater in aquifers</text>
+          <text x="16" y="160" class="t-sm t-acc">Renews — but only below</text>
+          <text x="16" y="174" class="t-sm t-acc">a threshold rate of use.</text>
+        </g>
+
+        <g transform="translate(472,30)">
+          <rect x="0" y="0" width="216" height="196" rx="8" class="f-clays" stroke="var(--clay-line)"/>
+          <text x="16" y="26" class="t-hd t-clay">NONRENEWABLE</text>
+          <text x="16" y="44" class="t-sm t-mut">a fixed stock, geologic time</text>
+          <text x="16" y="72" class="t-sm">Coal, oil, natural gas</text>
+          <text x="16" y="90" class="t-sm">Uranium</text>
+          <text x="16" y="108" class="t-sm">Metal ores — iron, copper</text>
+          <text x="16" y="126" class="t-sm">Lithium, cobalt, rare earths</text>
+          <text x="16" y="160" class="t-sm t-clay">Formed over geologic time;</text>
+          <text x="16" y="174" class="t-sm t-clay">consumed in a few centuries.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.5b</b> The middle column is where nearly all environmental conflict lives. A forest, a fishery, an aquifer, and a layer of topsoil are all renewable in principle and exhaustible in practice — they persist only while the rate of harvest stays at or below the rate of regeneration. Cross that threshold and a renewable resource behaves exactly like a nonrenewable one.</figcaption>
+  </figure>
+
+  <h3 class="sub">Sustainability</h3>
+
+  <p><span class="term">Sustainability</span> is the use of resources in ways that meet present needs <em>without compromising the ability of future generations to meet their own needs</em> — the definition from the United Nations' 1987 Brundtland Report. It is not purely an environmental idea: a practice that is ecologically gentle but economically ruinous, or economically brilliant but socially unjust, is not sustainable either.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 520 330" role="img" aria-label="Three overlapping circles labelled environmental, economic, and social. Their pairwise overlaps are labelled viable, equitable, and bearable, and the central overlap of all three is labelled sustainable." width="520">
+        <g opacity=".55">
+          <circle cx="260" cy="122" r="98" class="f-moss"/>
+          <circle cx="196" cy="222" r="98" class="f-acc"/>
+          <circle cx="324" cy="222" r="98" class="f-plum"/>
+        </g>
+        <g class="f-none" stroke-width="1.6">
+          <circle cx="260" cy="122" r="98" stroke="var(--moss)"/>
+          <circle cx="196" cy="222" r="98" stroke="var(--accent)"/>
+          <circle cx="324" cy="222" r="98" stroke="var(--plum)"/>
+        </g>
+
+        <text x="260" y="46" text-anchor="middle" class="t-hd">ENVIRONMENTAL</text>
+        <text x="260" y="62" text-anchor="middle" class="t-sm">clean air, water, soil,</text>
+        <text x="260" y="76" text-anchor="middle" class="t-sm">habitat, stable climate</text>
+
+        <text x="110" y="286" text-anchor="middle" class="t-hd">ECONOMIC</text>
+        <text x="110" y="302" text-anchor="middle" class="t-sm">livelihoods, growth,</text>
+        <text x="110" y="316" text-anchor="middle" class="t-sm">affordability</text>
+
+        <text x="412" y="286" text-anchor="middle" class="t-hd">SOCIAL</text>
+        <text x="412" y="302" text-anchor="middle" class="t-sm">health, equity, culture,</text>
+        <text x="412" y="316" text-anchor="middle" class="t-sm">participation</text>
+
+        <text x="182" y="168" text-anchor="middle" class="t-sm t-ink">VIABLE</text>
+        <text x="338" y="168" text-anchor="middle" class="t-sm t-ink">BEARABLE</text>
+        <text x="260" y="272" text-anchor="middle" class="t-sm t-ink">EQUITABLE</text>
+
+        <circle cx="260" cy="190" r="34" class="f-surf" opacity=".92"/>
+        <circle cx="260" cy="190" r="34" class="f-none" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="260" y="188" text-anchor="middle" class="t-hd">SUSTAIN-</text>
+        <text x="260" y="202" text-anchor="middle" class="t-hd">ABLE</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.5c</b> Only the center counts. A policy sitting in one of the two-circle overlaps fails on the third dimension — which is why "sustainable" is a contested word in practice: different groups disagree about how to weigh the three.</figcaption>
+  </figure>
+
+  <h3 class="sub">Land use and the modified landscape</h3>
+
+  <p>Every society leaves a physical record of its choices on the land. That record — the <span class="term">cultural landscape</span> — is the built environment plus the modified natural environment, read together as evidence of the culture that produced it. Carl Sauer's formulation is the one to remember: culture acts on the natural landscape, and the cultural landscape is the result.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 800 200" role="img" aria-label="Four small cross-section drawings of ways humans modify land: terracing a hillside into level steps, irrigating dry land with canals, reclaiming land below sea level behind a dike, and replacing a natural surface with a dense built environment." width="800">
+        <g transform="translate(10,34)">
+          <text x="0" y="-12" class="t-hd">TERRACING</text>
+          <rect x="0" y="0" width="152" height="106" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <path d="M0,100 L0,64 L30,64 L30,50 L60,50 L60,38 L90,38 L90,28 L120,28 L120,18 L152,18 L152,100 Z" class="f-clays" stroke="var(--clay)" stroke-width="1.2"/>
+          <g class="f-moss">
+            <rect x="6" y="58" width="18" height="4"/><rect x="36" y="44" width="18" height="4"/>
+            <rect x="66" y="32" width="18" height="4"/><rect x="96" y="22" width="18" height="4"/><rect x="126" y="12" width="18" height="4"/>
+          </g>
+          <text x="0" y="126" class="t-sm t-mut">Steep slope → cropland;</text>
+          <text x="0" y="140" class="t-sm t-mut">slows erosion, holds water.</text>
+        </g>
+
+        <g transform="translate(205,34)">
+          <text x="0" y="-12" class="t-hd">IRRIGATION</text>
+          <rect x="0" y="0" width="152" height="106" rx="5" class="f-clays" stroke="var(--rule-2)"/>
+          <path d="M0,26 C40,22 60,34 100,30 C124,27 138,32 152,30" class="s-acc" stroke-width="6" stroke-linecap="round"/>
+          <g stroke="var(--accent)" stroke-width="2" fill="none" opacity=".8">
+            <line x1="26" y1="28" x2="26" y2="96"/><line x1="62" y1="31" x2="62" y2="96"/>
+            <line x1="98" y1="30" x2="98" y2="96"/><line x1="132" y1="30" x2="132" y2="96"/>
+          </g>
+          <g class="f-moss" opacity=".85">
+            <rect x="8" y="52" width="12" height="42" rx="2"/><rect x="34" y="52" width="22" height="42" rx="2"/>
+            <rect x="70" y="52" width="22" height="42" rx="2"/><rect x="106" y="52" width="20" height="42" rx="2"/>
+          </g>
+          <text x="0" y="126" class="t-sm t-mut">Dry land → farmland; can</text>
+          <text x="0" y="140" class="t-sm t-mut">salinize soil, drain aquifers.</text>
+        </g>
+
+        <g transform="translate(400,34)">
+          <text x="0" y="-12" class="t-hd">LAND RECLAMATION</text>
+          <rect x="0" y="0" width="152" height="106" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <rect x="0" y="28" width="46" height="78" class="f-acc" opacity=".55"/>
+          <path d="M46,28 L58,28 L64,106 L40,106 Z" class="f-clay" opacity=".9"/>
+          <rect x="64" y="62" width="88" height="44" class="f-mosss"/>
+          <line x1="64" y1="62" x2="152" y2="62" stroke="var(--moss)" stroke-width="1.4"/>
+          <line x1="0" y1="28" x2="46" y2="28" stroke="var(--accent)" stroke-width="2"/>
+          <text x="4" y="22" class="t-sm t-acc">sea level</text>
+          <text x="72" y="82" class="t-sm t-moss">polder</text>
+          <text x="72" y="96" class="t-sm t-mut">below sea</text>
+          <text x="0" y="126" class="t-sm t-mut">Dike + pump → new land;</text>
+          <text x="0" y="140" class="t-sm t-mut">permanent upkeep cost.</text>
+        </g>
+
+        <g transform="translate(595,34)">
+          <text x="0" y="-12" class="t-hd">URBANIZATION</text>
+          <rect x="0" y="0" width="152" height="106" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <rect x="0" y="92" width="152" height="14" class="f-ink" opacity=".22"/>
+          <g class="f-slate">
+            <rect x="8" y="56" width="18" height="36"/><rect x="30" y="38" width="16" height="54"/>
+            <rect x="50" y="62" width="22" height="30"/><rect x="76" y="26" width="18" height="66"/>
+            <rect x="98" y="48" width="20" height="44"/><rect x="122" y="60" width="22" height="32"/>
+          </g>
+          <g class="f-none" stroke="var(--clay)" stroke-width="2" opacity=".55">
+            <path d="M20,26 C30,14 44,14 52,24"/>
+            <path d="M100,20 C110,8 124,8 132,18"/>
+          </g>
+          <text x="0" y="126" class="t-sm t-mut">Soil → pavement; heat</text>
+          <text x="0" y="140" class="t-sm t-mut">island and runoff follow.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.5d</b> Four modifications, one pattern: each solves a constraint the environment imposed and creates a new constraint of its own. That trade-off — never a clean win — is the honest version of possibilism.</figcaption>
+  </figure>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p>Students often summarize possibilism as "humans can do anything they want." That is not possibilism — it is a caricature. Possibilism holds that the environment sets a genuine <strong>range of limits</strong>, and that culture and technology determine which option within that range gets chosen. Building a city in a desert is possible; doing so without solving water is not. The environment still has a vote; it just no longer has the only vote.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.5</span><span>4 items</span></div>
+    <details>
+      <summary>Compare environmental determinism and possibilism, and explain why geographers rejected the first.</summary>
+      <div class="ans">
+        <p><strong>Environmental determinism</strong> holds that the physical environment — especially climate — directly causes a society's culture, behavior, and level of development, leaving people essentially no agency. <strong>Possibilism</strong> holds that the environment establishes limits and opportunities, and that human culture and technology choose among the possibilities within them.</p>
+        <p>Geographers rejected determinism because it is <em>empirically false</em> — societies in similar environments diverge widely, and the same environment yields different outcomes as technology changes — and because it was <em>used to justify colonialism and racial hierarchy</em> by attributing European dominance to temperate climate rather than to conquest and historical contingency.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain how a potentially renewable resource can become effectively nonrenewable, using a specific example.</summary>
+      <div class="ans">
+        <p>A resource in this class renews only while the <strong>rate of extraction stays at or below the rate of regeneration</strong>. Cross that threshold and the stock falls year over year until it collapses.</p>
+        <p><strong>Example:</strong> an aquifer recharged slowly by rainfall can supply irrigation indefinitely at a modest pumping rate. Pumped faster than recharge — as in parts of the High Plains and northern India — the water table drops each year, wells deepen, land subsides, and the resource becomes, on any human timescale, nonrenewable. The same logic applies to a fishery harvested beyond its reproductive capacity.</p>
+      </div>
+    </details>
+    <details>
+      <summary>A desert city builds a canal to import water from a distant river. Explain this decision using possibilism and identify one environmental consequence.</summary>
+      <div class="ans">
+        <p><strong>Possibilism:</strong> aridity is a real environmental limit, but it does not dictate that the site stay empty. It constrains the options to a set — remain small, exploit groundwater, desalinate, or import surface water — and the society's engineering capacity and wealth select the last of these. The environment set the problem; the culture chose the answer.</p>
+        <p><strong>Consequence:</strong> flow is removed from the source river's downstream ecosystem and from communities that depend on it, often reducing wetlands, harming fisheries, and creating interstate or international disputes over allocation. The environmental cost is <em>displaced</em> to another place — the point political ecology emphasizes.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain why a practice can be environmentally sound and still fail a test of sustainability.</summary>
+      <div class="ans">
+        <p>Sustainability has three dimensions. A policy that protects an ecosystem but eliminates the livelihoods of the people who live in it fails the <strong>economic</strong> and <strong>social</strong> dimensions, and typically fails politically as well — it is abandoned, evaded, or reversed, at which point it protects nothing.</p>
+        <p>Example: a strict conservation zone that bars local residents from any harvesting while permitting foreign tourism revenue to leave the region is environmentally protective, economically extractive, and socially inequitable. Durable sustainability requires the overlap of all three, not the maximum of one.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 1.6 ============================ -->
+<section class="plate" id="t16">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.6</b> <span>Enduring understanding PSO-1</span></p>
+    <h2>Scales of Analysis</h2>
+    <div class="lo"><span class="code">PSO-1.C</span><span>Define scales of analysis used by geographers.</span></div>
+    <div class="lo" style="margin-top:8px"><span class="code">PSO-1.D</span><span>Explain what scales of analysis reveal.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> a geographic pattern is never simply "there." It appears, disappears, or reverses depending on the size of the unit you group your data into. Choosing a scale of analysis is therefore a substantive decision about what your evidence is allowed to show — and the exam tests whether you know that.</p>
+
+  <h3 class="sub">The two meanings of "scale"</h3>
+
+  <p>This is the single most confused pair of terms in the unit, so separate them before anything else.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 700 300" role="img" aria-label="A comparison showing that cartographic scale is the drawing ratio of a map, while scale of analysis is the size of the unit that data is grouped into. The same country map is shown three times at identical cartographic scale but with data aggregated at national, state, and county level, producing increasingly detailed patterns." width="700">
+        <defs>
+          <clipPath id="cty16"><polygon points="10,14 168,14 176,120 4,120"/></clipPath>
+        </defs>
+        <rect x="12" y="10" width="330" height="76" rx="7" class="f-slates" stroke="var(--slate-line)"/>
+        <text x="28" y="34" class="t-hd t-slate">CARTOGRAPHIC SCALE (map scale)</text>
+        <text x="28" y="54" class="t-sm">The ratio between map distance and ground</text>
+        <text x="28" y="70" class="t-sm">distance — 1:24,000. A property of the <tspan font-style="italic">drawing</tspan>.</text>
+
+        <rect x="356" y="10" width="330" height="76" rx="7" class="f-accs" stroke="var(--accent-line)"/>
+        <text x="372" y="34" class="t-hd t-acc">SCALE OF ANALYSIS</text>
+        <text x="372" y="54" class="t-sm">The size of the unit the data is grouped into —</text>
+        <text x="372" y="70" class="t-sm">global, national, county. A property of the study.</text>
+
+        <text x="350" y="110" text-anchor="middle" class="t-sm t-mut">Below: identical cartographic scale in all three. Only the analysis scale changes.</text>
+
+        <g transform="translate(28,126)">
+          <text x="0" y="-2" class="t-hd">NATIONAL</text>
+          <polygon points="10,14 168,14 176,120 4,120" class="f-acc" fill-opacity=".42" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="90" y="76" text-anchor="middle" class="t-hd t-ink">one value</text>
+          <text x="0" y="148" class="t-sm t-mut">“Poverty here is 14%.”</text>
+          <text x="0" y="162" class="t-sm t-mut">One number, no pattern.</text>
+        </g>
+
+        <g transform="translate(250,126)">
+          <text x="0" y="-2" class="t-hd">STATE / PROVINCE</text>
+          <g stroke="var(--ink)" stroke-width="1">
+            <polygon points="10,14 92,14 92,66 7,66" class="f-acc" fill-opacity=".22"/>
+            <polygon points="92,14 168,14 172,66 92,66" class="f-acc" fill-opacity=".62"/>
+            <polygon points="7,66 92,66 92,120 4,120" class="f-acc" fill-opacity=".34"/>
+            <polygon points="92,66 172,66 176,120 92,120" class="f-acc" fill-opacity=".82"/>
+          </g>
+          <polygon points="10,14 168,14 176,120 4,120" class="f-none" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="0" y="148" class="t-sm t-mut">A regional divide appears:</text>
+          <text x="0" y="162" class="t-sm t-mut">the east is poorer.</text>
+        </g>
+
+        <g transform="translate(472,126)">
+          <text x="0" y="-2" class="t-hd">COUNTY</text>
+          <g clip-path="url(#cty16)" stroke="var(--ink)" stroke-width=".7">
+            <rect x="4" y="14" width="44" height="26" class="f-acc" fill-opacity=".14"/>
+            <rect x="48" y="14" width="44" height="26" class="f-acc" fill-opacity=".3"/>
+            <rect x="92" y="14" width="44" height="26" class="f-acc" fill-opacity=".9"/>
+            <rect x="136" y="14" width="44" height="26" class="f-acc" fill-opacity=".5"/>
+            <rect x="2" y="40" width="46" height="26" class="f-acc" fill-opacity=".34"/>
+            <rect x="48" y="40" width="44" height="26" class="f-acc" fill-opacity=".1"/>
+            <rect x="92" y="40" width="44" height="26" class="f-acc" fill-opacity=".66"/>
+            <rect x="136" y="40" width="46" height="26" class="f-acc" fill-opacity=".9"/>
+            <rect x="0" y="66" width="48" height="28" class="f-acc" fill-opacity=".5"/>
+            <rect x="48" y="66" width="44" height="28" class="f-acc" fill-opacity=".22"/>
+            <rect x="92" y="66" width="44" height="28" class="f-acc" fill-opacity=".95"/>
+            <rect x="136" y="66" width="46" height="28" class="f-acc" fill-opacity=".38"/>
+            <rect x="0" y="94" width="48" height="28" class="f-acc" fill-opacity=".18"/>
+            <rect x="48" y="94" width="44" height="28" class="f-acc" fill-opacity=".74"/>
+            <rect x="92" y="94" width="44" height="28" class="f-acc" fill-opacity=".9"/>
+            <rect x="136" y="94" width="46" height="28" class="f-acc" fill-opacity=".26"/>
+          </g>
+          <polygon points="10,14 168,14 176,120 4,120" class="f-none" stroke="var(--ink)" stroke-width="1.6"/>
+          <text x="0" y="148" class="t-sm t-mut">The “poor east” holds rich</text>
+          <text x="0" y="162" class="t-sm t-mut">counties, and vice versa.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.6a</b> All three maps are printed at the same size and cover the same ground, so their cartographic scale is identical. What changes is the <em>unit of aggregation</em>. Any statement about "a poor region" is only true at the scale it was measured.</figcaption>
+  </figure>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p>The words <strong>large</strong> and <strong>small</strong> flip meaning between the two senses of scale, and this is where points are lost. On a <em>map</em>, "large scale" means a large fraction, so a small area in fine detail. In an <em>analysis</em>, "large scale" ordinarily means a large area — global or continental — examined coarsely. When you write, name the scale rather than its size: say "at the national scale" or "at 1:50,000," never just "at a large scale."</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · The ladder of analysis scales</span><span>PSO-1.C.1</span></div>
+    <dl>
+      <dt><span class="swatch"></span>Global</dt><dd>The entire world treated as one system. Reveals broad divides — core and periphery, hemispheric climate zones, worldwide trade networks.</dd>
+      <dt><span class="swatch"></span>World-regional</dt><dd>Multi-country groupings such as Sub-Saharan Africa, Latin America, or Southeast Asia. Reveals shared histories and shared trajectories.</dd>
+      <dt><span class="swatch"></span>National</dt><dd>The country as the unit. The scale at which most published statistics, policies, and comparisons are produced — which is exactly why it is easy to mistake for the truth.</dd>
+      <dt><span class="swatch"></span>Sub-national / regional</dt><dd>States, provinces, metropolitan areas, or informal regions within a country. Reveals internal cores and peripheries.</dd>
+      <dt><span class="swatch"></span>Local</dt><dd>Counties, cities, neighborhoods, census tracts, individual blocks. Reveals the segregation, inequality, and variation that every larger unit averages away.</dd>
+    </dl>
+  </div>
+
+  <h3 class="sub">What zooming in reveals</h3>
+
+  <p>Here is the mechanism the CED is asking about when it says patterns at different scales produce "different interpretations of data." Each zoom below is a true statement about a real place — and each contradicts the impression left by the one before it.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 830 208" role="img" aria-label="Four nested panels zooming from global to national to regional to local. At each step an area that looked uniform breaks apart, revealing an internal exception: a wealthy country contains a poor region, which contains a prosperous county, which contains a deprived neighborhood." width="830">
+        <defs>
+          <marker id="ar16a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="f-clay"/>
+          </marker>
+        </defs>
+
+        <g transform="translate(10,36)">
+          <text x="0" y="-16" class="t-hd">GLOBAL</text>
+          <rect x="0" y="0" width="140" height="120" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g stroke="var(--rule-2)" stroke-width=".6">
+            <rect x="6" y="8" width="40" height="34" class="f-acc" fill-opacity=".72"/>
+            <rect x="48" y="8" width="44" height="34" class="f-acc" fill-opacity=".3"/>
+            <rect x="94" y="8" width="40" height="34" class="f-acc" fill-opacity=".55"/>
+            <rect x="6" y="44" width="40" height="34" class="f-acc" fill-opacity=".2"/>
+            <rect x="48" y="44" width="44" height="34" class="f-acc" fill-opacity=".14"/>
+            <rect x="94" y="44" width="40" height="34" class="f-acc" fill-opacity=".38"/>
+            <rect x="6" y="80" width="40" height="32" class="f-acc" fill-opacity=".1"/>
+            <rect x="48" y="80" width="44" height="32" class="f-acc" fill-opacity=".26"/>
+            <rect x="94" y="80" width="40" height="32" class="f-acc" fill-opacity=".18"/>
+          </g>
+          <rect x="6" y="8" width="40" height="34" class="f-none" stroke="var(--clay)" stroke-width="2.4"/>
+          <text x="0" y="142" class="t-sm t-clay">This country scores 82.</text>
+          <text x="0" y="156" class="t-sm t-mut">“A wealthy country.”</text>
+        </g>
+        <line x1="156" y1="90" x2="196" y2="90" class="s-clay" stroke-width="2" marker-end="url(#ar16a)"/>
+
+        <g transform="translate(210,36)">
+          <text x="0" y="-16" class="t-hd">NATIONAL</text>
+          <rect x="0" y="0" width="140" height="120" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g stroke="var(--rule-2)" stroke-width=".6">
+            <rect x="6" y="8" width="64" height="52" class="f-acc" fill-opacity=".85"/>
+            <rect x="72" y="8" width="62" height="52" class="f-acc" fill-opacity=".78"/>
+            <rect x="6" y="62" width="64" height="50" class="f-acc" fill-opacity=".8"/>
+            <rect x="72" y="62" width="62" height="50" class="f-acc" fill-opacity=".2"/>
+          </g>
+          <text x="38" y="38" text-anchor="middle" class="t-sm t-ink">92</text>
+          <text x="103" y="38" text-anchor="middle" class="t-sm t-ink">88</text>
+          <text x="38" y="92" text-anchor="middle" class="t-sm t-ink">90</text>
+          <text x="103" y="92" text-anchor="middle" class="t-sm t-ink">58</text>
+          <rect x="72" y="62" width="62" height="50" class="f-none" stroke="var(--clay)" stroke-width="2.4"/>
+          <text x="0" y="142" class="t-sm t-clay">One region scores 58.</text>
+          <text x="0" y="156" class="t-sm t-mut">A poor region inside it.</text>
+        </g>
+        <line x1="356" y1="90" x2="396" y2="90" class="s-clay" stroke-width="2" marker-end="url(#ar16a)"/>
+
+        <g transform="translate(410,36)">
+          <text x="0" y="-16" class="t-hd">REGIONAL</text>
+          <rect x="0" y="0" width="140" height="120" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g stroke="var(--rule-2)" stroke-width=".6">
+            <rect x="6" y="8" width="128" height="34" class="f-acc" fill-opacity=".16"/>
+            <rect x="6" y="44" width="62" height="32" class="f-acc" fill-opacity=".24"/>
+            <rect x="70" y="44" width="64" height="32" class="f-acc" fill-opacity=".7"/>
+            <rect x="6" y="78" width="128" height="34" class="f-acc" fill-opacity=".2"/>
+          </g>
+          <text x="70" y="30" text-anchor="middle" class="t-sm t-ink">44</text>
+          <text x="37" y="65" text-anchor="middle" class="t-sm t-ink">51</text>
+          <text x="102" y="65" text-anchor="middle" class="t-sm t-ink">79</text>
+          <text x="70" y="100" text-anchor="middle" class="t-sm t-ink">48</text>
+          <rect x="70" y="44" width="64" height="32" class="f-none" stroke="var(--clay)" stroke-width="2.4"/>
+          <text x="0" y="142" class="t-sm t-clay">One county scores 79.</text>
+          <text x="0" y="156" class="t-sm t-mut">Prosperity inside poverty.</text>
+        </g>
+        <line x1="556" y1="90" x2="596" y2="90" class="s-clay" stroke-width="2" marker-end="url(#ar16a)"/>
+
+        <g transform="translate(610,36)">
+          <text x="0" y="-16" class="t-hd">LOCAL</text>
+          <rect x="0" y="0" width="140" height="120" rx="4" class="f-surf2" stroke="var(--rule-2)"/>
+          <g stroke="var(--rule-2)" stroke-width=".6">
+            <rect x="6" y="8" width="62" height="50" class="f-acc" fill-opacity=".88"/>
+            <rect x="70" y="8" width="64" height="50" class="f-acc" fill-opacity=".92"/>
+            <rect x="6" y="60" width="62" height="52" class="f-acc" fill-opacity=".1"/>
+            <rect x="70" y="60" width="64" height="52" class="f-acc" fill-opacity=".8"/>
+          </g>
+          <text x="37" y="36" text-anchor="middle" class="t-sm t-ink">88</text>
+          <text x="102" y="36" text-anchor="middle" class="t-sm t-ink">91</text>
+          <text x="37" y="90" text-anchor="middle" class="t-sm t-ink">32</text>
+          <text x="102" y="90" text-anchor="middle" class="t-sm t-ink">84</text>
+          <rect x="6" y="60" width="62" height="52" class="f-none" stroke="var(--clay)" stroke-width="2.4"/>
+          <text x="0" y="142" class="t-sm t-clay">One block scores 32.</text>
+          <text x="0" y="156" class="t-sm t-mut">Deprivation inside plenty.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.6b</b> Every panel is accurate; every panel is misleading on its own. This is why a well-argued FRQ response names its scale explicitly and often argues at two scales at once — "at the national scale the country appears prosperous, but at the local scale…"</figcaption>
+  </figure>
+
+  <div class="callout link">
+    <span class="tag">The ecological fallacy</span>
+    <p>The classic error this figure guards against: <strong>assuming that what is true of an area is true of the individuals in it.</strong> A county with a high average income contains poor households. A country with a low literacy rate contains highly educated people. Reasoning from a group statistic down to an individual is a fallacy — and reasoning up from a handful of individuals to a whole region is its mirror image. Geographers manage this by being explicit about the unit their claim applies to.</p>
+  </div>
+
+  <h3 class="sub">Choosing a scale on purpose</h3>
+
+  <p>Because scale changes what is visible, the choice of scale is itself a claim — and sometimes a strategy.</p>
+
+  <ul>
+    <li><strong>Aggregation hides variation.</strong> Larger units average away internal difference. If a government reports outcomes only at the national scale, local disparities become invisible without anyone lying.</li>
+    <li><strong>Disaggregation can exaggerate noise.</strong> Very small units contain few people, so a single event can swing a rate wildly. A murder in a village of 300 produces a homicide rate that looks catastrophic.</li>
+    <li><strong>Processes have characteristic scales.</strong> Climate change is a global process with local effects; gentrification is a neighborhood process with metropolitan causes. Analyzing either at the wrong scale produces nonsense.</li>
+    <li><strong>Scale jumping</strong> is a political tactic: a local group facing defeat at city hall reframes its fight as a national or global cause — a pipeline protest, a school-board dispute — to recruit allies at a scale where it can win.</li>
+  </ul>
+
+  <div class="callout pro">
+    <span class="tag">Exam technique</span>
+    <p>When a prompt says "at what scale" or gives you a stimulus map and asks for a pattern, get in the habit of writing a two-part sentence: <em>At the [X] scale, the data shows [pattern]; at the [Y] scale, the same data shows [different pattern], because [aggregation reason].</em> That structure hits the description point and the explanation point in one move.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.6</span><span>4 items</span></div>
+    <details>
+      <summary>Explain the difference between cartographic scale and scale of analysis using one example of each.</summary>
+      <div class="ans">
+        <p><strong>Cartographic scale</strong> is the ratio at which a map is drawn — a 1:24,000 topographic quadrangle is drawn at a large cartographic scale and shows individual buildings across a few square miles.</p>
+        <p><strong>Scale of analysis</strong> is the size of the unit into which data is grouped for study — analyzing unemployment by country is a national scale of analysis; analyzing the same variable by census tract is a local one. The two are independent: a single printed map, at one fixed cartographic scale, can display data aggregated at whichever analysis scale the cartographer chose.</p>
+      </div>
+    </details>
+    <details>
+      <summary>A country reports 96% national access to clean water. Explain why a geographer would not stop there.</summary>
+      <div class="ans">
+        <p>Because the national figure is an <strong>average that conceals its own distribution</strong>. The remaining 4% is not spread evenly across the population like a fine mist; it is almost certainly concentrated in identifiable places — remote rural districts, informal urban settlements, particular ethnic or minority regions — where local access might be 40%.</p>
+        <p>A geographer would disaggregate to the sub-national and local scales to locate that deficit, because policy has to be delivered somewhere specific. Treating the national average as descriptive of every place within the country would also risk the <strong>ecological fallacy</strong>.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain how the same election data can support opposite claims at the national and county scales.</summary>
+      <div class="ans">
+        <p>At the <strong>national scale</strong>, a party that wins the popular vote produces a single result: "the country supported this party." At the <strong>county scale</strong>, the same ballots map onto hundreds of units, most of which — being rural and physically large — may have been won by the other party, producing a map that is overwhelmingly one color.</p>
+        <p>Both are true. The county map shows the geography of <em>land area</em>, not of people; the national figure shows people but no geography at all. Naming the unit is what keeps the argument honest, and choropleth mapping of raw wins (rather than rates or population-weighted values) is what makes the discrepancy so visually extreme.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Identify the appropriate scale of analysis for studying (a) global climate agreements, (b) neighborhood gentrification, and justify each briefly.</summary>
+      <div class="ans">
+        <p><strong>(a) Global, with national sub-analysis.</strong> Greenhouse gases mix in a shared atmosphere and the negotiating parties are states, so the causal process and the decision-making units are both supranational. Analyzing emissions city by city would miss the treaty structure entirely.</p>
+        <p><strong>(b) Local, with metropolitan context.</strong> Gentrification is measured in rents, demographics, and businesses block by block, so census-tract data is required to see it. But its drivers — regional job growth, transit investment, metropolitan housing shortage — operate at the city and regional scale, so a good analysis reads the local pattern against the larger process.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 1.7 ============================ -->
+<section class="plate" id="t17">
+  <div class="plate-head">
+    <p class="plate-num"><b>Plate 1.7</b> <span>Enduring understanding SPS-1</span></p>
+    <h2>Regional Analysis</h2>
+    <div class="lo"><span class="code">SPS-1.A</span><span>Describe different ways that geographers define regions.</span></div>
+  </div>
+
+  <p><strong>The big idea:</strong> a <span class="term">region</span> is an area defined by one or more unifying characteristics. Regions are not discovered lying on the ground — they are <em>made</em> by someone choosing a criterion. Change the criterion and the region moves. That is why regional boundaries are transitional, contested, and overlapping, and why "regionalization" is a form of argument.</p>
+
+  <h3 class="sub">Three ways to build a region</h3>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 700 280" role="img" aria-label="Three panels contrasting region types. A formal region is a uniformly filled area with a sharp boundary defined by a shared measurable trait. A functional region is a node with influence fading outward in rings, bounded where the function stops. A perceptual region is three differently shaped fuzzy outlines drawn by three different people, overlapping in a core but disagreeing at the edges." width="700">
+        <defs>
+          <radialGradient id="fn17" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--clay)" stop-opacity=".85"/>
+            <stop offset="55%" stop-color="var(--clay)" stop-opacity=".38"/>
+            <stop offset="100%" stop-color="var(--clay)" stop-opacity=".05"/>
+          </radialGradient>
+        </defs>
+
+        <!-- formal -->
+        <g transform="translate(14,44)">
+          <text x="0" y="-22" class="t-hd t-acc">FORMAL · uniform</text>
+          <text x="0" y="-6" class="t-sm t-mut">one shared, measurable trait</text>
+          <rect x="0" y="6" width="200" height="150" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <path d="M24,40 C 60,20 118,22 160,42 C 182,54 180,104 152,124 C 118,148 56,144 30,118 C 12,100 12,54 24,40 Z" class="f-acc" fill-opacity=".4" stroke="var(--accent)" stroke-width="2.2"/>
+          <g class="f-acc" opacity=".9">
+            <circle cx="52" cy="60" r="2.6"/><circle cx="80" cy="52" r="2.6"/><circle cx="108" cy="54" r="2.6"/><circle cx="136" cy="62" r="2.6"/>
+            <circle cx="46" cy="88" r="2.6"/><circle cx="74" cy="84" r="2.6"/><circle cx="102" cy="84" r="2.6"/><circle cx="132" cy="90" r="2.6"/>
+            <circle cx="58" cy="114" r="2.6"/><circle cx="86" cy="116" r="2.6"/><circle cx="114" cy="114" r="2.6"/><circle cx="140" cy="110" r="2.6"/>
+          </g>
+          <text x="0" y="178" class="t-sm">Everywhere inside shares the trait;</text>
+          <text x="0" y="192" class="t-sm">everywhere outside does not.</text>
+          <text x="0" y="214" class="t-sm t-acc">Wheat Belt · Francophone Africa ·</text>
+          <text x="0" y="228" class="t-sm t-acc">the Sahara · the state of Ohio</text>
+        </g>
+
+        <!-- functional -->
+        <g transform="translate(248,44)">
+          <text x="0" y="-22" class="t-hd t-clay">FUNCTIONAL · nodal</text>
+          <text x="0" y="-6" class="t-sm t-mut">organized around a focal point</text>
+          <rect x="0" y="6" width="200" height="150" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <circle cx="100" cy="82" r="70" fill="url(#fn17)"/>
+          <g class="f-none" stroke="var(--clay)" stroke-width="1" stroke-dasharray="4 4" opacity=".8">
+            <circle cx="100" cy="82" r="26"/><circle cx="100" cy="82" r="48"/>
+          </g>
+          <circle cx="100" cy="82" r="70" class="f-none" stroke="var(--clay)" stroke-width="2.2"/>
+          <g stroke="var(--clay)" stroke-width="1.6" fill="none" opacity=".85">
+            <line x1="100" y1="82" x2="54" y2="46"/><line x1="100" y1="82" x2="152" y2="52"/>
+            <line x1="100" y1="82" x2="46" y2="106"/><line x1="100" y1="82" x2="150" y2="118"/>
+            <line x1="100" y1="82" x2="100" y2="20"/><line x1="100" y1="82" x2="98" y2="146"/>
+          </g>
+          <circle cx="100" cy="82" r="9" class="f-clay"/>
+          <text x="112" y="78" class="t-sm t-clay">NODE</text>
+          <text x="0" y="178" class="t-sm">Influence is strongest at the node</text>
+          <text x="0" y="192" class="t-sm">and fades outward — distance decay.</text>
+          <text x="0" y="214" class="t-sm t-clay">Metro commuter shed · a subway</text>
+          <text x="0" y="228" class="t-sm t-clay">system · a pizza delivery zone</text>
+        </g>
+
+        <!-- perceptual -->
+        <g transform="translate(482,44)">
+          <text x="0" y="-22" class="t-hd t-plum">PERCEPTUAL · vernacular</text>
+          <text x="0" y="-6" class="t-sm t-mut">exists in people's minds</text>
+          <rect x="0" y="6" width="200" height="150" rx="5" class="f-surf2" stroke="var(--rule-2)"/>
+          <path d="M30,48 C 70,26 130,34 164,58 C 186,76 172,120 138,132 C 96,146 46,134 30,108 C 20,90 20,58 30,48 Z" class="f-plum" fill-opacity=".22" stroke="var(--plum)" stroke-width="1.6" stroke-dasharray="6 4"/>
+          <path d="M52,32 C 96,20 146,40 166,72 C 180,96 152,132 116,138 C 76,144 48,120 44,94 C 40,66 40,40 52,32 Z" class="f-plum" fill-opacity=".22" stroke="var(--plum)" stroke-width="1.6" stroke-dasharray="6 4"/>
+          <path d="M24,72 C 44,38 100,28 140,44 C 172,58 176,100 148,120 C 112,146 56,140 34,116 C 20,102 18,84 24,72 Z" class="f-plum" fill-opacity=".22" stroke="var(--plum)" stroke-width="1.6" stroke-dasharray="6 4"/>
+          <text x="86" y="90" class="t-sm t-ink">core</text>
+          <text x="0" y="178" class="t-sm">Three people, three boundaries.</text>
+          <text x="0" y="192" class="t-sm">They agree at the core only.</text>
+          <text x="0" y="214" class="t-sm t-plum">the American South · the Middle</text>
+          <text x="0" y="228" class="t-sm t-plum">East · Appalachia · Silicon Valley</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.7a</b> Read the three panels as three different <em>rules of membership</em>. Formal: do you have the trait? Functional: do you use the node? Perceptual: do people say you belong? A single place can pass all three tests for three different regions at once.</figcaption>
+  </figure>
+
+  <div class="legend">
+    <div class="legend-head"><span>Key · Region types compared</span><span>SPS-1.A.2</span></div>
+    <dl>
+      <dt><span class="swatch"></span>Formal (uniform)</dt><dd>Defined by one or more <em>measurable</em> shared characteristics — a language, a crop, a climate, a legal jurisdiction. Boundaries are the sharpest of the three, though rarely as sharp as the map suggests.</dd>
+      <dt><span class="swatch sw-clay"></span>Functional (nodal)</dt><dd>Defined by a <em>function</em> radiating from a node. Membership is about connection, not similarity: two towns in the same commuter shed may have nothing else in common. The region ends where the function stops.</dd>
+      <dt><span class="swatch sw-plum"></span>Perceptual (vernacular)</dt><dd>Defined by <em>shared belief and identity</em>. It has no official boundary and is real anyway — it shapes where people say they are from, how they vote, what they buy, and where businesses put "Southern" or "Midwest" in their names.</dd>
+    </dl>
+  </div>
+
+  <h3 class="sub">Why boundaries are contested and overlapping</h3>
+
+  <p>Regional boundaries are almost never lines; they are <span class="term">transition zones</span> where one region's characteristics fade into another's. Below, four honest attempts to answer a single question — <em>where is the American South?</em> — using four different criteria. Each is defensible. None agrees with the others at the edge.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 800 330" role="img" aria-label="Four overlapping boundary outlines drawn on the same base area, each defined by a different criterion for the American South: former Confederate states, dialect surveys, cotton agriculture, and self-identification. All four agree on a central core and diverge sharply at the margins." width="800">
+        <rect x="20" y="20" width="440" height="252" rx="6" class="f-surf2" stroke="var(--rule-2)"/>
+
+        <path d="M60,84 L300,68 L360,114 L344,208 L172,230 L74,190 Z" class="f-none" stroke="var(--slate)" stroke-width="2.2"/>
+        <path d="M92,54 L336,60 L400,134 L360,234 L156,248 L58,164 Z" class="f-none" stroke="var(--clay)" stroke-width="2.2" stroke-dasharray="7 5"/>
+        <path d="M118,98 L300,86 L330,144 L290,218 L150,208 L104,152 Z" class="f-none" stroke="var(--moss)" stroke-width="2.2" stroke-dasharray="2 4"/>
+        <path d="M46,70 L318,52 L418,118 L392,226 L200,262 L52,208 Z" class="f-none" stroke="var(--plum)" stroke-width="2.2" stroke-dasharray="10 4 2 4"/>
+
+        <path d="M126,102 L296,90 L326,144 L286,212 L156,202 L110,150 Z" class="f-acc" fill-opacity=".22" stroke="none"/>
+        <text x="216" y="152" text-anchor="middle" class="t-hd">EVERYONE</text>
+        <text x="216" y="168" text-anchor="middle" class="t-hd">AGREES HERE</text>
+
+        <text x="20" y="298" class="t-sm t-mut">Four honest criteria. One shared core. Four different edges.</text>
+
+        <g transform="translate(492,44)">
+          <text x="0" y="-16" class="t-hd">WHERE IS THE SOUTH?</text>
+          <line x1="0" y1="0" x2="26" y2="0" stroke="var(--slate)" stroke-width="2.2"/>
+          <text x="34" y="4" class="t-sm t-slate">Confederate states, 1861</text>
+          <line x1="0" y1="30" x2="26" y2="30" stroke="var(--clay)" stroke-width="2.2" stroke-dasharray="7 5"/>
+          <text x="34" y="34" class="t-sm t-clay">dialect &amp; speech surveys</text>
+          <line x1="0" y1="60" x2="26" y2="60" stroke="var(--moss)" stroke-width="2.2" stroke-dasharray="2 4"/>
+          <text x="34" y="64" class="t-sm t-moss">historic cotton agriculture</text>
+          <line x1="0" y1="90" x2="26" y2="90" stroke="var(--plum)" stroke-width="2.2" stroke-dasharray="10 4 2 4"/>
+          <text x="34" y="94" class="t-sm t-plum">“do you live in the South?”</text>
+          <rect x="0" y="116" width="26" height="12" class="f-acc" fill-opacity=".22"/>
+          <text x="34" y="126" class="t-sm">core: all four overlap</text>
+          <line x1="0" y1="152" x2="240" y2="152" stroke="var(--rule-2)"/>
+          <text x="0" y="176" class="t-sm t-mut">A region has a core where its</text>
+          <text x="0" y="192" class="t-sm t-mut">identity is strongest and a</text>
+          <text x="0" y="208" class="t-sm t-mut">periphery where it blurs into</text>
+          <text x="0" y="224" class="t-sm t-mut">whatever comes next.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.7b</b> The overlap is the point. Regions have <em>cores</em> where membership is unambiguous and <em>peripheries</em> where it is genuinely arguable — which is exactly why regional boundaries become political, and why an exam answer that calls a boundary "transitional and contested" is using the CED's own language.</figcaption>
+  </figure>
+
+  <h3 class="sub">One place, many regions, many scales</h3>
+
+  <p>Regional analysis works at every scale, and a single location belongs simultaneously to regions of all three types at all of them. Being able to name several regions for one place — and say what type each is — is a reliable way to earn a describe-and-explain point.</p>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 880 250" role="img" aria-label="Nested bands showing a single farm belonging simultaneously to a local watershed, a metropolitan commuter shed, a state, an agricultural belt, a world region, and the global north, each labelled with its region type." width="880">
+        <rect x="10" y="26" width="860" height="34" rx="5" class="f-acc" fill-opacity=".1" stroke="var(--accent-line)"/>
+        <text x="26" y="48" class="t-hd">GLOBAL</text>
+        <text x="220" y="48" class="t-sm">“the Global North” — perceptual: built on development, not compass direction</text>
+
+        <rect x="40" y="62" width="800" height="34" rx="5" class="f-acc" fill-opacity=".18" stroke="var(--accent-line)"/>
+        <text x="56" y="84" class="t-hd">WORLD-REGIONAL</text>
+        <text x="220" y="84" class="t-sm">“North America” — formal: defined by a continental landmass</text>
+
+        <rect x="70" y="98" width="740" height="34" rx="5" class="f-acc" fill-opacity=".26" stroke="var(--accent-line)"/>
+        <text x="86" y="120" class="t-hd">SUPRA-STATE</text>
+        <text x="220" y="120" class="t-sm">“the Corn Belt” — formal: defined by a dominant crop</text>
+
+        <rect x="100" y="134" width="680" height="34" rx="5" class="f-acc" fill-opacity=".36" stroke="var(--accent-line)"/>
+        <text x="116" y="156" class="t-hd">STATE</text>
+        <text x="220" y="156" class="t-sm">the state itself — formal: a single legal boundary</text>
+
+        <rect x="130" y="170" width="620" height="34" rx="5" class="f-clay" fill-opacity=".32" stroke="var(--clay-line)"/>
+        <text x="146" y="192" class="t-hd">METROPOLITAN</text>
+        <text x="290" y="192" class="t-sm">the commuter shed — functional</text>
+
+        <rect x="160" y="206" width="560" height="34" rx="5" class="f-clay" fill-opacity=".5" stroke="var(--clay-line)"/>
+        <text x="176" y="228" class="t-hd">LOCAL</text>
+        <text x="290" y="228" class="t-sm">the creek watershed and the school district — both functional</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.7c</b> One farm, six regions, three region types. Nothing about the farm changed — only the criterion and the scale of the question.</figcaption>
+  </figure>
+
+  <div class="callout trap">
+    <span class="tag">Common trap</span>
+    <p>The most common error is calling a metropolitan area a <em>formal</em> region because it looks solid on a map. Ask what holds it together. If the answer is "everyone there shares trait X," it is formal. If the answer is "everyone there is connected to point Y" — they commute to it, get their water from it, receive its television signal, are served by its airport — it is <strong>functional</strong>, no matter how uniform the shading looks. A second frequent error is treating perceptual regions as unimportant because they are unofficial; they drive marketing, politics, migration, and identity, which makes them consequential precisely because they are believed.</p>
+  </div>
+
+  <div class="callout pro">
+    <span class="tag">Exam technique</span>
+    <p>Practice generating one example of each type from any place you are given. For a coastal city: formal — the state it sits in; functional — its port hinterland and the area its transit system serves; perceptual — "the Coast" or "downtown." Interchangeable examples at speed are worth more than a memorized definition.</p>
+  </div>
+
+  <div class="check">
+    <div class="check-head"><span>Check yourself · 1.7</span><span>5 items</span></div>
+    <details>
+      <summary>Describe the difference between a formal and a functional region, and classify a newspaper's circulation area.</summary>
+      <div class="ans">
+        <p>A <strong>formal region</strong> is unified by one or more shared, measurable characteristics — every place within it possesses the trait. A <strong>functional region</strong> is unified by a shared connection to a node; the places within it need not resemble one another at all.</p>
+        <p>A newspaper's circulation area is <strong>functional</strong>. It is organized around the node where the paper is produced and distributed, and its influence weakens with distance until delivery stops being economical — a textbook case of distance decay defining a boundary.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain why perceptual regions are useful to geographers even though they lack official boundaries.</summary>
+      <div class="ans">
+        <p>Because behavior follows belief. People move to, invest in, vote within, and identify with regions they perceive, regardless of whether any government recognizes them. A perceptual region therefore predicts real spatial patterns — consumer preferences, political alignment, migration destinations, business naming and branding.</p>
+        <p>They are also evidence in their own right: mapping where residents say a region begins reveals how identity is distributed, and disagreement about the boundary reveals where two cultural regions meet.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Using Figure 1.7b, explain what "regional boundaries are transitional and often contested" means in practice.</summary>
+      <div class="ans">
+        <p><strong>Transitional</strong>: the characteristics defining a region do not stop at a line — they thin out gradually. Speech patterns, crops, architecture, and identity all shade into the neighboring region across a zone that may be dozens or hundreds of kilometers wide.</p>
+        <p><strong>Contested</strong>: because the boundary depends entirely on the criterion chosen, people with different criteria — or different interests — draw it differently, and the choice has consequences. Where a region's edge is placed can determine funding eligibility, political representation, marketing territory, and whose account of a place's history is treated as authoritative.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Identify one formal, one functional, and one perceptual region that a single university campus belongs to.</summary>
+      <div class="ans">
+        <p><strong>Formal:</strong> the county or state it lies in — a legally bounded area in which every place shares the same jurisdiction.</p>
+        <p><strong>Functional:</strong> the campus's own service area — the zone from which students commute, or the reach of its shuttle system and its hospital's patient catchment. Organized around the campus as a node.</p>
+        <p><strong>Perceptual:</strong> "the college town" or "the student neighborhood" — an area residents recognize and name, with a strong core near campus and no agreed edge.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain why regionalization is described as a form of simplification, and give one risk it creates.</summary>
+      <div class="ans">
+        <p>Regionalization groups places by a chosen criterion and, in doing so, deliberately <strong>suppresses internal variation</strong> in order to make a large, messy world legible. Grouping fifty countries into "Sub-Saharan Africa" is useful for some comparisons and erases enormous differences in language, wealth, climate, and history.</p>
+        <p><strong>Risk:</strong> the label starts being treated as an explanation. Once a region is named, people attribute characteristics to everywhere inside it — a regional version of the ecological fallacy — and policies designed for the region's "average" fit few of the places in it.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ EXAM KIT ============================ -->
+<section class="kit" id="kit">
+  <p class="plate-num"><b>Appendix</b> <span>Unit 1 exam kit</span></p>
+  <h2>Everything on One Page</h2>
+  <p>The compressed version — for the night before, when there is no time left to read the plates.</p>
+
+  <h3 class="sub">The seven topics in one sentence each</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th scope="col">Topic</th><th scope="col">Code</th><th scope="col">If you remember one thing</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1.1 Maps</th><td class="mono">IMP-1.A</td><td>Reference maps show <em>where</em>; thematic maps show <em>distribution</em>; every projection distorts shape, area, distance, or direction, and every map is selective.</td></tr>
+        <tr><th scope="row">1.2 Geographic data</th><td class="mono">IMP-1.B</td><td>GPS locates, remote sensing observes, GIS analyzes — and every collection method has a population it systematically misses.</td></tr>
+        <tr><th scope="row">1.3 Power of data</th><td class="mono">IMP-1.C</td><td>Decisions made with geographic data reallocate votes, money, services, and risk across real places, often reinforcing existing patterns.</td></tr>
+        <tr><th scope="row">1.4 Spatial concepts</th><td class="mono">PSO-1.A</td><td>Absolute location is fixed; relative location, site, situation, distance decay, and time–space compression describe how places relate and connect.</td></tr>
+        <tr><th scope="row">1.5 Human–environment</th><td class="mono">PSO-1.B</td><td>Environmental determinism (one forced outcome) gave way to possibilism (a range of options selected by culture and technology).</td></tr>
+        <tr><th scope="row">1.6 Scales of analysis</th><td class="mono">PSO-1.C/D</td><td>The same data produces different — sometimes opposite — patterns at global, national, regional, and local scales.</td></tr>
+        <tr><th scope="row">1.7 Regions</th><td class="mono">SPS-1.A</td><td>Formal = shared trait; functional = shared node; perceptual = shared belief. All boundaries are transitional and contested.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">What the command verbs actually require</h3>
+
+  <div class="stack">
+    <div class="card"><span class="code">Identify / Define</span><h4>Name it. Stop.</h4><p>One accurate term or a one-sentence definition. No example needed, no elaboration rewarded. Do not spend three sentences here.</p></div>
+    <div class="card"><span class="code">Describe</span><h4>Say what it looks like.</h4><p>Characteristics, patterns, or features — no causes. "The dots are clustered along the coast and absent from the interior."</p></div>
+    <div class="card"><span class="code">Explain</span><h4>Say <em>why</em>, with a because.</h4><p>Give the mechanism connecting cause to effect. If your sentence has no "because," "which causes," or "as a result," it is not yet an explanation.</p></div>
+    <div class="card"><span class="code">Compare</span><h4>Both sides, one sentence.</h4><p>State the relationship explicitly — "whereas," "while," "in contrast to." Describing A and then describing B separately does not compare them.</p></div>
+  </div>
+
+  <div class="callout pro">
+    <span class="tag">Three habits that raise FRQ scores in this unit</span>
+    <p><strong>Name the scale.</strong> Almost any claim in this course is scale-dependent, and saying "at the national scale" costs four words and demonstrates the exact skill being assessed.<br>
+    <strong>Use a real example.</strong> Generic answers stall at partial credit. One specific place, crop, technology, or policy converts a definition into evidence.<br>
+    <strong>Answer in the order asked.</strong> Label your parts A, B, C to match the prompt. Readers score by part, and an answer buried in the wrong paragraph often goes uncredited.</p>
+  </div>
+
+  <h3 class="sub">Self-quiz: can you define these without looking?</h3>
+
+  <div class="legend">
+    <div class="legend-head"><span>Term checklist</span><span>cover the plate, recite the definition</span></div>
+    <dl>
+      <dt><span class="swatch"></span>1.1 Maps</dt><dd>reference map · thematic map · choropleth · dot distribution · graduated symbol · isoline · cartogram · flow-line · contour line · projection · conformal · equal-area · Mercator · Gall–Peters · Robinson · Winkel Tripel · Goode's homolosine · Fuller · azimuthal · representative fraction · large scale · small scale · latitude · longitude · graticule · density · concentration · pattern · clustered · dispersed</dd>
+      <dt><span class="swatch"></span>1.2 Data</dt><dd>geospatial data · quantitative · qualitative · fieldwork · GIS · vector · raster · overlay · GNSS/GPS · remote sensing · ground truthing · census · landscape analysis · photographic interpretation · sampling bias</dd>
+      <dt><span class="swatch"></span>1.3 Power of data</dt><dd>reapportionment · redistricting · gerrymandering · cracking · packing · stacking · site selection · food desert · redlining · undercount</dd>
+      <dt><span class="swatch sw-clay"></span>1.4 Spatial concepts</dt><dd>absolute location · relative location · site · situation · toponym · space · place · sense of place · placelessness · flows · spatial interaction · complementarity · transferability · intervening opportunity · friction of distance · distance decay · time–space compression · connectivity · accessibility</dd>
+      <dt><span class="swatch sw-moss"></span>1.5 Human–environment</dt><dd>environmental determinism · possibilism · cultural ecology · political ecology · cultural landscape · natural resource · renewable · nonrenewable · sustainability · Brundtland definition · land use · built environment · terracing · irrigation · land reclamation · salinization</dd>
+      <dt><span class="swatch sw-slate"></span>1.6 Scale</dt><dd>cartographic scale · scale of analysis · global · world-regional · national · sub-national · local · aggregation · disaggregation · ecological fallacy · scale jumping</dd>
+      <dt><span class="swatch sw-plum"></span>1.7 Regions</dt><dd>region · regionalization · formal (uniform) region · functional (nodal) region · node · perceptual (vernacular) region · transition zone · core · periphery · contested boundary · world region</dd>
+    </dl>
+  </div>
+
+  <h3 class="sub">Synthesis questions that cross topics</h3>
+
+  <div class="check">
+    <div class="check-head"><span>Stretch yourself · Unit 1</span><span>4 items</span></div>
+    <details>
+      <summary>Explain how the choice of map projection (1.1) and the choice of scale of analysis (1.6) are versions of the same problem.</summary>
+      <div class="ans">
+        <p>Both are <strong>unavoidable simplifications that determine what a reader can see</strong>. A projection must sacrifice at least one of shape, area, distance, or direction; an analysis scale must sacrifice either internal detail (by aggregating up) or stability (by disaggregating down). In each case there is no neutral option — only a choice about which distortion is acceptable given the question.</p>
+        <p>Both also carry consequences: a Mercator map inflates high-latitude area and shapes public perception of importance; a national scale of analysis averages away local deprivation and shapes where policy is directed. In each case the honest move is the same — state the choice and its cost rather than presenting the output as simply "the data."</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain how time–space compression (1.4) changes the boundary of a functional region (1.7).</summary>
+      <div class="ans">
+        <p>A functional region extends outward from its node until the friction of distance makes the connection uneconomical. Time–space compression lowers that friction, so the region's <strong>boundary expands</strong>.</p>
+        <p>Concretely: a new commuter rail line or a widened highway lets people live farther out and still reach the central city within a tolerable travel time, so the metropolitan commuter shed grows — absorbing towns that were previously independent. Remote work compresses this further, stretching some functional regions until the node's physical location barely constrains membership at all.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Using 1.2, 1.3, and 1.6 together, explain how a data-collection decision at one scale can produce inequality at another.</summary>
+      <div class="ans">
+        <p>Suppose a national agency collects health data only at the state scale (1.2, 1.6). At that scale a state looks adequately served, so federal funding formulas — decisions made with geographic data (1.3) — allocate resources accordingly.</p>
+        <p>Because aggregation hides local variation, neighborhoods with acute shortages are invisible in the dataset and therefore ineligible for the targeted funding they need. Nobody made a discriminatory decision; the <strong>scale of collection</strong> determined the scale of visibility, which determined the geography of the response. Choosing to disaggregate is itself a policy choice.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Explain how possibilism (1.5) and situation (1.4) together account for why some cities grow and comparable ones do not.</summary>
+      <div class="ans">
+        <p><strong>Situation</strong> supplies the opportunity: a location at a river confluence, a mountain pass, a natural harbor, or a rail junction sits on flows of goods and people that a less connected site does not.</p>
+        <p><strong>Possibilism</strong> supplies the agency: the opportunity is only realized if a society has the technology, capital, and will to build the port, dredge the channel, lay the rail, or fund the airport. Two cities with equally favorable situations diverge because one invested and the other did not — and a city with a mediocre situation can manufacture one, as canal and airport hub cities have repeatedly done. Environment offers the range; human decision selects from it.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>AP HUMAN GEOGRAPHY · UNIT 1 · THINKING GEOGRAPHICALLY · TOPICS 1.1–1.7<br>
+  Aligned to the College Board Course and Exam Description: enduring understandings IMP-1, PSO-1, SPS-1.<br>
+  AP® is a trademark registered by the College Board, which was not involved in the production of these notes.</p>
+</footer>
+
+</div><!-- /.wrap -->
+</main>
+</div><!-- /.shell -->
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a.nav'));
+  var map = {};
+  var targets = [];
+
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) { map[id] = a; targets.push(el); }
+  });
+
+  function setCurrent(id) {
+    links.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + id;
+      if (on) { a.setAttribute('aria-current', 'true'); } else { a.removeAttribute('aria-current'); }
+    });
+    var active = map[id];
+    if (active && window.innerWidth <= 1080) {
+      var list = active.closest('ol');
+      if (list && list.scrollWidth > list.clientWidth) {
+        var want = active.offsetLeft - (list.clientWidth - active.offsetWidth) / 2;
+        list.scrollTo({ left: Math.max(0, want), behavior: 'smooth' });
+      }
+    }
+  }
+
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+
+  var visible = {};
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+    var best = null, bestScore = 0;
+    targets.forEach(function (t) {
+      var s = visible[t.id] || 0;
+      if (s > bestScore) { bestScore = s; best = t.id; }
+    });
+    if (!best) {
+      // nothing measurably visible: fall back to the last section above the fold
+      for (var i = targets.length - 1; i >= 0; i--) {
+        if (targets[i].getBoundingClientRect().top < window.innerHeight * 0.5) { best = targets[i].id; break; }
+      }
+    }
+    if (best) setCurrent(best);
+  }, { threshold: [0, 0.05, 0.25, 0.5, 0.75, 1], rootMargin: '-70px 0px -40% 0px' });
+
+  targets.forEach(function (t) { io.observe(t); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AP Human Geography — Course Notes</title>
+<meta name="description" content="Student notes for AP Human Geography, unit by unit. Complete, diagram-heavy, aligned to the College Board Course and Exam Description.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AP Human Geography — Course Notes">
+<meta property="og:description" content="Complete, diagram-heavy student notes, unit by unit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#F4F6F1; --surface:#FFFFFF; --surface-2:#EAEEE5;
+  --ink:#132229; --ink-2:#4C5F68; --ink-3:#78888F;
+  --rule:#D4DACE; --rule-2:#BAC4B7;
+  --accent:#0B6E77; --accent-soft:#DBEBEA; --accent-line:#8CC3C4;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --paper:#0D171B; --surface:#14232A; --surface-2:#1B2E36;
+  --ink:#E9EFEA; --ink-2:#A3B6B9; --ink-3:#7B9095;
+  --rule:#273B44; --rule-2:#38525D;
+  --accent:#4EB9BE; --accent-soft:#123840; --accent-line:#2E7B82;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0D171B; --surface:#14232A; --surface-2:#1B2E36;
+  --ink:#E9EFEA; --ink-2:#A3B6B9; --ink-3:#7B9095;
+  --rule:#273B44; --rule-2:#38525D;
+  --accent:#4EB9BE; --accent-soft:#123840; --accent-line:#2E7B82;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 clamp(20px,5vw,40px) 100px}
+header{position:relative;overflow:hidden;border-bottom:1px solid var(--rule);margin-bottom:clamp(36px,6vw,64px)}
+.hgrid{position:absolute;inset:0;color:var(--accent);opacity:.16;z-index:-1}
+:root[data-theme="dark"] .hgrid{opacity:.22}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hgrid{opacity:.22}}
+.hin{max-width:940px;margin:0 auto;padding:clamp(48px,8vw,96px) clamp(20px,5vw,40px) clamp(36px,5vw,56px)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,6vw,60px);line-height:1;letter-spacing:-.035em;margin:0 0 18px;text-wrap:balance;max-width:16ch}
+h1 em{font-style:normal;color:var(--accent);display:block}
+.deck{font-size:clamp(17px,2vw,20px);line-height:1.55;color:var(--ink-2);max-width:58ch;margin:0}
+h2{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 18px;font-family:var(--mono)}
+ol.units{list-style:none;margin:0 0 48px;padding:0;display:grid;gap:12px}
+.unit{display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+  background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;
+  text-decoration:none;color:inherit;transition:border-color .16s ease,transform .16s ease}
+a.unit:hover{border-color:var(--accent);transform:translateX(2px)}
+.unit .n{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--accent);letter-spacing:-.02em}
+.unit.soon .n{color:var(--ink-3)}
+.unit h3{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.015em;margin:0 0 3px;line-height:1.25}
+.unit p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.4}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  padding:4px 9px;border-radius:5px;white-space:nowrap;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
+.unit.soon{opacity:.62}
+.unit.soon .tag{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
+.note{border-top:1px solid var(--rule);padding-top:24px;font-size:16px;color:var(--ink-2);max-width:64ch}
+.note p{margin:0 0 12px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--ink-3)}
+@media (max-width:560px){
+  .unit{grid-template-columns:44px 1fr;gap:14px}
+  .unit .tag{grid-column:2;justify-self:start;margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="hgrid" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1200 400">
+    <g stroke="currentColor" fill="none" stroke-width="1">
+      <line x1="0" y1="70" x2="1200" y2="70"/><line x1="0" y1="160" x2="1200" y2="160"/>
+      <line x1="0" y1="250" x2="1200" y2="250"/><line x1="0" y1="340" x2="1200" y2="340"/>
+      <path d="M80 0 C 40 130, 40 270, 80 400"/><path d="M300 0 C 275 130, 275 270, 300 400"/>
+      <path d="M520 0 C 508 130, 508 270, 520 400"/><line x1="740" y1="0" x2="740" y2="400"/>
+      <path d="M960 0 C 985 130, 985 270, 960 400"/><path d="M1160 0 C 1200 130, 1200 270, 1160 400"/>
+    </g>
+  </svg>
+  <div class="hin">
+    <p class="eyebrow">Student notes · aligned to the College Board CED</p>
+    <h1>AP Human <em>Geography</em></h1>
+    <p class="deck">Complete notes for every unit — written to be studied from, not skimmed. Each unit covers the College Board learning objectives with original diagrams, the vocabulary that shows up on the exam, the traps that cost points, and self-check questions with full answers.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <h2>The seven units</h2>
+  <ol class="units">
+    <li><a class="unit" href="unit-1/">
+      <span class="n">1</span>
+      <span><h3>Thinking Geographically</h3><p>Maps and projections · geographic data · scales of analysis · spatial concepts · human–environment interaction · regions</p></span>
+      <span class="tag">Ready</span>
+    </a></li>
+    <li><div class="unit soon">
+      <span class="n">2</span>
+      <span><h3>Population &amp; Migration</h3><p>Distribution, density, demographic transition, migration patterns and processes</p></span>
+      <span class="tag">Not yet</span>
+    </div></li>
+    <li><div class="unit soon">
+      <span class="n">3</span>
+      <span><h3>Cultural Patterns &amp; Processes</h3><p>Cultural landscapes, diffusion, language, religion, globalization</p></span>
+      <span class="tag">Not yet</span>
+    </div></li>
+    <li><div class="unit soon">
+      <span class="n">4</span>
+      <span><h3>Political Patterns &amp; Processes</h3><p>States and nations, boundaries, devolution, supranationalism</p></span>
+      <span class="tag">Not yet</span>
+    </div></li>
+    <li><div class="unit soon">
+      <span class="n">5</span>
+      <span><h3>Agriculture &amp; Rural Land Use</h3><p>Agricultural origins, settlement patterns, von Thünen, the food system</p></span>
+      <span class="tag">Not yet</span>
+    </div></li>
+    <li><div class="unit soon">
+      <span class="n">6</span>
+      <span><h3>Cities &amp; Urban Land Use</h3><p>Urbanization, city models, internal structure, urban sustainability</p></span>
+      <span class="tag">Not yet</span>
+    </div></li>
+    <li><div class="unit soon">
+      <span class="n">7</span>
+      <span><h3>Industrial &amp; Economic Development</h3><p>Industrial revolution, development measures, trade, changing global economy</p></span>
+      <span class="tag">Not yet</span>
+    </div></li>
+  </ol>
+
+  <div class="note">
+    <p>Each unit is a single self-contained page — no build step, no dependencies, no tracking. Open it on a phone or a Chromebook, or print it; the layout handles all three.</p>
+    <p>Notes follow the reader's light or dark preference automatically.</p>
+  </div>
+
+  <footer>
+    <p>AP® is a trademark registered by the College Board, which was not involved in the production of these notes.</p>
+  </footer>
+</div>
+
+</body>
+</html>
