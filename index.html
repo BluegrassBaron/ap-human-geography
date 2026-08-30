@@ -16,29 +16,54 @@
 <style>
 :root{
   color-scheme:light;
-  --paper:#F4F6F1; --surface:#FFFFFF; --surface-2:#EAEEE5;
-  --ink:#132229; --ink-2:#4C5F68; --ink-3:#78888F;
-  --rule:#D4DACE; --rule-2:#BAC4B7;
-  --accent:#0B6E77; --accent-soft:#DBEBEA; --accent-line:#8CC3C4;
+  /* Bourbon County High School — maroon & gold primary; navy, white, black secondary */
+  --paper:#F8F5F2; --surface:#FFFFFF; --surface-2:#F1EAE5;
+  --ink:#1C1719; --ink-2:#584D50; --ink-3:#6E6164;
+  --rule:#E3D9D2; --rule-2:#CBBCB2;
+  --accent:#7A1D2E; --accent-soft:#F7E7E9; --accent-line:#C9909A;
+  --gold:#856012; --gold-soft:#FAF0D8; --gold-line:#D9BA63;
+  --navy:#1E3A5F; --navy-soft:#E0E7EF;
+  --brand-maroon:#6E1A29; --brand-gold:#C9A227; --brand-on-maroon:#FBF4EC;
   --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
   --body:"Newsreader",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   color-scheme:dark;
-  --paper:#0D171B; --surface:#14232A; --surface-2:#1B2E36;
-  --ink:#E9EFEA; --ink-2:#A3B6B9; --ink-3:#7B9095;
-  --rule:#273B44; --rule-2:#38525D;
-  --accent:#4EB9BE; --accent-soft:#123840; --accent-line:#2E7B82;
+  --paper:#141011; --surface:#1E1819; --surface-2:#2B2224;
+  --ink:#F2EAE7; --ink-2:#BCACA9; --ink-3:#92827F;
+  --rule:#3A2E30; --rule-2:#564346;
+  --accent:#D96476; --accent-soft:#2E1318; --accent-line:#8F4A56;
+  --gold:#E7BA5E; --gold-soft:#3B2D11; --gold-line:#8F7231;
+  --navy:#93B6DC; --navy-soft:#1B2836;
 }}
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --paper:#0D171B; --surface:#14232A; --surface-2:#1B2E36;
-  --ink:#E9EFEA; --ink-2:#A3B6B9; --ink-3:#7B9095;
-  --rule:#273B44; --rule-2:#38525D;
-  --accent:#4EB9BE; --accent-soft:#123840; --accent-line:#2E7B82;
+  --paper:#141011; --surface:#1E1819; --surface-2:#2B2224;
+  --ink:#F2EAE7; --ink-2:#BCACA9; --ink-3:#92827F;
+  --rule:#3A2E30; --rule-2:#564346;
+  --accent:#D96476; --accent-soft:#2E1318; --accent-line:#8F4A56;
+  --gold:#E7BA5E; --gold-soft:#3B2D11; --gold-line:#8F7231;
+  --navy:#93B6DC; --navy-soft:#1B2836;
 }
 *,*::before,*::after{box-sizing:border-box}
+.masthead{background:var(--brand-maroon);border-bottom:3px solid var(--brand-gold)}
+.mast-in{max-width:940px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:6px 22px;padding:11px clamp(20px,5vw,40px)}
+.mast-school,.mast-course{margin:0;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brand-on-maroon)}
+.mast-school .mascot{color:var(--brand-gold);font-weight:600}
+.mast-school .sep{color:var(--brand-gold);padding:0 7px}
+.mast-course{opacity:.75}
+.byline{margin:26px 0 0;padding-top:18px;border-top:2px solid var(--gold-line);max-width:58ch;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);line-height:1.9}
+.byline b{color:var(--accent);font-weight:600;letter-spacing:.1em}
+.credit{margin:40px 0 0;background:var(--surface);border:1px solid var(--rule);
+  border-left:4px solid var(--brand-maroon);border-radius:8px;padding:20px 22px}
+.credit h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.015em;margin:0 0 8px}
+.credit p{margin:0 0 10px;font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+.credit p:last-child{margin:0}
+.credit .who{color:var(--ink);font-weight:600}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
 .wrap{max-width:940px;margin:0 auto;padding:0 clamp(20px,5vw,40px) 100px}
@@ -62,7 +87,7 @@ a.unit:hover{border-color:var(--accent);transform:translateX(2px)}
 .unit h3{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.015em;margin:0 0 3px;line-height:1.25}
 .unit p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.4}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
-  padding:4px 9px;border-radius:5px;white-space:nowrap;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
+  padding:4px 9px;border-radius:5px;white-space:nowrap;background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-line)}
 .unit.soon{opacity:.62}
 .unit.soon .tag{background:var(--surface-2);color:var(--ink-3);border-color:var(--rule-2)}
 .note{border-top:1px solid var(--rule);padding-top:24px;font-size:16px;color:var(--ink-2);max-width:64ch}
@@ -76,6 +101,13 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
 </style>
 </head>
 <body>
+
+<div class="masthead">
+  <div class="mast-in">
+    <p class="mast-school">Bourbon County High School <span class="sep">·</span> <span class="mascot">Colonels</span></p>
+    <p class="mast-course">Social Studies</p>
+  </div>
+</div>
 
 <header>
   <svg class="hgrid" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1200 400">
@@ -91,6 +123,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
     <p class="eyebrow">Student notes · aligned to the College Board CED</p>
     <h1>AP Human <em>Geography</em></h1>
     <p class="deck">Complete notes for every unit — written to be studied from, not skimmed. Each unit covers the College Board learning objectives with original diagrams, the vocabulary that shows up on the exam, the traps that cost points, and self-check questions with full answers.</p>
+    <p class="byline">Created by <b>Jordan Evans</b><br>AP Human Geography · Bourbon County High School</p>
   </div>
 </header>
 
@@ -139,7 +172,14 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
     <p>Notes follow the reader's light or dark preference automatically.</p>
   </div>
 
+  <div class="credit">
+    <h3>About these notes</h3>
+    <p>Written and maintained by <span class="who">Jordan Evans</span>, who teaches AP Human Geography at Bourbon County High School in Paris, Kentucky. Built for his students, and free for anyone else who finds them useful.</p>
+    <p>Corrections and suggestions are welcome — open an issue on <a href="https://github.com/BluegrassBaron/ap-human-geography">the GitHub repository</a>.</p>
+  </div>
+
   <footer>
+    <p>A teacher-made classroom resource. Not an official publication of Bourbon County Schools, and not endorsed by the district.</p>
     <p>AP® is a trademark registered by the College Board, which was not involved in the production of these notes.</p>
   </footer>
 </div>

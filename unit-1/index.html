@@ -33,42 +33,47 @@
 :root{
   color-scheme: light;
 
-  --paper:#F4F6F1;
+  /* Bourbon County High School — maroon & gold primary; navy, white, black secondary */
+  --paper:#F8F5F2;
   --surface:#FFFFFF;
-  --surface-2:#EAEEE5;
-  --surface-3:#DFE5D9;
+  --surface-2:#F1EAE5;
+  --surface-3:#E6DBD2;
 
-  --ink:#132229;
-  --ink-2:#4C5F68;
-  --ink-3:#78888F;
+  --ink:#1C1719;
+  --ink-2:#584D50;
+  --ink-3:#6E6164;
 
-  --rule:#D4DACE;
-  --rule-2:#BAC4B7;
+  --rule:#E3D9D2;
+  --rule-2:#CBBCB2;
 
-  --accent:#0B6E77;      /* hydrography teal */
-  --accent-2:#0E8F99;
-  --accent-soft:#DBEBEA;
-  --accent-line:#8CC3C4;
+  --accent:#7A1D2E;           /* BCHS maroon */
+  --accent-2:#9B2437;
+  --accent-soft:#F7E7E9;
+  --accent-line:#C9909A;
 
-  --clay:#AC5C24;        /* relief / contour */
-  --clay-soft:#F6E3D2;
-  --clay-line:#E0AC7C;
+  --clay:#856012;             /* BCHS gold, text-safe */
+  --clay-soft:#FAF0D8;
+  --clay-line:#D9BA63;
 
-  --moss:#4C6A31;        /* vegetation */
-  --moss-soft:#E4EBD7;
-  --moss-line:#A9C286;
+  --moss:#44652D;
+  --moss-soft:#E7EEDC;
+  --moss-line:#9CBB7A;
 
-  --plum:#7B3D66;        /* perceptual */
-  --plum-soft:#F1E2EC;
-  --plum-line:#C793B6;
+  --plum:#5C3888;
+  --plum-soft:#EEE6F6;
+  --plum-line:#B398D4;
 
-  --slate:#3A5A73;       /* political */
-  --slate-soft:#DFE7EE;
-  --slate-line:#9DB6C9;
+  --slate:#1E3A5F;            /* secondary navy */
+  --slate-soft:#E0E7EF;
+  --slate-line:#94AAC4;
 
-  --shadow-sm:0 1px 2px rgba(19,34,41,.06);
-  --shadow:0 1px 2px rgba(19,34,41,.05), 0 10px 28px -16px rgba(19,34,41,.32);
+  /* fixed brand chrome — identical in both themes */
+  --brand-maroon:#6E1A29;
+  --brand-gold:#C9A227;
+  --brand-on-maroon:#FBF4EC;
 
+  --shadow-sm:0 1px 2px rgba(28,23,25,.07);
+  --shadow:0 1px 2px rgba(28,23,25,.06), 0 10px 28px -16px rgba(28,23,25,.34);
   --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
   --body:"Newsreader",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -81,85 +86,121 @@
   :root:not([data-theme="light"]){
     color-scheme: dark;
 
-    --paper:#0D171B;
-    --surface:#14232A;
-    --surface-2:#1B2E36;
-    --surface-3:#233B45;
+    --paper:#141011;
+    --surface:#1E1819;
+    --surface-2:#2B2224;
+    --surface-3:#3A2D30;
 
-    --ink:#E9EFEA;
-    --ink-2:#A3B6B9;
-    --ink-3:#7B9095;
+    --ink:#F2EAE7;
+    --ink-2:#BCACA9;
+    --ink-3:#92827F;
 
-    --rule:#273B44;
-    --rule-2:#38525D;
+    --rule:#3A2E30;
+    --rule-2:#564346;
 
-    --accent:#4EB9BE;
-    --accent-2:#7AD6D7;
-    --accent-soft:#123840;
-    --accent-line:#2E7B82;
+    --accent:#D96476;
+    --accent-2:#E4808E;
+    --accent-soft:#2E1318;
+    --accent-line:#8F4A56;
 
-    --clay:#E0955C;
-    --clay-soft:#3A2818;
-    --clay-line:#8A5730;
+    --clay:#E7BA5E;
+    --clay-soft:#3B2D11;
+    --clay-line:#8F7231;
 
-    --moss:#A2C577;
-    --moss-soft:#23301B;
-    --moss-line:#5F7C3E;
+    --moss:#A8C880;
+    --moss-soft:#25311C;
+    --moss-line:#607D3F;
 
-    --plum:#D48CBB;
-    --plum-soft:#341F2D;
-    --plum-line:#8B5077;
+    --plum:#C2A2E6;
+    --plum-soft:#2D2242;
+    --plum-line:#7C5EAA;
 
-    --slate:#93B6D2;
-    --slate-soft:#1A2C39;
-    --slate-line:#4C6F8B;
+    --slate:#93B6DC;
+    --slate-soft:#1B2836;
+    --slate-line:#4A6A8E;
 
-    --shadow-sm:0 1px 2px rgba(0,0,0,.35);
-    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -18px rgba(0,0,0,.85);
+    --brand-maroon:#6E1A29;
+    --brand-gold:#C9A227;
+    --brand-on-maroon:#FBF4EC;
+
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 30px -18px rgba(0,0,0,.9);
   }
 }
 
 :root[data-theme="dark"]{
   color-scheme: dark;
 
-  --paper:#0D171B;
-  --surface:#14232A;
-  --surface-2:#1B2E36;
-  --surface-3:#233B45;
+  --paper:#141011;
+  --surface:#1E1819;
+  --surface-2:#2B2224;
+  --surface-3:#3A2D30;
 
-  --ink:#E9EFEA;
-  --ink-2:#A3B6B9;
-  --ink-3:#7B9095;
+  --ink:#F2EAE7;
+  --ink-2:#BCACA9;
+  --ink-3:#92827F;
 
-  --rule:#273B44;
-  --rule-2:#38525D;
+  --rule:#3A2E30;
+  --rule-2:#564346;
 
-  --accent:#4EB9BE;
-  --accent-2:#7AD6D7;
-  --accent-soft:#123840;
-  --accent-line:#2E7B82;
+  --accent:#D96476;
+  --accent-2:#E4808E;
+  --accent-soft:#2E1318;
+  --accent-line:#8F4A56;
 
-  --clay:#E0955C;
-  --clay-soft:#3A2818;
-  --clay-line:#8A5730;
+  --clay:#E7BA5E;
+  --clay-soft:#3B2D11;
+  --clay-line:#8F7231;
 
-  --moss:#A2C577;
-  --moss-soft:#23301B;
-  --moss-line:#5F7C3E;
+  --moss:#A8C880;
+  --moss-soft:#25311C;
+  --moss-line:#607D3F;
 
-  --plum:#D48CBB;
-  --plum-soft:#341F2D;
-  --plum-line:#8B5077;
+  --plum:#C2A2E6;
+  --plum-soft:#2D2242;
+  --plum-line:#7C5EAA;
 
-  --slate:#93B6D2;
-  --slate-soft:#1A2C39;
-  --slate-line:#4C6F8B;
+  --slate:#93B6DC;
+  --slate-soft:#1B2836;
+  --slate-line:#4A6A8E;
 
-  --shadow-sm:0 1px 2px rgba(0,0,0,.35);
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -18px rgba(0,0,0,.85);
+  --brand-maroon:#6E1A29;
+  --brand-gold:#C9A227;
+  --brand-on-maroon:#FBF4EC;
+
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 30px -18px rgba(0,0,0,.9);
 }
 
 *,*::before,*::after{box-sizing:border-box}
+
+/* ---------- school masthead ---------- */
+.masthead{background:var(--brand-maroon);border-bottom:3px solid var(--brand-gold)}
+.mast-in{
+  max-width:1440px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:6px 22px;padding:11px clamp(16px,3vw,30px);
+}
+.mast-school,.mast-course{
+  margin:0;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brand-on-maroon);
+}
+.mast-school .mascot{color:var(--brand-gold);font-weight:600}
+.mast-school .sep{color:var(--brand-gold);padding:0 7px}
+.mast-course{opacity:.75}
+
+/* ---------- back to units ---------- */
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  padding:7px 12px;border:1px solid var(--rule-2);border-radius:6px;
+  margin:0 0 20px;
+  transition:border-color .16s ease,background .16s ease;
+}
+.back:hover{border-color:var(--accent);background:var(--accent-soft)}
+.back .arw{font-size:14px;line-height:1;margin-top:-1px}
 
 body{
   margin:0;
@@ -697,7 +738,9 @@ footer.foot{
     backdrop-filter:blur(10px);
   }
   .rail-brand,.rail-title,.rail-sep,.rail-note{display:none}
-  .rail ol{flex-direction:row;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .rail{display:flex;align-items:center;gap:10px}
+  .rail .back{margin:0;flex:0 0 auto;padding:6px 10px;font-size:10.5px}
+  .rail ol{flex:1 1 auto;min-width:0;flex-direction:row;gap:6px;overflow-x:auto;scrollbar-width:none}
   .rail ol::-webkit-scrollbar{display:none}
   .rail a.nav{
     grid-template-columns:auto;
@@ -732,6 +775,9 @@ html{scroll-behavior:smooth}
 
 @media print{
   .rail{display:none}
+  .masthead{background:none;border-bottom:2px solid #000}
+  .mast-school,.mast-course{color:#000}
+  .mast-school .mascot,.mast-school .sep{color:#000}
   .shell{grid-template-columns:1fr}
   .check details{border-top:1px solid #ccc}
   figure,.callout,.legend,.tbl-wrap{break-inside:avoid}
@@ -741,9 +787,17 @@ html{scroll-behavior:smooth}
 
 </head>
 <body>
+<div class="masthead">
+  <div class="mast-in">
+    <p class="mast-school">Bourbon County High School <span class="sep">·</span> <span class="mascot">Colonels</span></p>
+    <p class="mast-course">AP Human Geography</p>
+  </div>
+</div>
+
 <div class="shell">
 
 <nav class="rail" aria-label="Unit contents">
+  <a class="back" href="../"><span class="arw" aria-hidden="true">&#8592;</span>All units</a>
   <p class="rail-brand">AP Human Geography<br>Unit 1 · Plates 1.1–1.7</p>
   <p class="rail-title">Thinking<br>Geographically</p>
   <ol>
@@ -801,7 +855,7 @@ html{scroll-behavior:smooth}
   </div>
   <div class="card">
     <h3>Learn the traps</h3>
-    <p>Orange boxes are the specific mistakes that cost points on this unit. They are worth more than the definitions.</p>
+    <p>The gold boxes are the specific mistakes that cost points on this unit. They are worth more than the definitions.</p>
   </div>
   <div class="card">
     <h3>Answer before opening</h3>
@@ -1560,7 +1614,7 @@ html{scroll-behavior:smooth}
 
   <figure>
     <div class="scroller">
-      <svg viewBox="0 0 790 300" role="img" aria-label="Three five-by-five grids of the same twenty-five voters, fifteen ochre and ten teal, divided into five districts three different ways. Horizontal districts give ochre three seats to two. Vertical districts give ochre all five. Irregular snaking districts give teal three seats to two despite teal being the minority." width="790">
+      <svg viewBox="0 0 790 300" role="img" aria-label="Three five-by-five grids of the same twenty-five voters, fifteen gold and ten maroon, divided into five districts three different ways. Horizontal districts give gold three seats to two. Vertical districts give gold all five. Irregular snaking districts give maroon three seats to two despite maroon being the minority." width="790">
         <g transform="translate(16,48)">
           <text x="0" y="-26" class="t-hd">PLAN A · districts by row</text>
           <text x="0" y="-10" class="t-sm t-mut">compact; follows settlement</text>
@@ -1572,14 +1626,14 @@ html{scroll-behavior:smooth}
           <text x="0" y="154" class="t-hd">OUTCOME</text>
           <rect x="0" y="162" width="78" height="18" class="f-clay"/>
           <rect x="78" y="162" width="52" height="18" class="f-acc"/>
-          <text x="0" y="198" class="t-sm t-clay">Ochre 3 seats</text>
-          <text x="0" y="214" class="t-sm t-acc">Teal 2 seats</text>
+          <text x="0" y="198" class="t-sm t-clay">Gold 3 seats</text>
+          <text x="0" y="214" class="t-sm t-acc">Maroon 2 seats</text>
           <text x="0" y="236" class="t-sm t-mut">Roughly proportional.</text>
         </g>
 
         <g transform="translate(270,48)">
           <text x="0" y="-26" class="t-hd">PLAN B · districts by column</text>
-          <text x="0" y="-10" class="t-sm t-mut">equally compact — erases teal</text>
+          <text x="0" y="-10" class="t-sm t-mut">equally compact — erases maroon</text>
           <rect x="0" y="0" width="130" height="52" class="f-accs"/><rect x="0" y="52" width="130" height="78" class="f-clays"/><g class="f-acc"><circle cx="13" cy="13" r="7"/><circle cx="39" cy="13" r="7"/><circle cx="65" cy="13" r="7"/><circle cx="91" cy="13" r="7"/><circle cx="117" cy="13" r="7"/><circle cx="13" cy="39" r="7"/><circle cx="39" cy="39" r="7"/><circle cx="65" cy="39" r="7"/><circle cx="91" cy="39" r="7"/><circle cx="117" cy="39" r="7"/></g><g class="f-clay"><circle cx="13" cy="65" r="7"/><circle cx="39" cy="65" r="7"/><circle cx="65" cy="65" r="7"/><circle cx="91" cy="65" r="7"/><circle cx="117" cy="65" r="7"/><circle cx="13" cy="91" r="7"/><circle cx="39" cy="91" r="7"/><circle cx="65" cy="91" r="7"/><circle cx="91" cy="91" r="7"/><circle cx="117" cy="91" r="7"/><circle cx="13" cy="117" r="7"/><circle cx="39" cy="117" r="7"/><circle cx="65" cy="117" r="7"/><circle cx="91" cy="117" r="7"/><circle cx="117" cy="117" r="7"/></g>
           <g fill="none" stroke="var(--ink)" stroke-width="2.4">
             <rect x="0" y="0" width="26" height="130"/><rect x="26" y="0" width="26" height="130"/>
@@ -1587,9 +1641,9 @@ html{scroll-behavior:smooth}
           </g>
           <text x="0" y="154" class="t-hd">OUTCOME</text>
           <rect x="0" y="162" width="130" height="18" class="f-clay"/>
-          <text x="0" y="198" class="t-sm t-clay">Ochre 5 seats</text>
-          <text x="0" y="214" class="t-sm t-acc">Teal 0 seats</text>
-          <text x="0" y="236" class="t-sm t-mut">CRACKING · teal split thin.</text>
+          <text x="0" y="198" class="t-sm t-clay">Gold 5 seats</text>
+          <text x="0" y="214" class="t-sm t-acc">Maroon 0 seats</text>
+          <text x="0" y="236" class="t-sm t-mut">CRACKING · maroon split thin.</text>
         </g>
 
         <g transform="translate(524,48)">
@@ -1606,13 +1660,13 @@ html{scroll-behavior:smooth}
           <text x="0" y="154" class="t-hd">OUTCOME</text>
           <rect x="0" y="162" width="52" height="18" class="f-clay"/>
           <rect x="52" y="162" width="78" height="18" class="f-acc"/>
-          <text x="0" y="198" class="t-sm t-acc">Teal 3 seats</text>
-          <text x="0" y="214" class="t-sm t-clay">Ochre 2 seats</text>
-          <text x="0" y="236" class="t-sm t-mut">PACKING · ochre stuffed in two.</text>
+          <text x="0" y="198" class="t-sm t-acc">Maroon 3 seats</text>
+          <text x="0" y="214" class="t-sm t-clay">Gold 2 seats</text>
+          <text x="0" y="236" class="t-sm t-mut">PACKING · gold stuffed in two.</text>
         </g>
       </svg>
     </div>
-    <figcaption><b>Figure 1.3a</b> Twenty-five voters — fifteen ochre, ten teal — with every district holding exactly five people and every district contiguous. Plan A yields a 3–2 ochre majority, Plan B a 5–0 ochre sweep, Plan C a 3–2 <em>teal</em> majority from a 40% minority. All three are legal-looking on their face. The dataset never changed; only the geography of the lines did.</figcaption>
+    <figcaption><b>Figure 1.3a</b> Twenty-five voters — fifteen gold, ten maroon — with every district holding exactly five people and every district contiguous. Plan A yields a 3–2 gold majority, Plan B a 5–0 gold sweep, Plan C a 3–2 <em>maroon</em> majority from a 40% minority. All three are legal-looking on their face. The dataset never changed; only the geography of the lines did.</figcaption>
   </figure>
 
   <div class="legend">
@@ -1693,7 +1747,7 @@ html{scroll-behavior:smooth}
     <details>
       <summary>Using Figure 1.3a, explain how cracking and packing produce opposite-looking maps but the same underlying goal.</summary>
       <div class="ans">
-        <p><strong>Cracking</strong> (Plan B) slices a bloc thin so it never reaches a majority anywhere: teal is 40% of the electorate and 40% of every district, so it wins nothing. <strong>Packing</strong> (Plan C) does the reverse to ochre — jamming it into two districts it wins by 5–0 while losing the other three narrowly.</p>
+        <p><strong>Cracking</strong> (Plan B) slices a bloc thin so it never reaches a majority anywhere: maroon is 40% of the electorate and 40% of every district, so it wins nothing. <strong>Packing</strong> (Plan C) does the reverse to gold — jamming it into two districts it wins by 5–0 while losing the other three narrowly.</p>
         <p>Both techniques pursue the same goal: <em>wasting the other side's votes</em>. Cracking wastes them by spreading them below the threshold; packing wastes them by piling up margins far above the threshold. The map-maker only needs a majority in a majority of districts, not a majority of voters.</p>
       </div>
     </details>
