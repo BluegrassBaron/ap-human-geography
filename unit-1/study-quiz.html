@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1 Study Quiz · AP Human Geography</title>
+<style>
+  :root {
+    --ocean: #0b1c26; --deep: #102b38; --teal: #1b4557; --teal-light: #245a70;
+    --brass: #d4a852; --brass-light: #f0c86e; --coral: #e0664a; --coral-bright: #ff7f5f;
+    --parchment: #efe4c8; --sage: #6fbf8e; --sage-dark: #1d4a33; --gray: #8ea3ad; --white: #f6f1e6;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --serif: Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ocean); color: var(--white); font-family: var(--sans); min-height: 100vh;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(212,168,82,0.05) 48px, rgba(212,168,82,0.05) 49px),
+      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(212,168,82,0.05) 48px, rgba(212,168,82,0.05) 49px);
+  }
+  header { text-align: center; padding: 18px 16px 14px; border-bottom: 2px solid var(--brass); background: linear-gradient(180deg,#050d12,var(--deep)); }
+  .kicker { font-family: var(--mono); font-size: 11px; color: var(--coral-bright); letter-spacing: 4px; margin-bottom: 6px; }
+  h1 { font-family: var(--serif); font-size: clamp(22px, 5vw, 36px); color: var(--brass); letter-spacing: 2px; text-shadow: 2px 2px 0 #000; }
+  h1 span { color: var(--coral-bright); }
+  .sub { font-family: var(--mono); font-size: 12px; color: var(--gray); letter-spacing: 2px; margin-top: 6px; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 18px 16px 48px; }
+  .screen { display: none; } .screen.on { display: block; }
+
+  .card { background: var(--deep); border: 2px solid var(--brass); padding: 22px; position: relative; box-shadow: 0 0 40px rgba(212,168,82,0.15); }
+  .card::before { content:''; position:absolute; inset:4px; border:1px solid rgba(212,168,82,0.2); pointer-events:none; }
+
+  .btn { background: var(--brass); color: var(--ocean); border: none; padding: 12px 26px; font-family: var(--sans); font-size: 15px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: all .15s; }
+  .btn:hover { background: var(--brass-light); }
+  .btn.ghost { background: transparent; color: var(--brass); border: 1px solid var(--brass); }
+  .btn.ghost:hover { background: rgba(212,168,82,0.15); }
+  .btn.muted { background: transparent; color: var(--gray); border: 1px solid var(--gray); }
+  .btn:disabled { opacity: .4; cursor: default; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 18px; }
+
+  /* intro */
+  .intro p { line-height: 1.6; color: var(--parchment); margin-bottom: 12px; }
+  .modes { display: grid; gap: 10px; margin: 18px 0; }
+  .mode { display: flex; gap: 14px; align-items: center; text-align: left; background: rgba(0,0,0,.3); border: 1px solid rgba(212,168,82,.3); color: var(--white); padding: 12px 14px; cursor: pointer; font-family: var(--sans); transition: all .15s; }
+  .mode:hover { border-color: var(--brass); background: rgba(212,168,82,.1); }
+  .mode b { display: block; color: var(--brass); font-size: 15px; margin-bottom: 2px; }
+  .mode small { color: var(--gray); font-size: 13px; line-height: 1.4; }
+  .mode .ic { font-size: 22px; width: 32px; text-align: center; flex-shrink: 0; }
+  .topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin: 10px 0 4px; }
+  .topic-chip { display: flex; gap: 8px; align-items: center; font-size: 13px; background: rgba(0,0,0,.25); border: 1px solid rgba(212,168,82,.25); padding: 8px 10px; cursor: pointer; user-select: none; }
+  .topic-chip input { accent-color: var(--brass); }
+  .topic-chip .t { font-family: var(--mono); color: var(--coral-bright); font-size: 11px; }
+
+  /* quiz */
+  .progress { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 12px; color: var(--gray); letter-spacing: 2px; margin-bottom: 10px; }
+  .progress b { color: var(--brass-light); }
+  .bar { height: 4px; background: rgba(255,255,255,.08); margin-bottom: 16px; }
+  .bar i { display: block; height: 100%; background: var(--brass); transition: width .3s; }
+  .q-cat { font-family: var(--mono); font-size: 11px; color: var(--coral-bright); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+  .q-diff { font-family: var(--mono); font-size: 11px; color: var(--gray); margin-bottom: 14px; }
+  .q-diff span { color: var(--brass); }
+  .q-text { font-size: clamp(16px, 2.6vw, 19px); line-height: 1.55; margin-bottom: 18px; }
+  .options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .option { display: flex; align-items: flex-start; gap: 12px; text-align: left; background: rgba(0,0,0,.3); border: 1px solid rgba(212,168,82,.3); color: var(--parchment); padding: 11px 14px; font-family: var(--sans); font-size: 15px; line-height: 1.4; cursor: pointer; transition: all .15s; }
+  .option .letter { font-family: var(--mono); color: var(--brass); font-weight: 600; flex-shrink: 0; width: 24px; height: 24px; border: 1px solid var(--brass); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+  .option:hover:not(.locked) { background: rgba(212,168,82,.12); border-color: var(--brass); }
+  .option.locked { cursor: default; }
+  .option.correct { background: var(--sage-dark); border-color: var(--sage); color: #e8f5ec; }
+  .option.correct .letter { background: var(--sage); color: var(--ocean); border-color: var(--sage); }
+  .option.wrong { background: #4a1f18; border-color: var(--coral); color: #ffd9cf; }
+  .option.wrong .letter { background: var(--coral); color: #fff; border-color: var(--coral); }
+  .option.dim { opacity: .45; }
+  .feedback { display: none; background: rgba(0,0,0,.4); border: 1px solid rgba(212,168,82,.3); padding: 14px; font-size: 14px; line-height: 1.55; color: var(--parchment); margin-bottom: 16px; }
+  .feedback.on { display: block; animation: fadeIn .3s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: none; } }
+  .verdict { font-family: var(--serif); font-size: 15px; letter-spacing: 3px; margin-bottom: 8px; }
+  .verdict.ok { color: var(--sage); } .verdict.no { color: var(--coral-bright); }
+  .feedback strong { display: block; font-family: var(--mono); font-size: 12px; color: var(--brass-light); margin-bottom: 6px; }
+
+  /* results */
+  .big { font-family: var(--serif); font-size: clamp(30px, 8vw, 54px); color: var(--brass-light); text-align: center; text-shadow: 0 0 30px rgba(212,168,82,.4); }
+  .big small { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: 3px; color: var(--gray); margin-top: 4px; }
+  .verdict-line { text-align: center; color: var(--parchment); margin: 14px 0 20px; line-height: 1.5; }
+  .breakdown { display: flex; flex-direction: column; gap: 6px; }
+  .brow { display: grid; grid-template-columns: 40px 1fr 60px; gap: 10px; align-items: center; background: var(--teal); border: 1px solid rgba(212,168,82,.3); padding: 8px 12px; font-size: 13px; }
+  .brow .t { font-family: var(--mono); color: var(--coral-bright); font-size: 11px; }
+  .brow .n { color: var(--parchment); }
+  .brow .n small { display: block; height: 4px; background: rgba(255,255,255,.08); margin-top: 5px; }
+  .brow .n small i { display: block; height: 100%; background: var(--sage); }
+  .brow.weak .n small i { background: var(--coral); }
+  .brow .s { font-family: var(--mono); color: var(--brass); text-align: right; }
+  .tip { margin-top: 18px; font-size: 13px; color: var(--gray); line-height: 1.5; text-align: center; }
+  .tip b { color: var(--coral-bright); }
+
+  /* review list */
+  .rv { border-top: 1px solid rgba(212,168,82,.2); padding: 14px 0; }
+  .rv .q-cat { margin-bottom: 6px; }
+  .rv p { font-size: 14px; line-height: 1.5; margin-bottom: 6px; color: var(--parchment); }
+  .rv .ans { font-family: var(--mono); font-size: 12px; color: var(--sage); }
+  .rv .ex { font-size: 13px; color: var(--gray); }
+  h2 { font-family: var(--serif); color: var(--brass); font-size: 20px; letter-spacing: 2px; margin: 22px 0 8px; }
+  @media print {
+    body { background: #fff; color: #000; }
+    header, .row, .btn { display: none !important; }
+    .card { border: 1px solid #000; box-shadow: none; }
+    .rv p, .rv .ex, .rv .ans { color: #000; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">◈ UNIT 1 · THINKING GEOGRAPHICALLY ◈</div>
+  <h1>UNIT 1 <span>STUDY QUIZ</span></h1>
+  <div class="sub">AP HUMAN GEOGRAPHY · TOPICS 1.1 – 1.7</div>
+</header>
+
+<div class="wrap">
+
+  <!-- INTRO -->
+  <section class="screen on" id="s-intro">
+    <div class="card intro">
+      <p>Thirty-six multiple-choice questions covering every topic in Unit 1, ordered from easier to harder inside each topic. You get instant feedback and an explanation after every answer, and a breakdown by topic at the end so you know exactly what to reread before Friday.</p>
+      <div class="modes">
+        <button class="mode" onclick="start('all')"><span class="ic">▶</span><span><b>Full run — all 36 questions</b><small>Shuffled across all seven topics. About 15–20 minutes.</small></span></button>
+        <button class="mode" onclick="start('hard')"><span class="ic">◆</span><span><b>Hard mode — the $800 and $1000 tier only</b><small>The 14 toughest questions. Scenario and application questions like the real exam.</small></span></button>
+        <button class="mode" onclick="start('pick')"><span class="ic">◎</span><span><b>Just the topics I choose</b><small>Check the topics below first, then click here.</small></span></button>
+      </div>
+      <div class="topics" id="topic-picker"></div>
+      <p style="font-size:12px;color:var(--gray);margin-top:10px">Tip: answer honestly rather than guessing and re-clicking — the point is finding what you don't know yet.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="screen" id="s-quiz">
+    <div class="progress"><span>QUESTION <b id="qnum">1</b> / <b id="qtot">36</b></span><span>SCORE <b id="qscore">0</b></span></div>
+    <div class="bar"><i id="bar" style="width:0%"></i></div>
+    <div class="card">
+      <div class="q-cat" id="q-cat"></div>
+      <div class="q-diff" id="q-diff"></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="q-opts"></div>
+      <div class="feedback" id="q-fb"></div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn" id="next-btn" onclick="next()" disabled>NEXT →</button>
+        <button class="btn muted" onclick="quit()">QUIT</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="screen" id="s-results">
+    <div class="card">
+      <div class="big" id="r-score"><small>SCORE</small></div>
+      <div class="verdict-line" id="r-verdict"></div>
+      <div class="breakdown" id="r-break"></div>
+      <div class="tip" id="r-tip"></div>
+      <div class="row">
+        <button class="btn" id="retry-btn" onclick="retryMissed()">RETRY WHAT I MISSED</button>
+        <button class="btn ghost" onclick="showReview()">REVIEW MISSED QUESTIONS</button>
+        <button class="btn muted" onclick="goIntro()">START OVER</button>
+      </div>
+    </div>
+    <div id="r-review"></div>
+  </section>
+
+</div>
+
+<script>
+const DATA = {
+  categories: [
+    { tag: "1.1", name: "Introduction to Maps" },
+    { tag: "1.2", name: "Geographic Data" },
+    { tag: "1.3", name: "Power of Geographic Data" },
+    { tag: "1.4", name: "Spatial Concepts" },
+    { tag: "1.5", name: "Human–Environment Interaction" },
+    { tag: "1.6", name: "Scales of Analysis" },
+    { tag: "1.7", name: "Regional Analysis" },
+  ],
+  values: [200, 400, 600, 800, 1000],
+  questions: [
+    // 1.1 INTRODUCTION TO MAPS
+    [
+      { q: "A map that shows the boundaries of countries, the locations of cities, and the names of rivers — but does not display a specific data theme — is best described as a:",
+        o: ["Thematic map", "Reference map", "Choropleth map", "Topographic map", "Mental map"], c: 1,
+        ex: "Reference maps show general information about places (boundaries, cities, physical features). Thematic maps display a specific topic or data set." },
+      { q: "A map of the United States shades each state a darker color as its population density increases. This is an example of a:",
+        o: ["Dot distribution map", "Cartogram", "Choropleth map", "Isoline map", "Graduated symbol map"], c: 2,
+        ex: "Choropleth maps use color shading or patterns within predefined areas (states, counties) to show the intensity of a variable." },
+      { q: "The Mercator projection is useful for navigation because it preserves direction, but it greatly distorts:",
+        o: ["The shape of countries near the equator", "Direction between points", "Distance along the equator", "The size (area) of landmasses near the poles", "The shape of landmasses near the poles"], c: 3,
+        ex: "Mercator preserves shape and direction but exaggerates area at high latitudes — Greenland looks as big as Africa, though Africa is about 14 times larger." },
+      { q: "On a world map, countries are drawn so that their size is proportional to their total GDP rather than their land area, so Japan appears far larger than Australia. This type of map is a:",
+        o: ["Choropleth map", "Proportional symbol map", "Dot density map", "Cartogram", "Flow-line map"], c: 3,
+        ex: "A cartogram distorts the size of places to reflect the value of a variable (population, GDP, etc.) rather than actual area." },
+      { q: "Which statement correctly compares a map with a scale of 1:24,000 to a map with a scale of 1:1,000,000?",
+        o: ["The 1:24,000 map is small-scale and shows a larger area with more detail", "The 1:24,000 map is large-scale and shows a smaller area in greater detail", "The 1:1,000,000 map is large-scale and shows a smaller area in greater detail", "Both maps show the same area, just with different symbols", "Map scale has no effect on the level of detail shown"], c: 1,
+        ex: "The larger the ratio (1:24,000 > 1:1,000,000), the larger the scale: a smaller area is shown with more detail. Small-scale maps zoom out; large-scale maps zoom in." },
+    ],
+    // 1.2 GEOGRAPHIC DATA
+    [
+      { q: "Which technology uses a network of satellites to pinpoint the exact location of a receiver on Earth's surface?",
+        o: ["GIS", "GPS", "Remote sensing", "Geotagging", "Aerial photography"], c: 1,
+        ex: "The Global Positioning System (GPS) uses satellites to determine absolute location (latitude, longitude, and elevation)." },
+      { q: "A geographer stacks layers of data on soil type, elevation, flood risk, and road networks to decide where a new hospital should be built. The geographer is using:",
+        o: ["GPS", "Remote sensing", "A geographic information system (GIS)", "A topographic survey", "Geocoding"], c: 2,
+        ex: "GIS is computer software that stores, layers, and analyzes spatial data. Layering different data sets to answer a question is its defining use." },
+      { q: "Satellite images showing the loss of Amazon rainforest over the past twenty years are an example of data collected through:",
+        o: ["Field observation", "GIS overlay analysis", "GPS tracking", "Remote sensing", "Landscape analysis"], c: 3,
+        ex: "Remote sensing collects information about Earth's surface from a distance — usually from satellites or aircraft — without direct contact." },
+      { q: "Which of the following is the best example of qualitative geographic data?",
+        o: ["Population counts for each county in Kentucky", "Median household income by ZIP code", "Daily temperature readings at a weather station", "Interviews with residents about how they feel about a new park", "Survey results showing 62% of residents support a new park"], c: 3,
+        ex: "Qualitative data describes qualities, opinions, and experiences (interviews, photos, field notes). The other options are quantitative — numerical and measurable." },
+      { q: "A city collects millions of anonymous cell-phone location pings to map where commuters travel each morning. This data set is best characterized as:",
+        o: ["Qualitative data gathered through participant observation", "Quantitative geospatial data gathered through geolocation technology", "Census data collected by the national government", "Remote-sensing data collected by satellite", "Qualitative data gathered through a field survey"], c: 1,
+        ex: "Location pings are numerical (quantitative) geospatial data captured by devices' geolocation technology — a major modern source of spatial information." },
+    ],
+    // 1.3 THE POWER OF GEOGRAPHIC DATA
+    [
+      { q: "Every ten years the U.S. government conducts an official count of the entire population. This count is called the:",
+        o: ["Sample survey", "Census", "Civil registry", "Population estimate", "Field study"], c: 1,
+        ex: "The census is a complete official count of a population, collected by governments and used for everything from political representation to planning." },
+      { q: "A coffee chain uses GIS to find neighborhoods with high foot traffic and many young professionals before choosing where to open a store. This shows geographic data being used for:",
+        o: ["Environmental management", "Business and economic decision-making", "Military planning", "Disaster response", "Disease tracking"], c: 1,
+        ex: "Businesses use geospatial data for site selection, targeted marketing, and delivery logistics — a common example of the power of geographic data." },
+      { q: "In 1854, Dr. John Snow mapped cholera deaths in London and traced the outbreak to a single contaminated water pump. His work is an early example of using spatial data to:",
+        o: ["Prove that climate determines disease, supporting environmental determinism", "Demonstrate distance decay in how far Londoners traveled", "Identify a spatial pattern and solve a public-health problem", "Establish a functional region centered on the pump", "Calculate population density for the census"], c: 2,
+        ex: "Snow's map is a classic case of spatial analysis: plotting where events occur reveals patterns that point toward causes and solutions." },
+      { q: "A state legislature uses block-by-block voter data and GIS to draw district boundaries that pack the opposing party's voters into as few districts as possible. This BEST illustrates that geographic data can be used to:",
+        o: ["Make elections more competitive by balancing each district", "Manipulate political outcomes through gerrymandering", "Reduce the cost of conducting the census", "Create perceptual regions based on party identity", "Protect voter privacy by aggregating data"], c: 1,
+        ex: "The same precision that makes GIS useful for planning also lets mapmakers engineer election results. Gerrymandering — drawing districts to favor one group — is a classic example of the power (and misuse) of geographic data. Privacy and surveillance are the other major concern." },
+      { q: "A city wants to reduce ambulance response times. Which use of geographic data would MOST directly help it reach that goal?",
+        o: ["Publishing a choropleth map of average response time by neighborhood on the city website", "Surveying residents about how safe they feel in their neighborhoods", "Using remote sensing to map the city's urban heat island", "Layering emergency-call locations, road networks, and traffic data in GIS to relocate stations", "Adding more GPS satellites so ambulances can locate themselves more precisely"], c: 3,
+        ex: "The problem is about movement across space, so the answer must combine where calls happen with how fast vehicles can travel — a GIS layering task. Option A maps the problem without solving it; GPS is already precise enough, so more satellites change nothing." },
+    ],
+    // 1.4 SPATIAL CONCEPTS
+    [
+      { q: "Paris, France is located at 48.9° N, 2.4° E. This description gives the city's:",
+        o: ["Relative location", "Absolute location", "Site", "Situation", "Density"], c: 1,
+        ex: "Absolute location is an exact position on Earth's surface, usually expressed in latitude and longitude." },
+      { q: "Describing Chicago as \"on the southwest shore of Lake Michigan, northeast of St. Louis\" is an example of:",
+        o: ["Absolute location", "Relative location", "Site", "Distribution", "Pattern"], c: 1,
+        ex: "Relative location describes a place in relation to other places or features." },
+      { q: "A study finds that people are much less likely to shop at a store the farther they live from it. Which concept does this illustrate?",
+        o: ["Time–space compression", "Distance decay", "Agglomeration", "Spatial association", "Relative location"], c: 1,
+        ex: "Distance decay: interaction between places decreases as the distance between them increases." },
+      { q: "Because of jet travel and the internet, places that once seemed far apart now feel closer together, and interaction between them has increased. This is called:",
+        o: ["Distance decay", "Time–space compression", "Spatial interaction", "Diffusion", "Agglomeration"], c: 1,
+        ex: "Time–space compression is the shrinking \"feel\" of the world as improvements in transportation and communication reduce the time it takes to connect places." },
+      { q: "New Orleans grew because its position near the mouth of the Mississippi River gave it control over trade flowing between the Gulf of Mexico and the interior of North America. This description refers to the city's:",
+        o: ["Site", "Situation", "Absolute location", "Density", "Pattern"], c: 1,
+        ex: "Situation is a place's location relative to other places and its connections (trade routes, waterways). Site would describe the physical characteristics of the land itself — for New Orleans, its low, swampy ground." },
+    ],
+    // 1.5 HUMAN–ENVIRONMENT INTERACTION
+    [
+      { q: "Which of the following is a renewable resource?",
+        o: ["Coal", "Natural gas", "Wind", "Petroleum", "Uranium"], c: 2,
+        ex: "Renewable resources are replenished naturally in a short time — wind, sunlight, and flowing water. Fossil fuels and uranium are finite." },
+      { q: "Using resources in a way that meets the needs of the present without compromising the ability of future generations to meet their own needs is the definition of:",
+        o: ["Possibilism", "Environmental determinism", "Sustainability", "Cultural ecology", "Conservation"], c: 2,
+        ex: "This is the classic definition of sustainability, from the 1987 Brundtland Report." },
+      { q: "The belief that the physical environment — especially climate — is the main force shaping how societies develop is called:",
+        o: ["Possibilism", "Environmental determinism", "Cultural ecology", "Sustainability", "Regionalism"], c: 1,
+        ex: "Environmental determinism argues that environment dictates human behavior and development. It has been widely rejected because it ignores human choice and was often used to justify racist ideas." },
+      { q: "The Netherlands has built dikes and pumped water off the land to create polders — farmland reclaimed from the sea. Which perspective on human–environment interaction does this BEST illustrate?",
+        o: ["Environmental determinism", "Possibilism", "Cultural ecology", "Sustainability", "Land degradation"], c: 1,
+        ex: "Possibilism holds that the environment sets limits, but people can use culture and technology to choose among many possible responses — even reshaping the land itself." },
+      { q: "Which statement would a critic of environmental determinism be MOST likely to make?",
+        o: ["Tropical climates make people less productive", "Cold climates force people to work harder and plan ahead", "The environment sets limits that no society can overcome", "The physical environment has no influence at all on human societies", "Societies in very similar environments have developed in very different ways, so human choices and technology must matter"], c: 4,
+        ex: "The strongest critique is empirical: similar environments have produced very different cultures and economies. Note that option D goes too far — possibilists still accept that the environment matters; they reject that it determines outcomes." },
+    ],
+    // 1.6 SCALES OF ANALYSIS
+    [
+      { q: "A map showing life expectancy for every country in the world is presented at which scale of analysis?",
+        o: ["Local", "National", "Regional", "Global", "State"], c: 3,
+        ex: "A map covering the whole world, with data by country, is at the global scale of analysis." },
+      { q: "Which of the following is an example of data at the LOCAL scale of analysis?",
+        o: ["GDP per capita for each country in Europe", "Population for each U.S. state", "Literacy rate for each Canadian province", "Crime rates for each neighborhood in Louisville", "Poverty rates for each county across the Midwest"], c: 3,
+        ex: "Local-scale data describes a city, town, or neighborhood. The other options are national (states/provinces), regional (Midwest counties), or continental/global." },
+      { q: "A map showing poverty rates by county across the Appalachian Mountains — parts of Kentucky, West Virginia, Tennessee, and neighboring states — is at which scale of analysis?",
+        o: ["Global", "National", "Regional", "Local", "State"], c: 2,
+        ex: "The map covers a multi-state region rather than a single country or a single town, so the scale of analysis is regional." },
+      { q: "Brazil's national average income is moderate, but that number hides large differences between the wealthy South and the much poorer Northeast. This illustrates that:",
+        o: ["National statistics are always inaccurate", "Generalizing at a larger scale can mask variation that appears at smaller scales", "Regional data is less reliable than national data", "Choropleth maps cannot show income data accurately", "Larger-scale analysis always produces the same conclusions as smaller-scale analysis"], c: 1,
+        ex: "Changing the scale of analysis changes what patterns are visible. Averages at a broad scale hide the variation revealed when you zoom in." },
+      { q: "A researcher finds that at the state scale, U.S. states with more immigrants have HIGHER average incomes — but at the neighborhood scale within a city, neighborhoods with more immigrants have LOWER average incomes. Which conclusion is MOST valid?",
+        o: ["One of the two data sets must be wrong", "The neighborhood finding disproves the state-scale finding", "Immigration causes both higher and lower incomes at the same time", "Spatial patterns can differ by scale, so a conclusion drawn at one scale should not be assumed to apply at another", "State-scale data is always more accurate than neighborhood data"], c: 3,
+        ex: "This is the core lesson of scale: relationships can look completely different at different scales of analysis, and neither finding cancels the other. Geographers must state which scale their conclusions apply to." },
+    ],
+    // 1.7 REGIONAL ANALYSIS
+    [
+      { q: "A region defined by one or more shared characteristics found throughout the area — such as a country where everyone uses the same currency — is a:",
+        o: ["Formal region", "Functional region", "Perceptual region", "Nodal region", "Vernacular region"], c: 0,
+        ex: "Formal (uniform) regions share a common measurable characteristic — a language, a climate, a political boundary, a currency." },
+      { q: "The delivery area served by a pizza restaurant, organized around the restaurant itself, is an example of a:",
+        o: ["Formal region", "Functional (nodal) region", "Perceptual region", "Vernacular region", "Uniform region"], c: 1,
+        ex: "Functional regions are organized around a central node and defined by the interactions (deliveries, commuting, broadcasts) connected to it." },
+      { q: "\"The South\" in the United States has boundaries that shift depending on who you ask, because it is defined by people's feelings and attitudes rather than exact data. It is a:",
+        o: ["Formal region", "Functional region", "Perceptual (vernacular) region", "Nodal region", "Uniform region"], c: 2,
+        ex: "Perceptual or vernacular regions exist in people's minds, built on stereotypes, culture, and identity rather than measured characteristics." },
+      { q: "Metropolitan Atlanta is defined by the counties from which large numbers of workers commute into the city each day. Which type of region is this, and why?",
+        o: ["Formal, because all its residents share a common culture", "Perceptual, because its boundaries depend on residents' opinions", "Functional, because it is organized around a central node and unified by movement to and from it", "Formal, because it has an official government boundary", "Perceptual, because \"Atlanta\" means different things to different people"], c: 2,
+        ex: "Commuting flows tie surrounding counties to the central city — a functional (nodal) region defined by interaction, not by a shared trait or by perception." },
+      { q: "The Sahel is a belt of semi-arid land between the Sahara Desert to the north and the wetter savannas to the south, where the climate gradually shifts from one to the other. The Sahel BEST illustrates which idea about regions?",
+        o: ["Regions always have sharp, clearly defined edges", "Every region is defined by a central node", "Regional boundaries are often transitional zones rather than crisp lines, and regions can overlap", "Perceptual regions are more accurate than formal regions", "Formal regions cannot be based on climate or vegetation"], c: 2,
+        ex: "Formal regions based on climate or vegetation rarely end abruptly. The Sahel is itself a transition zone — a reminder that regional boundaries are human constructs drawn across gradual change." },
+    ],
+  ],
+  final: {
+    category: "THINKING GEOGRAPHICALLY",
+    q: "A researcher uses handheld devices to record the exact coordinates of every well in a rural district, then layers those points with satellite images of crop health. She finds that farms closest to the wells are the most productive, and productivity steadily drops the farther a farm is from a well. Which spatial concept does the FINAL finding best illustrate, and which tool made the LAYERED analysis possible?",
+    o: ["Time–space compression; GPS", "Distance decay; GIS", "Environmental determinism; remote sensing", "Distance decay; the census", "Possibilism; GIS"],
+    c: 1,
+    ex: "The pattern — interaction (irrigation benefit) weakening with distance — is distance decay. GPS recorded the coordinates and remote sensing supplied the imagery, but the layering and analysis of both data sets is the work of a GIS."
+  }
+};
+
+const LETTERS = ["A","B","C","D","E"];
+const TIER = ["Easy", "Easy–Medium", "Medium", "Hard", "Hardest"];
+
+// flatten the bank
+const BANK = [];
+DATA.questions.forEach((col, ci) => col.forEach((q, ri) => BANK.push({ ...q, cat: DATA.categories[ci], tier: ri, id: `${ci}-${ri}` })));
+BANK.push({ ...DATA.final, cat: { tag: "1.1–1.7", name: "Synthesis" }, tier: 4, id: "final" });
+
+let queue = [], idx = 0, score = 0, results = [];  // results: {q, picked, ok}
+let lastMissed = [];
+
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function buildPicker() {
+  document.getElementById('topic-picker').innerHTML = DATA.categories.map((c, i) =>
+    `<label class="topic-chip"><input type="checkbox" value="${i}" checked><span class="t">${c.tag}</span><span>${c.name}</span></label>`).join('');
+}
+
+function show(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('on')); document.getElementById(id).classList.add('on'); window.scrollTo(0, 0); }
+function goIntro() { show('s-intro'); }
+
+function start(mode) {
+  let pool = BANK.slice();
+  if (mode === 'hard') pool = pool.filter(q => q.tier >= 3);
+  if (mode === 'pick') {
+    const chosen = [...document.querySelectorAll('#topic-picker input:checked')].map(i => DATA.categories[+i.value].tag);
+    if (!chosen.length) { alert('Check at least one topic first.'); return; }
+    pool = pool.filter(q => chosen.includes(q.cat.tag) || (q.id === 'final' && chosen.length === 7));
+  }
+  runQueue(shuffle(pool));
+}
+
+function runQueue(list) {
+  queue = list; idx = 0; score = 0; results = [];
+  document.getElementById('qtot').textContent = queue.length;
+  show('s-quiz');
+  renderQ();
+}
+
+function renderQ() {
+  const q = queue[idx];
+  document.getElementById('qnum').textContent = idx + 1;
+  document.getElementById('qscore').textContent = score;
+  document.getElementById('bar').style.width = (idx / queue.length * 100) + '%';
+  document.getElementById('q-cat').textContent = `${q.cat.tag} · ${q.cat.name}`;
+  document.getElementById('q-diff').innerHTML = `Difficulty: <span>${TIER[q.tier]}</span>`;
+  document.getElementById('q-text').textContent = q.q;
+  // shuffle option order so letters aren't memorized
+  const order = shuffle(q.o.map((_, i) => i));
+  q._order = order;
+  document.getElementById('q-opts').innerHTML = order.map((oi, pos) =>
+    `<button class="option" id="opt-${pos}" onclick="pick(${pos})"><span class="letter">${LETTERS[pos]}</span><span>${q.o[oi]}</span></button>`).join('');
+  const fb = document.getElementById('q-fb'); fb.className = 'feedback'; fb.innerHTML = '';
+  document.getElementById('next-btn').disabled = true;
+  document.getElementById('next-btn').textContent = idx === queue.length - 1 ? 'SEE RESULTS →' : 'NEXT →';
+}
+
+function pick(pos) {
+  const q = queue[idx];
+  if (q._done) return;
+  q._done = true;
+  const pickedIdx = q._order[pos];
+  const ok = pickedIdx === q.c;
+  const correctPos = q._order.indexOf(q.c);
+  q._order.forEach((oi, p) => {
+    const el = document.getElementById(`opt-${p}`);
+    el.classList.add('locked');
+    if (p === correctPos) el.classList.add('correct'); else if (p === pos) el.classList.add('wrong'); else el.classList.add('dim');
+  });
+  if (ok) score++;
+  results.push({ q, ok });
+  const fb = document.getElementById('q-fb');
+  fb.innerHTML = `<div class="verdict ${ok ? 'ok' : 'no'}">${ok ? '✓ CORRECT' : '✗ NOT QUITE — the answer is ' + LETTERS[correctPos]}</div><strong>${q.o[q.c]}</strong>${q.ex}`;
+  fb.classList.add('on');
+  document.getElementById('qscore').textContent = score;
+  document.getElementById('next-btn').disabled = false;
+  document.getElementById('next-btn').focus();
+}
+
+function next() {
+  queue[idx]._done = false;
+  idx++;
+  if (idx >= queue.length) finish(); else renderQ();
+}
+
+function quit() { queue.forEach(q => q._done = false); if (results.length) finish(); else goIntro(); }
+
+function finish() {
+  document.getElementById('bar').style.width = '100%';
+  const n = results.length, pct = Math.round(score / n * 100);
+  document.getElementById('r-score').innerHTML = `${score} / ${n}<small>${pct}%</small>`;
+  let v;
+  if (pct >= 90) v = "Excellent. You know this unit — spend the night before on the topics below that aren't at 100%, then get some sleep.";
+  else if (pct >= 75) v = "Solid. You've got the vocabulary; the misses are probably the application questions. Reread the explanations for what you missed and try Hard mode.";
+  else if (pct >= 55) v = "You're partway there. Look at the topic breakdown — the weak topics are where to reread the notes, then retry what you missed.";
+  else v = "This is a good thing to find out now instead of on Friday. Go back to the Unit 1 notes for the red topics below, then retry.";
+  document.getElementById('r-verdict').textContent = v;
+
+  // breakdown by topic
+  const by = {};
+  DATA.categories.forEach(c => by[c.tag] = { c, got: 0, tot: 0 });
+  results.forEach(r => { if (by[r.q.cat.tag]) { by[r.q.cat.tag].tot++; if (r.ok) by[r.q.cat.tag].got++; } });
+  const rows = Object.values(by).filter(b => b.tot > 0);
+  document.getElementById('r-break').innerHTML = rows.map(b => {
+    const p = Math.round(b.got / b.tot * 100);
+    return `<div class="brow ${p < 60 ? 'weak' : ''}"><span class="t">${b.c.tag}</span><span class="n">${b.c.name}<small><i style="width:${p}%"></i></small></span><span class="s">${b.got}/${b.tot}</span></div>`;
+  }).join('');
+  const weak = rows.filter(b => b.got / b.tot < 0.6).map(b => `${b.c.tag} ${b.c.name}`);
+  document.getElementById('r-tip').innerHTML = weak.length
+    ? `Reread first: <b>${weak.join('</b>, <b>')}</b>`
+    : `No topic below 60% — nice. Now go for the ones that aren't perfect.`;
+
+  lastMissed = results.filter(r => !r.ok).map(r => r.q);
+  document.getElementById('retry-btn').disabled = lastMissed.length === 0;
+  document.getElementById('retry-btn').textContent = lastMissed.length ? `RETRY WHAT I MISSED (${lastMissed.length})` : 'NOTHING MISSED';
+  document.getElementById('r-review').innerHTML = '';
+  show('s-results');
+}
+
+function retryMissed() { if (lastMissed.length) runQueue(shuffle(lastMissed.slice())); }
+
+function showReview() {
+  const missed = results.filter(r => !r.ok);
+  const el = document.getElementById('r-review');
+  if (!missed.length) { el.innerHTML = '<div class="card" style="margin-top:14px;text-align:center;color:var(--sage)">You missed nothing. Go to bed.</div>'; return; }
+  el.innerHTML = `<h2>Questions to review</h2><div class="card">` + missed.map(r => `
+    <div class="rv"><div class="q-cat">${r.q.cat.tag} · ${r.q.cat.name}</div>
+      <p>${r.q.q}</p>
+      <p class="ans">✓ ${r.q.o[r.q.c]}</p>
+      <p class="ex">${r.q.ex}</p></div>`).join('') + `</div>
+    <div class="row"><button class="btn ghost" onclick="window.print()">PRINT THIS LIST</button></div>`;
+  el.scrollIntoView({ behavior: 'smooth' });
+}
+
+buildPicker();
+</script>
+</body>
+</html>
