@@ -53,6 +53,7 @@ global → national → regional → local scale zoom.
 ```
 index.html          course landing page, links to each unit
 unit-1/index.html   Unit 1 notes — the whole unit in one file
+unit-1/jeopardy.html  Unit 1 review game (Geo Jeopardy, 1–8 players, multiple choice)
 README.md
 .nojekyll           serve files as-is, no Jekyll processing
 ```

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geo Jeopardy · Thinking Geographically</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Josefin+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean: #0b1c26;
+    --deep: #102b38;
+    --teal: #1b4557;
+    --teal-light: #245a70;
+    --brass: #d4a852;
+    --brass-light: #f0c86e;
+    --coral: #e0664a;
+    --coral-bright: #ff7f5f;
+    --parchment: #efe4c8;
+    --sage: #6fbf8e;
+    --sage-dark: #1d4a33;
+    --gray: #8ea3ad;
+    --white: #f6f1e6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ocean);
+    color: var(--white);
+    font-family: 'Josefin Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* graticule: latitude / longitude grid */
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(212,168,82,0.05) 48px, rgba(212,168,82,0.05) 49px),
+      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(212,168,82,0.05) 48px, rgba(212,168,82,0.05) 49px),
+      radial-gradient(ellipse at 50% -20%, rgba(36,90,112,0.55) 0%, transparent 60%);
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    text-align: center;
+    padding: 22px 20px 16px;
+    border-bottom: 2px solid var(--brass);
+    background: linear-gradient(180deg, #050d12 0%, var(--deep) 100%);
+    position: relative;
+  }
+
+  header::before {
+    content: '◈ UNIT 1 · THINKING GEOGRAPHICALLY ◈';
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral);
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(26px, 6vw, 50px);
+    font-weight: 800;
+    color: var(--brass);
+    text-shadow: 0 0 30px rgba(212,168,82,0.35), 3px 3px 0 #000;
+    letter-spacing: 4px;
+    line-height: 1.1;
+  }
+
+  h1 span { color: var(--coral-bright); }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 3px;
+    margin-top: 6px;
+  }
+
+  /* compass rose in the corner */
+  .compass {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    opacity: 0.55;
+  }
+  @media (max-width: 640px) { .compass { display: none; } }
+
+  /* ─── SCOREBOARD ─── */
+  .scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--deep);
+    border-bottom: 1px solid rgba(212,168,82,0.3);
+    flex-wrap: wrap;
+  }
+
+  .player-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 96px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .player-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    font-family: 'IBM Plex Mono', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+  }
+
+  .score-display {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--brass);
+    font-family: 'IBM Plex Mono', monospace;
+    text-shadow: 0 0 10px rgba(212,168,82,0.45);
+  }
+
+  .score-display.negative { color: var(--coral-bright); }
+
+  .active-player {
+    border-color: var(--brass);
+    background: rgba(212,168,82,0.08);
+  }
+
+  .active-player .player-name { color: var(--brass-light); }
+
+  /* ─── SETUP ─── */
+  #setup-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 20px;
+    gap: 20px;
+  }
+
+  .setup-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--brass);
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .setup-hint {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .btn-count {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 420px;
+  }
+
+  .btn-sm {
+    background: var(--teal);
+    color: var(--brass);
+    border: 1px solid var(--brass);
+    padding: 8px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-width: 44px;
+  }
+
+  .btn-sm:hover, .btn-sm.active { background: var(--brass); color: var(--ocean); }
+
+  .player-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .player-inputs input {
+    background: var(--teal);
+    border: 1px solid var(--brass);
+    color: var(--white);
+    padding: 10px 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    outline: none;
+    width: 100%;
+  }
+
+  .player-inputs input:focus { border-color: var(--brass-light); background: var(--teal-light); }
+  .player-inputs input::placeholder { color: var(--gray); }
+
+  .btn {
+    background: var(--brass);
+    color: var(--ocean);
+    border: none;
+    padding: 12px 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .btn:hover { background: var(--brass-light); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  /* ─── BOARD ─── */
+  #game-screen { display: none; padding: 12px; }
+
+  .turn-indicator {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .turn-indicator span { color: var(--brass-light); }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    max-width: 1100px;
+    margin: 0 auto 16px;
+  }
+
+  .category-header {
+    background: var(--teal);
+    border: 1px solid var(--brass);
+    text-align: center;
+    padding: 8px 4px;
+    font-size: clamp(8px, 1.15vw, 12px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brass);
+    text-transform: uppercase;
+    min-height: 66px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    gap: 3px;
+  }
+
+  .category-header small {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    color: var(--coral-bright);
+    letter-spacing: 2px;
+    font-weight: 400;
+  }
+
+  .cell {
+    background: linear-gradient(160deg, var(--teal) 0%, #142f3d 100%);
+    border: 1px solid rgba(212,168,82,0.4);
+    text-align: center;
+    padding: 10px 4px;
+    font-size: clamp(14px, 2.4vw, 26px);
+    font-weight: 600;
+    color: var(--brass);
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cell::before {
+    content: '$';
+    font-size: 0.6em;
+    vertical-align: super;
+    opacity: 0.7;
+  }
+
+  .cell:hover:not(.used) {
+    background: linear-gradient(160deg, var(--teal-light) 0%, #1b4557 100%);
+    border-color: var(--brass);
+    transform: scale(1.04);
+    box-shadow: 0 0 15px rgba(212,168,82,0.3);
+    z-index: 1;
+  }
+
+  .cell.used {
+    background: #08131a;
+    color: transparent;
+    cursor: default;
+    border-color: rgba(212,168,82,0.1);
+  }
+
+  .cell.used::before { display: none; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(3,10,14,0.88);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(4px);
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--deep);
+    border: 2px solid var(--brass);
+    max-width: 680px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 0 60px rgba(212,168,82,0.2), inset 0 0 60px rgba(0,0,0,0.3);
+    animation: modalIn 0.25s ease-out;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+
+  @keyframes modalIn {
+    from { transform: scale(0.94) translateY(-8px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .modal::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(212,168,82,0.2);
+    pointer-events: none;
+  }
+
+  .modal-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral-bright);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .modal-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    color: var(--brass);
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-shadow: 0 0 15px rgba(212,168,82,0.5);
+  }
+
+  .modal-value::before { content: '$'; font-size: 0.6em; vertical-align: super; }
+
+  .modal-question {
+    font-size: clamp(15px, 2.6vw, 19px);
+    line-height: 1.55;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  /* multiple-choice options */
+  .options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(212,168,82,0.3);
+    color: var(--parchment);
+    padding: 10px 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(13px, 2.2vw, 15px);
+    line-height: 1.4;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .option .letter {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--brass);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: -1px;
+  }
+
+  .option:hover:not(.locked) { background: rgba(212,168,82,0.12); border-color: var(--brass); }
+  .option.locked { cursor: default; }
+  .option.correct { background: var(--sage-dark); border-color: var(--sage); color: #e8f5ec; }
+  .option.correct .letter { background: var(--sage); color: var(--ocean); border-color: var(--sage); }
+  .option.wrong { background: #4a1f18; border-color: var(--coral); color: #ffd9cf; }
+  .option.wrong .letter { background: var(--coral); color: #fff; border-color: var(--coral); }
+  .option.dim { opacity: 0.45; }
+
+  .modal-answer {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212,168,82,0.3);
+    padding: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-light);
+    display: none;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+
+  .modal-answer.visible { display: block; animation: fadeIn 0.3s ease-out; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-answer strong {
+    font-size: 11px;
+    color: var(--coral-bright);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .verdict {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+  .verdict.ok { color: var(--sage); }
+  .verdict.no { color: var(--coral-bright); }
+
+  .modal-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-reveal {
+    background: var(--teal);
+    color: var(--brass);
+    border: 1px solid var(--brass);
+    padding: 10px 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .btn-reveal:hover { background: rgba(212,168,82,0.2); }
+
+  .btn-close {
+    background: transparent;
+    color: var(--gray);
+    border: 1px solid var(--gray);
+    padding: 10px 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .btn-close:hover { color: var(--white); border-color: var(--white); }
+
+  /* award panel */
+  .award { display: none; width: 100%; margin-top: 4px; }
+  .award.visible { display: block; }
+
+  .award-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .award-primary {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .btn-award {
+    padding: 10px 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border: 1px solid;
+    transition: all 0.15s;
+  }
+  .btn-award.plus { background: var(--sage-dark); color: var(--sage); border-color: var(--sage); }
+  .btn-award.plus:hover { background: #26603f; }
+  .btn-award.minus { background: #4a1f18; color: var(--coral-bright); border-color: var(--coral); }
+  .btn-award.minus:hover { background: #5e2a20; }
+
+  .award-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 6px;
+  }
+
+  .award-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(212,168,82,0.25);
+    padding: 6px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--parchment);
+  }
+
+  .award-chip .nm {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 1;
+  }
+
+  .mini {
+    width: 30px;
+    height: 26px;
+    border: 1px solid;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .mini.plus { color: var(--sage); border-color: var(--sage); }
+  .mini.plus:hover { background: var(--sage-dark); }
+  .mini.minus { color: var(--coral-bright); border-color: var(--coral); }
+  .mini.minus:hover { background: #4a1f18; }
+
+  /* ─── FINAL ROUND ─── */
+  .final-jeopardy {
+    text-align: center;
+    padding: 30px 20px;
+    max-width: 680px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .final-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral-bright);
+    letter-spacing: 5px;
+    margin-bottom: 16px;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  .final-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(24px, 5vw, 34px);
+    color: var(--brass);
+    text-shadow: 0 0 30px rgba(212,168,82,0.5);
+    margin-bottom: 20px;
+  }
+
+  .final-q {
+    font-size: clamp(15px, 2.6vw, 18px);
+    line-height: 1.6;
+    color: var(--white);
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  .wager-rows { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+
+  .wager-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--teal);
+    border: 1px solid rgba(212,168,82,0.3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .wager-row .nm { color: var(--parchment); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wager-row .cur { color: var(--brass); font-size: 12px; }
+  .wager-row input {
+    width: 90px;
+    background: var(--ocean);
+    border: 1px solid var(--brass);
+    color: var(--white);
+    padding: 6px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    outline: none;
+  }
+  .wager-row .res { display: flex; gap: 4px; }
+  .mini.chosen.plus { background: var(--sage); color: var(--ocean); }
+  .mini.chosen.minus { background: var(--coral); color: #fff; }
+
+  .winner-display {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--brass-light);
+    margin: 20px 0;
+    line-height: 1.4;
+  }
+
+  .all-scores { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+
+  .final-score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background: var(--teal);
+    border: 1px solid rgba(212,168,82,0.3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+  }
+
+  .final-score-row .fn { color: var(--parchment); }
+  .final-score-row .fs { color: var(--brass); }
+  .final-score-row .fs.negative { color: var(--coral-bright); }
+  .final-score-row.top { border-color: var(--brass); background: rgba(212,168,82,0.12); }
+
+  .modal::after {
+    content: '✦';
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    color: rgba(212,168,82,0.3);
+    font-size: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .board { gap: 3px; }
+    .cell { min-height: 52px; padding: 6px 2px; }
+    .category-header { min-height: 58px; padding: 4px 2px; font-size: 7.5px; }
+    .modal { padding: 18px; }
+    .player-inputs { grid-template-columns: 1fr; }
+    .wager-row { grid-template-columns: 1fr auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="./" style="position:absolute;left:18px;top:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gray);text-decoration:none">&#8592; UNIT 1 NOTES</a>
+  <h1>GEO <span>JEOPARDY</span></h1>
+  <div class="subtitle">AP HUMAN GEOGRAPHY · THINKING GEOGRAPHICALLY</div>
+  <svg class="compass" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#d4a852" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#d4a852" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <polygon points="50,6 56,50 50,44 44,50" fill="#e0664a"/>
+    <polygon points="50,94 56,50 50,56 44,50" fill="#d4a852"/>
+    <polygon points="6,50 50,44 56,50 50,56" fill="#d4a852"/>
+    <polygon points="94,50 50,44 44,50 50,56" fill="#d4a852"/>
+    <text x="50" y="4" font-size="9" fill="#efe4c8" text-anchor="middle" font-family="monospace">N</text>
+  </svg>
+</header>
+
+<!-- SETUP SCREEN -->
+<div id="setup-screen">
+  <div class="setup-title">EXPEDITION ROSTER</div>
+  <p class="setup-hint">SELECT NUMBER OF PLAYERS (1–8)</p>
+  <div class="btn-count" id="count-buttons"></div>
+  <div class="player-inputs" id="player-inputs"></div>
+  <button class="btn" onclick="startGame()">BEGIN EXPEDITION</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game-screen">
+  <div class="scoreboard" id="scoreboard"></div>
+  <div class="turn-indicator" id="turn-indicator"></div>
+  <div class="board" id="board"></div>
+  <div style="text-align:center;margin-top:8px;">
+    <button class="btn-sm" onclick="showFinal()" id="final-btn" style="display:none">⚡ FINAL ROUND</button>
+  </div>
+  <div class="final-jeopardy" id="final-jeopardy"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-category" id="modal-cat"></div>
+    <div class="modal-value" id="modal-val"></div>
+    <div class="modal-question" id="modal-q"></div>
+    <div class="options" id="modal-options"></div>
+    <div class="modal-answer" id="modal-a"></div>
+    <div class="modal-controls">
+      <div class="award" id="award"></div>
+      <button class="btn-reveal" id="reveal-btn" onclick="revealAnswer(null)">REVEAL ANSWER</button>
+      <button class="btn-close" onclick="closeModal()">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ───────────────────────────────────────────────
+   QUESTION BANK — AP Human Geography Unit 1
+   Each entry: q (prompt), o (five options), c (index of correct), ex (explanation)
+   Rows run $200 (easiest) → $1000 (hardest)
+─────────────────────────────────────────────── */
+const DATA = {
+  categories: [
+    { tag: "1.1", name: "Introduction to Maps" },
+    { tag: "1.2", name: "Geographic Data" },
+    { tag: "1.3", name: "Power of Geographic Data" },
+    { tag: "1.4", name: "Spatial Concepts" },
+    { tag: "1.5", name: "Human–Environment Interaction" },
+    { tag: "1.6", name: "Scales of Analysis" },
+    { tag: "1.7", name: "Regional Analysis" },
+  ],
+  values: [200, 400, 600, 800, 1000],
+  questions: [
+    // 1.1 INTRODUCTION TO MAPS
+    [
+      { q: "A map that shows the boundaries of countries, the locations of cities, and the names of rivers — but does not display a specific data theme — is best described as a:",
+        o: ["Thematic map", "Reference map", "Choropleth map", "Cartogram", "Isoline map"], c: 1,
+        ex: "Reference maps show general information about places (boundaries, cities, physical features). Thematic maps display a specific topic or data set." },
+      { q: "A map of the United States shades each state a darker color as its population density increases. This is an example of a:",
+        o: ["Dot distribution map", "Cartogram", "Choropleth map", "Isoline map", "Flow-line map"], c: 2,
+        ex: "Choropleth maps use color shading or patterns within predefined areas (states, counties) to show the intensity of a variable." },
+      { q: "The Mercator projection is useful for navigation because it preserves direction, but it greatly distorts:",
+        o: ["The shape of countries near the equator", "Direction between points", "Distance along the equator", "The size (area) of landmasses near the poles", "The position of the prime meridian"], c: 3,
+        ex: "Mercator preserves shape and direction but exaggerates area at high latitudes — Greenland looks as big as Africa, though Africa is about 14 times larger." },
+      { q: "On a world map, countries are drawn so that their size is proportional to their total GDP rather than their land area, so Japan appears far larger than Australia. This type of map is a:",
+        o: ["Choropleth map", "Proportional symbol map", "Dot density map", "Cartogram", "Topographic map"], c: 3,
+        ex: "A cartogram distorts the size of places to reflect the value of a variable (population, GDP, etc.) rather than actual area." },
+      { q: "Which statement correctly compares a map with a scale of 1:24,000 to a map with a scale of 1:1,000,000?",
+        o: ["The 1:24,000 map is small-scale and shows a larger area with more detail", "The 1:24,000 map is large-scale and shows a smaller area in greater detail", "The 1:1,000,000 map is large-scale and shows a smaller area in greater detail", "Both maps show the same area, just with different symbols", "Map scale has no effect on the level of detail shown"], c: 1,
+        ex: "The larger the ratio (1:24,000 > 1:1,000,000), the larger the scale: a smaller area is shown with more detail. Small-scale maps zoom out; large-scale maps zoom in." },
+    ],
+    // 1.2 GEOGRAPHIC DATA
+    [
+      { q: "Which technology uses a network of satellites to pinpoint the exact location of a receiver on Earth's surface?",
+        o: ["GIS", "GPS", "Remote sensing", "Census", "Field observation"], c: 1,
+        ex: "The Global Positioning System (GPS) uses satellites to determine absolute location (latitude, longitude, and elevation)." },
+      { q: "A geographer stacks layers of data on soil type, elevation, flood risk, and road networks to decide where a new hospital should be built. The geographer is using:",
+        o: ["GPS", "Remote sensing", "A geographic information system (GIS)", "Aerial photography", "A mental map"], c: 2,
+        ex: "GIS is computer software that stores, layers, and analyzes spatial data. Layering different data sets to answer a question is its defining use." },
+      { q: "Satellite images showing the loss of Amazon rainforest over the past twenty years are an example of data collected through:",
+        o: ["Field observation", "The census", "GPS tracking", "Remote sensing", "Personal interviews"], c: 3,
+        ex: "Remote sensing collects information about Earth's surface from a distance — usually from satellites or aircraft — without direct contact." },
+      { q: "Which of the following is the best example of qualitative geographic data?",
+        o: ["Population counts for each county in Kentucky", "Median household income by ZIP code", "Daily temperature readings at a weather station", "Interviews with residents about how they feel about a new park", "Traffic counts on an interstate highway"], c: 3,
+        ex: "Qualitative data describes qualities, opinions, and experiences (interviews, photos, field notes). The other options are quantitative — numerical and measurable." },
+      { q: "A city collects millions of anonymous cell-phone location pings to map where commuters travel each morning. This data set is best characterized as:",
+        o: ["Qualitative data gathered through participant observation", "Quantitative geospatial data gathered through geolocation technology", "Census data collected by the national government", "Remote-sensing data collected by satellite", "A mental map of the city's residents"], c: 1,
+        ex: "Location pings are numerical (quantitative) geospatial data captured by devices' geolocation technology — a major modern source of spatial information." },
+    ],
+    // 1.3 THE POWER OF GEOGRAPHIC DATA
+    [
+      { q: "Every ten years the U.S. government conducts an official count of the entire population. This count is called the:",
+        o: ["Survey", "Census", "Registry", "Cartogram", "Field study"], c: 1,
+        ex: "The census is a complete official count of a population, collected by governments and used for everything from political representation to planning." },
+      { q: "A coffee chain uses GIS to find neighborhoods with high foot traffic and many young professionals before choosing where to open a store. This shows geographic data being used for:",
+        o: ["Environmental management", "Business and economic decision-making", "Military planning", "Disaster response", "Disease tracking"], c: 1,
+        ex: "Businesses use geospatial data for site selection, targeted marketing, and delivery logistics — a common example of the power of geographic data." },
+      { q: "In 1854, Dr. John Snow mapped cholera deaths in London and traced the outbreak to a single contaminated water pump. His work is an early example of using spatial data to:",
+        o: ["Reclaim land from the sea", "Redraw voting districts", "Identify patterns and solve a public-health problem", "Create a perceptual region", "Measure map distortion"], c: 2,
+        ex: "Snow's map is a classic case of spatial analysis: plotting where events occur reveals patterns that point toward causes and solutions." },
+      { q: "Which of the following is a potential negative consequence of governments and companies collecting individuals' location data?",
+        o: ["Improved turn-by-turn navigation", "Lower costs for delivery services", "Loss of privacy and increased surveillance", "More accurate weather forecasts", "Better-quality reference maps"], c: 2,
+        ex: "Geographic data is powerful, but tracking people's movements raises serious concerns about privacy, consent, and surveillance." },
+      { q: "A city wants to reduce ambulance response times. Which use of geographic data would MOST directly help it reach that goal?",
+        o: ["Publishing a choropleth map of household income by neighborhood", "Surveying residents about their favorite parks", "Using remote sensing to monitor crop health outside the city", "Layering emergency-call locations, road networks, and traffic data in GIS to relocate stations", "Creating a cartogram of the city's population by district"], c: 3,
+        ex: "The problem is about movement across space, so the answer must combine where calls happen with how fast vehicles can travel — a GIS layering task. The other options measure things unrelated to response time." },
+    ],
+    // 1.4 SPATIAL CONCEPTS
+    [
+      { q: "Paris, France is located at 48.9° N, 2.4° E. This description gives the city's:",
+        o: ["Relative location", "Absolute location", "Site", "Situation", "Density"], c: 1,
+        ex: "Absolute location is an exact position on Earth's surface, usually expressed in latitude and longitude." },
+      { q: "Describing Chicago as \"on the southwest shore of Lake Michigan, northeast of St. Louis\" is an example of:",
+        o: ["Absolute location", "Relative location", "Distribution", "Pattern", "Density"], c: 1,
+        ex: "Relative location describes a place in relation to other places or features." },
+      { q: "A study finds that people are much less likely to shop at a store the farther they live from it. Which concept does this illustrate?",
+        o: ["Time–space compression", "Distance decay", "Density", "Situation", "Sustainability"], c: 1,
+        ex: "Distance decay: interaction between places decreases as the distance between them increases." },
+      { q: "Because of jet travel and the internet, places that once seemed far apart now feel closer together, and interaction between them has increased. This is called:",
+        o: ["Distance decay", "Time–space compression", "Agglomeration", "Dispersion", "Environmental determinism"], c: 1,
+        ex: "Time–space compression is the shrinking \"feel\" of the world as improvements in transportation and communication reduce the time it takes to connect places." },
+      { q: "New Orleans grew because its position near the mouth of the Mississippi River gave it control over trade flowing between the Gulf of Mexico and the interior of North America. This description refers to the city's:",
+        o: ["Site", "Situation", "Absolute location", "Density", "Pattern"], c: 1,
+        ex: "Situation is a place's location relative to other places and its connections (trade routes, waterways). Site would describe the physical characteristics of the land itself — for New Orleans, its low, swampy ground." },
+    ],
+    // 1.5 HUMAN–ENVIRONMENT INTERACTION
+    [
+      { q: "Which of the following is a renewable resource?",
+        o: ["Coal", "Natural gas", "Wind", "Petroleum", "Uranium"], c: 2,
+        ex: "Renewable resources are replenished naturally in a short time — wind, sunlight, and flowing water. Fossil fuels and uranium are finite." },
+      { q: "Using resources in a way that meets the needs of the present without compromising the ability of future generations to meet their own needs is the definition of:",
+        o: ["Possibilism", "Environmental determinism", "Sustainability", "Cultural ecology", "Distance decay"], c: 2,
+        ex: "This is the classic definition of sustainability, from the 1987 Brundtland Report." },
+      { q: "The belief that the physical environment — especially climate — is the main force shaping how societies develop is called:",
+        o: ["Possibilism", "Environmental determinism", "Cultural ecology", "Sustainability", "Regionalism"], c: 1,
+        ex: "Environmental determinism argues that environment dictates human behavior and development. It has been widely rejected because it ignores human choice and was often used to justify racist ideas." },
+      { q: "The Netherlands has built dikes and pumped water off the land to create polders — farmland reclaimed from the sea. Which perspective on human–environment interaction does this BEST illustrate?",
+        o: ["Environmental determinism", "Possibilism", "Distance decay", "Time–space compression", "Formal regionalism"], c: 1,
+        ex: "Possibilism holds that the environment sets limits, but people can use culture and technology to choose among many possible responses — even reshaping the land itself." },
+      { q: "Which statement would a critic of environmental determinism be MOST likely to make?",
+        o: ["Tropical climates make people less productive", "Cold climates force people to work harder and plan ahead", "The environment sets limits that no society can overcome", "The physical environment has no influence at all on human societies", "Societies in very similar environments have developed in very different ways, so human choices and technology must matter"], c: 4,
+        ex: "The strongest critique is empirical: similar environments have produced very different cultures and economies. Note that option D goes too far — possibilists still accept that the environment matters; they reject that it determines outcomes." },
+    ],
+    // 1.6 SCALES OF ANALYSIS
+    [
+      { q: "A map showing life expectancy for every country in the world is presented at which scale of analysis?",
+        o: ["Local", "National", "Regional", "Global", "Neighborhood"], c: 3,
+        ex: "A map covering the whole world, with data by country, is at the global scale of analysis." },
+      { q: "Which of the following is an example of data at the LOCAL scale of analysis?",
+        o: ["GDP per capita for each country in Europe", "Population for each U.S. state", "Literacy rate for each Canadian province", "Crime rates for each neighborhood in Louisville", "Poverty rates for each county across the Midwest"], c: 3,
+        ex: "Local-scale data describes a city, town, or neighborhood. The other options are national (states/provinces), regional (Midwest counties), or continental/global." },
+      { q: "A map showing poverty rates by county across the Appalachian Mountains — parts of Kentucky, West Virginia, Tennessee, and neighboring states — is at which scale of analysis?",
+        o: ["Global", "National", "Regional", "Local", "Absolute"], c: 2,
+        ex: "The map covers a multi-state region rather than a single country or a single town, so the scale of analysis is regional." },
+      { q: "Brazil's national average income is moderate, but that number hides large differences between the wealthy South and the much poorer Northeast. This illustrates that:",
+        o: ["National statistics are always inaccurate", "Generalizing at a larger scale can mask variation that appears at smaller scales", "Regional data is less reliable than national data", "Income cannot be mapped", "Scale of analysis does not affect conclusions"], c: 1,
+        ex: "Changing the scale of analysis changes what patterns are visible. Averages at a broad scale hide the variation revealed when you zoom in." },
+      { q: "A researcher finds that at the state scale, U.S. states with more immigrants have HIGHER average incomes — but at the neighborhood scale within a city, neighborhoods with more immigrants have LOWER average incomes. Which conclusion is MOST valid?",
+        o: ["One of the two data sets must be wrong", "The neighborhood finding disproves the state-scale finding", "Immigration causes both higher and lower incomes at the same time", "Spatial patterns can differ by scale, so a conclusion drawn at one scale should not be assumed to apply at another", "State-scale data is always more accurate than neighborhood data"], c: 3,
+        ex: "This is the core lesson of scale: relationships can look completely different at different scales of analysis, and neither finding cancels the other. Geographers must state which scale their conclusions apply to." },
+    ],
+    // 1.7 REGIONAL ANALYSIS
+    [
+      { q: "A region defined by one or more shared characteristics found throughout the area — such as a country where everyone uses the same currency — is a:",
+        o: ["Formal region", "Functional region", "Perceptual region", "Spatial region", "Absolute region"], c: 0,
+        ex: "Formal (uniform) regions share a common measurable characteristic — a language, a climate, a political boundary, a currency." },
+      { q: "The delivery area served by a pizza restaurant, organized around the restaurant itself, is an example of a:",
+        o: ["Formal region", "Functional (nodal) region", "Perceptual region", "Vernacular region", "Climate region"], c: 1,
+        ex: "Functional regions are organized around a central node and defined by the interactions (deliveries, commuting, broadcasts) connected to it." },
+      { q: "\"The South\" in the United States has boundaries that shift depending on who you ask, because it is defined by people's feelings and attitudes rather than exact data. It is a:",
+        o: ["Formal region", "Functional region", "Perceptual (vernacular) region", "Nodal region", "Uniform region"], c: 2,
+        ex: "Perceptual or vernacular regions exist in people's minds, built on stereotypes, culture, and identity rather than measured characteristics." },
+      { q: "Metropolitan Atlanta is defined by the counties from which large numbers of workers commute into the city each day. Which type of region is this, and why?",
+        o: ["Formal, because all its residents share a common culture", "Perceptual, because its boundaries depend on residents' opinions", "Functional, because it is organized around a central node and unified by movement to and from it", "Formal, because it has an official government boundary", "Perceptual, because \"Atlanta\" means different things to different people"], c: 2,
+        ex: "Commuting flows tie surrounding counties to the central city — a functional (nodal) region defined by interaction, not by a shared trait or by perception." },
+      { q: "The Sahel is a belt of semi-arid land between the Sahara Desert to the north and the wetter savannas to the south, where the climate gradually shifts from one to the other. The Sahel BEST illustrates which idea about regions?",
+        o: ["Regions always have sharp, clearly defined edges", "Every region is defined by a central node", "Regional boundaries are often transitional zones rather than crisp lines, and regions can overlap", "Perceptual regions are more accurate than formal regions", "Physical regions cannot be mapped"], c: 2,
+        ex: "Formal regions based on climate or vegetation rarely end abruptly. The Sahel is itself a transition zone — a reminder that regional boundaries are human constructs drawn across gradual change." },
+    ],
+  ],
+  final: {
+    category: "THINKING GEOGRAPHICALLY",
+    q: "A researcher uses handheld devices to record the exact coordinates of every well in a rural district, then layers those points with satellite images of crop health. She finds that farms closest to the wells are the most productive, and productivity steadily drops the farther a farm is from a well. Which spatial concept does the FINAL finding best illustrate, and which tool made the LAYERED analysis possible?",
+    o: ["Time–space compression; GPS", "Distance decay; GIS", "Environmental determinism; remote sensing", "Distance decay; the census", "Possibilism; GIS"],
+    c: 1,
+    ex: "The pattern — interaction (irrigation benefit) weakening with distance — is distance decay. GPS recorded the coordinates and remote sensing supplied the imagery, but the layering and analysis of both data sets is the work of a GIS."
+  }
+};
+
+const MAX_PLAYERS = 8;
+const LETTERS = ["A", "B", "C", "D", "E"];
+const TOTAL_CELLS = DATA.categories.length * DATA.values.length;
+
+let players = [];
+let scores = [];
+let currentPlayer = 0;
+let playerCount = 2;
+let usedCells = new Set();
+let currentCell = null;
+let answered = false;   // has an option been picked / answer revealed for the open cell
+let wasCorrect = null;  // true / false / null (revealed without a pick)
+
+/* ─── SETUP ─── */
+function buildSetup() {
+  const cb = document.getElementById('count-buttons');
+  cb.innerHTML = '';
+  for (let n = 1; n <= MAX_PLAYERS; n++) {
+    const b = document.createElement('button');
+    b.className = 'btn-sm' + (n === playerCount ? ' active' : '');
+    b.id = `p${n}btn`;
+    b.textContent = n;
+    b.onclick = () => setPlayerCount(n);
+    cb.appendChild(b);
+  }
+  const pi = document.getElementById('player-inputs');
+  pi.innerHTML = '';
+  for (let i = 1; i <= MAX_PLAYERS; i++) {
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.id = `name${i}`;
+    inp.placeholder = `EXPLORER ${i}`;
+    inp.maxLength = 18;
+    pi.appendChild(inp);
+  }
+  setPlayerCount(playerCount);
+}
+
+function setPlayerCount(n) {
+  playerCount = n;
+  for (let i = 1; i <= MAX_PLAYERS; i++) {
+    document.getElementById(`p${i}btn`).classList.toggle('active', i === n);
+    document.getElementById(`name${i}`).style.display = i <= n ? 'block' : 'none';
+  }
+}
+
+function startGame() {
+  players = [];
+  scores = [];
+  for (let i = 0; i < playerCount; i++) {
+    const input = document.getElementById(`name${i+1}`);
+    const name = input.value.trim() || `EXPLORER ${i+1}`;
+    players.push(name.toUpperCase());
+    scores.push(0);
+  }
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'block';
+  renderScoreboard();
+  renderBoard();
+  updateTurnIndicator();
+}
+
+/* ─── SCOREBOARD / BOARD ─── */
+function fmt(n) { return (n < 0 ? '-' : '') + '$' + Math.abs(n).toLocaleString(); }
+
+function renderScoreboard() {
+  const sb = document.getElementById('scoreboard');
+  sb.innerHTML = players.map((p, i) => `
+    <div class="player-score ${i === currentPlayer && playerCount > 1 ? 'active-player' : ''}">
+      <div class="player-name" title="${p}">${p}</div>
+      <div class="score-display ${scores[i] < 0 ? 'negative' : ''}" id="score-${i}">${fmt(scores[i])}</div>
+    </div>
+  `).join('');
+}
+
+function updateTurnIndicator() {
+  const ti = document.getElementById('turn-indicator');
+  ti.innerHTML = playerCount > 1 ? `AT THE HELM: <span>${players[currentPlayer]}</span>` : '';
+}
+
+function renderBoard() {
+  const board = document.getElementById('board');
+  board.innerHTML = '';
+
+  DATA.categories.forEach(cat => {
+    const div = document.createElement('div');
+    div.className = 'category-header';
+    div.innerHTML = `<small>${cat.tag}</small>${cat.name}`;
+    board.appendChild(div);
+  });
+
+  for (let row = 0; row < DATA.values.length; row++) {
+    for (let col = 0; col < DATA.categories.length; col++) {
+      const cellKey = `${col}-${row}`;
+      const used = usedCells.has(cellKey);
+      const div = document.createElement('div');
+      div.className = 'cell' + (used ? ' used' : '');
+      div.textContent = used ? '' : DATA.values[row].toLocaleString();
+      if (!used) div.onclick = () => openModal(col, row, cellKey);
+      board.appendChild(div);
+    }
+  }
+
+  if (usedCells.size >= Math.ceil(TOTAL_CELLS * 0.6)) {
+    document.getElementById('final-btn').style.display = 'inline-block';
+  }
+}
+
+/* ─── QUESTION MODAL ─── */
+function openModal(col, row, cellKey) {
+  currentCell = { col, row, cellKey };
+  answered = false;
+  wasCorrect = null;
+  const q = DATA.questions[col][row];
+  const val = DATA.values[row];
+  const cat = DATA.categories[col];
+
+  document.getElementById('modal-cat').textContent = `${cat.tag} · ${cat.name}`;
+  document.getElementById('modal-val').textContent = val.toLocaleString();
+  document.getElementById('modal-q').textContent = q.q;
+
+  const opts = document.getElementById('modal-options');
+  opts.innerHTML = q.o.map((text, i) => `
+    <button class="option" id="opt-${i}" onclick="pickOption(${i})">
+      <span class="letter">${LETTERS[i]}</span><span>${text}</span>
+    </button>`).join('');
+
+  const a = document.getElementById('modal-a');
+  a.className = 'modal-answer';
+  a.innerHTML = '';
+  document.getElementById('reveal-btn').style.display = 'inline-block';
+  const aw = document.getElementById('award');
+  aw.className = 'award';
+  aw.innerHTML = '';
+  document.getElementById('modal').classList.add('open');
+}
+
+function pickOption(i) {
+  if (answered) return;
+  revealAnswer(i);
+}
+
+function revealAnswer(picked) {
+  if (answered) return;
+  answered = true;
+  const q = DATA.questions[currentCell.col][currentCell.row];
+  const val = DATA.values[currentCell.row];
+
+  // lock and color the options
+  q.o.forEach((_, i) => {
+    const el = document.getElementById(`opt-${i}`);
+    el.classList.add('locked');
+    if (i === q.c) el.classList.add('correct');
+    else if (i === picked) el.classList.add('wrong');
+    else el.classList.add('dim');
+  });
+
+  wasCorrect = picked === null ? null : picked === q.c;
+
+  const a = document.getElementById('modal-a');
+  let verdict = '';
+  if (wasCorrect === true) verdict = `<div class="verdict ok">✓ CORRECT</div>`;
+  if (wasCorrect === false) verdict = `<div class="verdict no">✗ INCORRECT — the answer was ${LETTERS[q.c]}</div>`;
+  a.innerHTML = `${verdict}<strong>ANSWER: ${LETTERS[q.c]} — ${q.o[q.c]}</strong>${q.ex}`;
+  a.classList.add('visible');
+  document.getElementById('reveal-btn').style.display = 'none';
+
+  // award panel
+  const aw = document.getElementById('award');
+  let html = '';
+  if (playerCount === 1) {
+    html += `<div class="award-primary">` +
+      (wasCorrect === false
+        ? `<button class="btn-award minus" onclick="addScore(0, 0)">NO POINTS · CONTINUE</button>`
+        : `<button class="btn-award plus" onclick="addScore(0, ${val})">✓ +$${val.toLocaleString()}</button>`) +
+      `</div>`;
+    if (wasCorrect !== false) {
+      html += `<div class="award-primary"><button class="btn-close" onclick="addScore(0, 0)">NO POINTS</button></div>`;
+    }
+  } else {
+    const active = players[currentPlayer];
+    if (wasCorrect === true) {
+      html += `<div class="award-label">AWARD</div><div class="award-primary"><button class="btn-award plus" onclick="addScore(${currentPlayer}, ${val})">✓ ${active} +$${val.toLocaleString()}</button></div>`;
+    } else if (wasCorrect === false) {
+      html += `<div class="award-label">PENALTY</div><div class="award-primary"><button class="btn-award minus" onclick="addScore(${currentPlayer}, -${val})">✗ ${active} −$${val.toLocaleString()}</button></div>`;
+    }
+    html += `<div class="award-label">${wasCorrect === null ? 'SCORE ANY PLAYER' : 'OR SCORE A DIFFERENT PLAYER'}</div><div class="award-grid">`;
+    players.forEach((p, i) => {
+      html += `<div class="award-chip"><span class="nm" title="${p}">${p}</span>
+        <button class="mini plus" title="+$${val}" onclick="addScore(${i}, ${val})">+</button>
+        <button class="mini minus" title="−$${val}" onclick="addScore(${i}, -${val})">−</button></div>`;
+    });
+    html += `</div><div class="award-primary" style="margin-top:10px"><button class="btn-close" onclick="addScore(${currentPlayer}, 0)">NO SCORE · NEXT PLAYER</button></div>`;
+  }
+  aw.innerHTML = html;
+  aw.className = 'award visible';
+}
+
+function addScore(playerIdx, amount) {
+  scores[playerIdx] += amount;
+  usedCells.add(currentCell.cellKey);
+  if (playerCount > 1) currentPlayer = (playerIdx + 1) % playerCount;
+  finishCell();
+}
+
+function closeModal() {
+  // closing without scoring still retires the cell once it has been revealed
+  if (currentCell && answered) usedCells.add(currentCell.cellKey);
+  finishCell();
+}
+
+function finishCell() {
+  document.getElementById('modal').classList.remove('open');
+  currentCell = null;
+  answered = false;
+  renderScoreboard();
+  renderBoard();
+  updateTurnIndicator();
+}
+
+/* ─── FINAL ROUND ─── */
+let finalRevealed = false;
+let finalResults = []; // per player: +1 / -1 / 0
+
+function showFinal() {
+  document.getElementById('board').style.display = 'none';
+  document.getElementById('final-btn').style.display = 'none';
+  document.getElementById('turn-indicator').style.display = 'none';
+  finalResults = players.map(() => 0);
+
+  const f = DATA.final;
+  const fj = document.getElementById('final-jeopardy');
+  fj.style.display = 'block';
+  fj.innerHTML = `
+    <div class="final-label">⚡ FINAL ROUND ⚡</div>
+    <div class="final-title">${f.category}</div>
+    <div class="final-q">${f.q}</div>
+    <div class="options" id="final-options">
+      ${f.o.map((t, i) => `<div class="option locked" id="fopt-${i}"><span class="letter">${LETTERS[i]}</span><span>${t}</span></div>`).join('')}
+    </div>
+    <div class="wager-rows" id="wager-rows">
+      ${players.map((p, i) => `
+        <div class="wager-row">
+          <span class="nm" title="${p}">${p} <span class="cur">(${fmt(scores[i])})</span></span>
+          <label style="font-size:11px;color:var(--gray)">WAGER</label>
+          <input type="number" min="0" id="wager-${i}" value="${Math.max(0, scores[i])}" max="${Math.max(0, scores[i])}">
+          <span class="res">
+            <button class="mini plus" id="fres-plus-${i}" onclick="setFinalResult(${i}, 1)" title="correct">✓</button>
+            <button class="mini minus" id="fres-minus-${i}" onclick="setFinalResult(${i}, -1)" title="incorrect">✗</button>
+          </span>
+        </div>`).join('')}
+    </div>
+    <p class="setup-hint" style="margin-bottom:14px">ENTER EACH WAGER · REVEAL THE ANSWER · MARK ✓ OR ✗ · SHOW RESULTS</p>
+    <button class="btn" id="final-reveal-btn" onclick="revealFinal()">REVEAL ANSWER</button>
+    <div id="final-answer" class="modal-answer" style="margin-top:20px;text-align:left"></div>
+    <button class="btn" id="final-results-btn" onclick="showResults()" style="display:none;margin-top:8px">SHOW RESULTS</button>
+    <div id="winner-section" style="display:none;">
+      <div class="all-scores" id="all-scores"></div>
+      <div class="winner-display" id="winner-text"></div>
+      <button class="btn" onclick="location.reload()" style="margin-top:16px;">NEW EXPEDITION</button>
+    </div>
+  `;
+}
+
+function setFinalResult(i, r) {
+  finalResults[i] = r;
+  document.getElementById(`fres-plus-${i}`).classList.toggle('chosen', r === 1);
+  document.getElementById(`fres-minus-${i}`).classList.toggle('chosen', r === -1);
+}
+
+function revealFinal() {
+  const f = DATA.final;
+  finalRevealed = true;
+  f.o.forEach((_, i) => {
+    const el = document.getElementById(`fopt-${i}`);
+    el.classList.add(i === f.c ? 'correct' : 'dim');
+  });
+  const fa = document.getElementById('final-answer');
+  fa.innerHTML = `<strong>ANSWER: ${LETTERS[f.c]} — ${f.o[f.c]}</strong>${f.ex}`;
+  fa.classList.add('visible');
+  document.getElementById('final-reveal-btn').style.display = 'none';
+  document.getElementById('final-results-btn').style.display = 'inline-block';
+}
+
+function showResults() {
+  players.forEach((p, i) => {
+    const w = Math.max(0, parseInt(document.getElementById(`wager-${i}`).value, 10) || 0);
+    scores[i] += finalResults[i] * w;
+  });
+  document.getElementById('wager-rows').style.display = 'none';
+  document.getElementById('final-results-btn').style.display = 'none';
+  document.getElementById('winner-section').style.display = 'block';
+  renderScoreboard();
+
+  const maxScore = Math.max(...scores);
+  const order = players.map((p, i) => i).sort((a, b) => scores[b] - scores[a]);
+  document.getElementById('all-scores').innerHTML = order.map(i => `
+    <div class="final-score-row ${scores[i] === maxScore ? 'top' : ''}">
+      <span class="fn">${players[i]}</span>
+      <span class="fs ${scores[i] < 0 ? 'negative' : ''}">${fmt(scores[i])}</span>
+    </div>`).join('');
+
+  const winners = players.filter((p, i) => scores[i] === maxScore);
+  const winnerText = playerCount === 1
+    ? `FINAL SCORE: ${fmt(maxScore)}`
+    : (winners.length > 1
+        ? `TIE: ${winners.join(' & ')}<br><span style="font-size:18px;color:var(--gray)">with ${fmt(maxScore)}</span>`
+        : `CHAMPION: ${winners[0]}<br><span style="font-size:18px;color:var(--gray)">with ${fmt(maxScore)}</span>`);
+  document.getElementById('winner-text').innerHTML = winnerText;
+}
+
+buildSetup();
+</script>
+</body>
+</html>
