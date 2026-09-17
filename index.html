@@ -13,6 +13,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<script>
+/* Light is the default. A saved choice is applied before first paint. */
+(function(){try{var t=localStorage.getItem("aphug-theme");
+if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();
+</script>
 <style>
 :root{
   color-scheme:light;
@@ -28,15 +33,6 @@
   --body:"Newsreader",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  color-scheme:dark;
-  --paper:#141011; --surface:#1E1819; --surface-2:#2B2224;
-  --ink:#F2EAE7; --ink-2:#BCACA9; --ink-3:#92827F;
-  --rule:#3A2E30; --rule-2:#564346;
-  --accent:#D96476; --accent-soft:#2E1318; --accent-line:#8F4A56;
-  --gold:#E7BA5E; --gold-soft:#3B2D11; --gold-line:#8F7231;
-  --navy:#93B6DC; --navy-soft:#1B2836;
-}}
 :root[data-theme="dark"]{
   color-scheme:dark;
   --paper:#141011; --surface:#1E1819; --surface-2:#2B2224;
@@ -70,7 +66,6 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);f
 header{position:relative;overflow:hidden;border-bottom:1px solid var(--rule);margin-bottom:clamp(36px,6vw,64px)}
 .hgrid{position:absolute;inset:0;color:var(--accent);opacity:.16;z-index:-1}
 :root[data-theme="dark"] .hgrid{opacity:.22}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hgrid{opacity:.22}}
 .hin{max-width:940px;margin:0 auto;padding:clamp(48px,8vw,96px) clamp(20px,5vw,40px) clamp(36px,5vw,56px)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,6vw,60px);line-height:1;letter-spacing:-.035em;margin:0 0 18px;text-wrap:balance;max-width:16ch}
@@ -98,6 +93,71 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
   .unit .tag{grid-column:2;justify-self:start;margin-top:6px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- theme toggle ---------- */
+.theme-toggle{align-self:center;display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px 5px 10px;background:transparent;border:1px solid rgba(251,244,236,.34);
+  border-radius:999px;color:var(--brand-on-maroon);font-family:var(--mono);
+  font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:border-color .16s ease,background .16s ease}
+.theme-toggle:hover{border-color:var(--brand-gold);background:rgba(201,162,39,.18)}
+.theme-toggle:focus-visible{outline:2.5px solid var(--brand-gold);outline-offset:2px}
+.theme-toggle svg{width:13px;height:13px;flex:0 0 13px;display:block}
+.theme-toggle .ico-sun{display:none}
+:root[data-theme="dark"] .theme-toggle .ico-sun{display:block}
+:root[data-theme="dark"] .theme-toggle .ico-moon{display:none}
+.theme-toggle .tt-txt::after{content:"Dark"}
+:root[data-theme="dark"] .theme-toggle .tt-txt::after{content:"Light"}
+
+/* shown on paper only */
+.print-src{display:none}
+
+/* ---------- print ----------
+   Correct with the browser's "Background graphics" box left off:
+   every fill becomes a rule or an outline. ---------- */
+@page{margin:.6in .65in .7in}
+@media print{
+  :root,:root[data-theme]{
+    color-scheme:light;
+    --paper:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF;
+    --ink:#000000; --ink-2:#222222; --ink-3:#555555;
+    --rule:#BFBFBF; --rule-2:#8C8C8C;
+    --accent:#6E1A29; --accent-soft:#F6E8EA; --accent-line:#B07480;
+    --gold:#6A4D0C; --gold-soft:#FAF1DC; --gold-line:#C3A75B;
+    --navy:#173250; --navy-soft:#E2E8EF;
+  }
+  .masthead,.credit,.unit,.tag{background:transparent!important;box-shadow:none!important}
+  .theme-toggle,.hgrid{display:none!important}
+  a{color:#000;text-decoration:none}
+  body{background:#fff;font-size:10.5pt;line-height:1.46;padding-right:1pt}
+  .masthead{border-bottom:1.5pt solid #000;margin-bottom:13pt}
+  .mast-in{max-width:none;padding:0 0 5pt}
+  .mast-school,.mast-course{color:#000;font-size:8pt;opacity:1}
+  .mast-school .mascot,.mast-school .sep{color:#000}
+  header{overflow:visible;margin-bottom:16pt;border-bottom:1pt solid #000}
+  .hin{max-width:none;padding:0 0 12pt}
+  .wrap{max-width:none;padding:0}
+  .eyebrow{font-size:8pt;color:#000;margin-bottom:8pt}
+  h1{font-size:30pt;margin:0 0 9pt;max-width:none}
+  .deck{font-size:11pt;color:#000;max-width:none}
+  .byline{font-size:8pt;color:#000;margin-top:14pt;padding-top:9pt;border-top:1pt solid var(--rule-2);max-width:none}
+  h2{font-size:8pt;color:#000;margin-bottom:10pt}
+  ol.units{gap:0;margin-bottom:16pt}
+  .unit{border:0;border-bottom:.5pt solid var(--rule);border-radius:0;padding:7pt 0;break-inside:avoid}
+  .unit.soon{opacity:1}
+  .unit h3{font-size:11pt}
+  .unit p{font-size:9pt;color:#222}
+  .unit .n{font-size:15pt}
+  .tag{border:.75pt solid currentColor;color:var(--gold);border-radius:2pt;font-size:7.5pt;padding:1pt 4pt}
+  .unit.soon .tag{color:#555;border-color:#8C8C8C}
+  .note{font-size:9.5pt;color:#000;max-width:none;padding-top:10pt}
+  .credit{border:0;border-left:3pt solid #000;border-radius:0;padding:1pt 0 1pt 10pt;margin-top:16pt;break-inside:avoid}
+  .credit h3{font-size:11pt}
+  .credit p{font-size:9.5pt;color:#000}
+  footer{font-size:7.5pt;color:#000;margin-top:16pt;padding-top:8pt;line-height:1.7}
+  .print-src{display:block;margin:6pt 0 0;color:#555}
+}
 </style>
 </head>
 <body>
@@ -106,6 +166,11 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
   <div class="mast-in">
     <p class="mast-school">Bourbon County High School <span class="sep">·</span> <span class="mascot">Colonels</span></p>
     <p class="mast-course">Social Studies</p>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme">
+      <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.4A8.6 8.6 0 0 1 9.6 3.3a8.9 8.9 0 1 0 11.1 11.1z" fill="currentColor"/></svg>
+      <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="12" r="4.3" fill="currentColor"/><path d="M12 1.9v2.5M12 19.6v2.5M4.4 4.4l1.8 1.8M17.8 17.8l1.8 1.8M1.9 12h2.5M19.6 12h2.5M4.4 19.6l1.8-1.8M17.8 6.2l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="tt-txt" aria-hidden="true"></span>
+    </button>
   </div>
 </div>
 
@@ -169,7 +234,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
 
   <div class="note">
     <p>Each unit is a single self-contained page — no build step, no dependencies, no tracking. Open it on a phone or a Chromebook, or print it; the layout handles all three.</p>
-    <p>Notes follow the reader's light or dark preference automatically.</p>
+    <p>Pages open light, on paper-colored stock — there is a dark switch in the header if you prefer it. Printing gives you a clean black-on-white handout with no setting to change: one topic per sheet, every self-check answer opened out.</p>
   </div>
 
   <div class="credit">
@@ -181,8 +246,31 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-fa
   <footer>
     <p>A teacher-made classroom resource. Not an official publication of Bourbon County Schools, and not endorsed by the district.</p>
     <p>AP® is a trademark registered by the College Board, which was not involved in the production of these notes.</p>
+    <p class="print-src">bluegrassbaron.github.io/ap-human-geography/</p>
   </footer>
 </div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  function label() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('aphug-theme', next); } catch (e) {}
+    label();
+  });
+
+  label();
+})();
+</script>
 
 </body>
 </html>

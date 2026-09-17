@@ -65,15 +65,47 @@ landing page from `<div class="unit soon">` to `<a class="unit" href="unit-N/">`
 - One file per unit. No build step, no dependencies, no JavaScript framework.
 - All CSS and SVG are inline. The only external request is Google Fonts
   (Archivo, Newsreader, IBM Plex Mono), each with a real fallback stack.
-- Responds to the reader's light/dark preference via CSS custom properties.
 - Works on a phone; wide diagrams and tables scroll inside their own containers.
-- Includes print styles — each plate starts on a new page if students want paper.
+
+### Light by default, dark on request
+
+Every page loads on paper-colored stock regardless of the device's system
+setting — what a student sees on screen is what comes out of the printer. A
+toggle in the masthead switches to dark, and the choice is kept in
+`localStorage` under `aphug-theme` and applied by a tiny inline script in the
+`<head>`, so there is no flash of the wrong theme on the next page load.
+
+### Printing
+
+The pages are built to print correctly with the browser's **"Background
+graphics" box left off**, which is how it ships. Nothing that carries meaning
+lives in a CSS background: tinted callouts become heavy left rules, filled
+chips become outlined ones, the dark "check yourself" bar becomes a ruled
+heading, and the maroon masthead becomes a slug line. Backgrounds left *on*
+also look right — the print sheet forces the light palette either way, so a
+student reading in dark mode still gets black on white.
+
+Diagrams are inline SVG, so their fills are page content and print regardless
+of that setting.
+
+Other print behavior:
+
+- Each plate starts on a new sheet; the exam kit starts its own.
+- Every collapsed self-check answer opens on paper, so the printout is a
+  complete study guide. Handled twice over: a `beforeprint` listener sets
+  `open` on each `<details>` (and `afterprint` puts them back), and the print
+  sheet also overrides `::details-content` for the JavaScript-off case.
+- Type is set in points, margins in inches, with orphan/widow control and
+  `break-inside: avoid` on figures, tables, callouts and question blocks.
+- The rail, the back link and the theme toggle drop out.
 
 ## Editing
 
 Open the unit's `index.html` in any text editor. The design tokens (colors, type, spacing)
 are the CSS custom properties in the `:root` block at the top; changing a value
-there updates the whole page, diagrams included, in both themes.
+there updates the whole page, diagrams included. There are three sets of those
+tokens: `:root` (light, the default), `:root[data-theme="dark"]`, and a third
+set inside `@media print` that forces paper-white whatever the reader chose.
 
 ## A note on accuracy
 
