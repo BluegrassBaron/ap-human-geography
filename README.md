@@ -7,7 +7,7 @@ Student notes for AP Human Geography, built as self-contained web pages — one 
 | | Unit | Status |
 |---|---|---|
 | 1 | [Thinking Geographically](https://bluegrassbaron.github.io/ap-human-geography/unit-1/) | Complete |
-| 2 | Population & Migration | Not yet written |
+| 2 | [Population & Migration](https://bluegrassbaron.github.io/ap-human-geography/unit-2/) | Complete |
 | 3 | Cultural Patterns & Processes | Not yet written |
 | 4 | Political Patterns & Processes | Not yet written |
 | 5 | Agriculture & Rural Land Use | Not yet written |
@@ -48,12 +48,55 @@ global → national → regional → local scale zoom.
 
 **35 self-check questions** with full answers.
 
+## Unit 2 — what's in it
+
+Twelve plates, one per CED topic, each opening with its learning objective(s) and a
+"Read to answer" box that turns the plate's headings into questions — guided notes
+for students who need a purpose before they read:
+
+| Topic | Learning objective | |
+|---|---|---|
+| 2.1 | `PSO-2.A` · `PSO-2.B` · `PSO-2.C` | Population Distribution |
+| 2.2 | `PSO-2.D` | Consequences of Population Distribution |
+| 2.3 | `PSO-2.E` · `PSO-2.F` | Population Composition |
+| 2.4 | `IMP-2.A` | Population Dynamics |
+| 2.5 | `IMP-2.B` | The Demographic Transition Model |
+| 2.6 | `IMP-2.B` | Malthusian Theory |
+| 2.7 | `SPS-2.A` | Population Policies |
+| 2.8 | `SPS-2.B` | Women and Demographic Change |
+| 2.9 | `SPS-2.C` | Aging Populations |
+| 2.10 | `IMP-2.C` | Causes of Migration |
+| 2.11 | `IMP-2.D` | Forced and Voluntary Migration |
+| 2.12 | `IMP-2.E` | Effects of Migration |
+
+Plus an **exam kit** appendix: one sentence per topic, every formula in the unit on
+one card each (three densities, RNI, doubling time, dependency ratio, sex ratio,
+gravity model), the command verbs, a term checklist, and four synthesis questions.
+
+Same plate anatomy as Unit 1 — vocabulary keys, "common trap" and exam-technique
+callouts, check-yourself questions — plus worked-calculation boxes.
+
+**27 diagrams**, all inline SVG. Highlights: one imaginary country's arithmetic,
+physiological, and agricultural density drawn on a single grid; an annotated
+pyramid plus six more showing growth shapes and migration fingerprints; the DTM
+with natural increase shaded and a pyramid silhouette under each stage; Malthus
+vs. Boserup as opposite arrows; a policy map from persuasion to coercion; a
+same-dependency-ratio, opposite-problems pictograph; a refugee / IDP / asylum
+seeker decision tree.
+
+**52 self-check questions** with full answers.
+
+Current figures (UN World Population Prospects 2024, UNHCR mid-2025, World Bank
+2024 remittances, national statistics for China, Japan, South Korea, and the U.S.)
+are dated in the text and listed in the page footer.
+
 ## Repository layout
 
 ```
 index.html          course landing page, links to each unit
 unit-1/index.html   Unit 1 notes — the whole unit in one file
 unit-1/jeopardy.html  Unit 1 review game (Geo Jeopardy, 1–8 players, multiple choice)
+unit-2/index.html   Unit 2 notes — the whole unit in one file
 README.md
 .nojekyll           serve files as-is, no Jekyll processing
 ```
