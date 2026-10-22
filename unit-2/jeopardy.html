@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geo Jeopardy · Population &amp; Migration</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Josefin+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean: #0b1c26;
+    --deep: #102b38;
+    --teal: #1b4557;
+    --teal-light: #245a70;
+    --brass: #d4a852;
+    --brass-light: #f0c86e;
+    --coral: #e0664a;
+    --coral-bright: #ff7f5f;
+    --parchment: #efe4c8;
+    --sage: #6fbf8e;
+    --sage-dark: #1d4a33;
+    --gray: #8ea3ad;
+    --white: #f6f1e6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ocean);
+    color: var(--white);
+    font-family: 'Josefin Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* graticule: latitude / longitude grid */
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(212,168,82,0.05) 48px, rgba(212,168,82,0.05) 49px),
+      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(212,168,82,0.05) 48px, rgba(212,168,82,0.05) 49px),
+      radial-gradient(ellipse at 50% -20%, rgba(36,90,112,0.55) 0%, transparent 60%);
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    text-align: center;
+    padding: 22px 20px 16px;
+    border-bottom: 2px solid var(--brass);
+    background: linear-gradient(180deg, #050d12 0%, var(--deep) 100%);
+    position: relative;
+  }
+
+  header::before {
+    content: '◈ UNIT 2 · POPULATION & MIGRATION ◈';
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral);
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(26px, 6vw, 50px);
+    font-weight: 800;
+    color: var(--brass);
+    text-shadow: 0 0 30px rgba(212,168,82,0.35), 3px 3px 0 #000;
+    letter-spacing: 4px;
+    line-height: 1.1;
+  }
+
+  h1 span { color: var(--coral-bright); }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 3px;
+    margin-top: 6px;
+  }
+
+  /* compass rose in the corner */
+  .compass {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    opacity: 0.55;
+  }
+  @media (max-width: 640px) { .compass { display: none; } }
+
+  /* ─── SCOREBOARD ─── */
+  .scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--deep);
+    border-bottom: 1px solid rgba(212,168,82,0.3);
+    flex-wrap: wrap;
+  }
+
+  .player-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 96px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .player-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    font-family: 'IBM Plex Mono', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+  }
+
+  .score-display {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--brass);
+    font-family: 'IBM Plex Mono', monospace;
+    text-shadow: 0 0 10px rgba(212,168,82,0.45);
+  }
+
+  .score-display.negative { color: var(--coral-bright); }
+
+  .active-player {
+    border-color: var(--brass);
+    background: rgba(212,168,82,0.08);
+  }
+
+  .active-player .player-name { color: var(--brass-light); }
+
+  /* ─── SETUP ─── */
+  #setup-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 20px;
+    gap: 20px;
+  }
+
+  .setup-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--brass);
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .setup-hint {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .btn-count {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 420px;
+  }
+
+  .btn-sm {
+    background: var(--teal);
+    color: var(--brass);
+    border: 1px solid var(--brass);
+    padding: 8px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-width: 44px;
+  }
+
+  .btn-sm:hover, .btn-sm.active { background: var(--brass); color: var(--ocean); }
+
+  .player-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .player-inputs input {
+    background: var(--teal);
+    border: 1px solid var(--brass);
+    color: var(--white);
+    padding: 10px 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    outline: none;
+    width: 100%;
+  }
+
+  .player-inputs input:focus { border-color: var(--brass-light); background: var(--teal-light); }
+  .player-inputs input::placeholder { color: var(--gray); }
+
+  .btn {
+    background: var(--brass);
+    color: var(--ocean);
+    border: none;
+    padding: 12px 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .btn:hover { background: var(--brass-light); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  /* ─── BOARD ─── */
+  #game-screen { display: none; padding: 12px; }
+
+  .turn-indicator {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .turn-indicator span { color: var(--brass-light); }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    max-width: 1100px;
+    margin: 0 auto 16px;
+  }
+
+  .category-header {
+    background: var(--teal);
+    border: 1px solid var(--brass);
+    text-align: center;
+    padding: 8px 4px;
+    font-size: clamp(8px, 1.15vw, 12px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brass);
+    text-transform: uppercase;
+    min-height: 66px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    gap: 3px;
+  }
+
+  .category-header small {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    color: var(--coral-bright);
+    letter-spacing: 2px;
+    font-weight: 400;
+  }
+
+  .cell {
+    background: linear-gradient(160deg, var(--teal) 0%, #142f3d 100%);
+    border: 1px solid rgba(212,168,82,0.4);
+    text-align: center;
+    padding: 10px 4px;
+    font-size: clamp(14px, 2.4vw, 26px);
+    font-weight: 600;
+    color: var(--brass);
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cell::before {
+    content: '$';
+    font-size: 0.6em;
+    vertical-align: super;
+    opacity: 0.7;
+  }
+
+  .cell:hover:not(.used) {
+    background: linear-gradient(160deg, var(--teal-light) 0%, #1b4557 100%);
+    border-color: var(--brass);
+    transform: scale(1.04);
+    box-shadow: 0 0 15px rgba(212,168,82,0.3);
+    z-index: 1;
+  }
+
+  .cell.used {
+    background: #08131a;
+    color: transparent;
+    cursor: default;
+    border-color: rgba(212,168,82,0.1);
+  }
+
+  .cell.used::before { display: none; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(3,10,14,0.88);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(4px);
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--deep);
+    border: 2px solid var(--brass);
+    max-width: 680px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 0 60px rgba(212,168,82,0.2), inset 0 0 60px rgba(0,0,0,0.3);
+    animation: modalIn 0.25s ease-out;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+
+  @keyframes modalIn {
+    from { transform: scale(0.94) translateY(-8px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .modal::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(212,168,82,0.2);
+    pointer-events: none;
+  }
+
+  .modal-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral-bright);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .modal-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    color: var(--brass);
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-shadow: 0 0 15px rgba(212,168,82,0.5);
+  }
+
+  .modal-value::before { content: '$'; font-size: 0.6em; vertical-align: super; }
+
+  .modal-question {
+    font-size: clamp(15px, 2.6vw, 19px);
+    line-height: 1.55;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  /* multiple-choice options */
+  .options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(212,168,82,0.3);
+    color: var(--parchment);
+    padding: 10px 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(13px, 2.2vw, 15px);
+    line-height: 1.4;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .option .letter {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--brass);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: -1px;
+  }
+
+  .option:hover:not(.locked) { background: rgba(212,168,82,0.12); border-color: var(--brass); }
+  .option.locked { cursor: default; }
+  .option.correct { background: var(--sage-dark); border-color: var(--sage); color: #e8f5ec; }
+  .option.correct .letter { background: var(--sage); color: var(--ocean); border-color: var(--sage); }
+  .option.wrong { background: #4a1f18; border-color: var(--coral); color: #ffd9cf; }
+  .option.wrong .letter { background: var(--coral); color: #fff; border-color: var(--coral); }
+  .option.dim { opacity: 0.45; }
+
+  .modal-answer {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212,168,82,0.3);
+    padding: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-light);
+    display: none;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+
+  .modal-answer.visible { display: block; animation: fadeIn 0.3s ease-out; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-answer strong {
+    font-size: 11px;
+    color: var(--coral-bright);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .verdict {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+  .verdict.ok { color: var(--sage); }
+  .verdict.no { color: var(--coral-bright); }
+
+  .modal-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-reveal {
+    background: var(--teal);
+    color: var(--brass);
+    border: 1px solid var(--brass);
+    padding: 10px 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .btn-reveal:hover { background: rgba(212,168,82,0.2); }
+
+  .btn-close {
+    background: transparent;
+    color: var(--gray);
+    border: 1px solid var(--gray);
+    padding: 10px 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .btn-close:hover { color: var(--white); border-color: var(--white); }
+
+  /* award panel */
+  .award { display: none; width: 100%; margin-top: 4px; }
+  .award.visible { display: block; }
+
+  .award-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .award-primary {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .btn-award {
+    padding: 10px 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border: 1px solid;
+    transition: all 0.15s;
+  }
+  .btn-award.plus { background: var(--sage-dark); color: var(--sage); border-color: var(--sage); }
+  .btn-award.plus:hover { background: #26603f; }
+  .btn-award.minus { background: #4a1f18; color: var(--coral-bright); border-color: var(--coral); }
+  .btn-award.minus:hover { background: #5e2a20; }
+
+  .award-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 6px;
+  }
+
+  .award-chip {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(212,168,82,0.25);
+    padding: 6px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--parchment);
+    transition: all 0.15s;
+  }
+  .award-chip.ok { border-color: var(--sage); background: rgba(111,191,142,0.12); }
+  .award-chip.no { border-color: var(--coral); background: rgba(224,102,74,0.12); }
+
+  .award-chip .nm {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .award-tools {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0 4px;
+  }
+
+  .award-summary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  .mini {
+    width: 30px;
+    height: 26px;
+    border: 1px solid;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .mini.plus { color: var(--sage); border-color: var(--sage); }
+  .mini.plus:hover { background: var(--sage-dark); }
+  .mini.minus { color: var(--coral-bright); border-color: var(--coral); }
+  .mini.minus:hover { background: #4a1f18; }
+  .mini.chosen.plus { background: var(--sage); color: var(--ocean); }
+  .mini.chosen.minus { background: var(--coral); color: #fff; }
+
+  /* ─── FINAL ROUND ─── */
+  .final-jeopardy {
+    text-align: center;
+    padding: 30px 20px;
+    max-width: 680px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .final-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral-bright);
+    letter-spacing: 5px;
+    margin-bottom: 16px;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  .final-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(24px, 5vw, 34px);
+    color: var(--brass);
+    text-shadow: 0 0 30px rgba(212,168,82,0.5);
+    margin-bottom: 20px;
+  }
+
+  .final-q {
+    font-size: clamp(15px, 2.6vw, 18px);
+    line-height: 1.6;
+    color: var(--white);
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  .wager-rows { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+
+  .wager-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--teal);
+    border: 1px solid rgba(212,168,82,0.3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .wager-row .nm { color: var(--parchment); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wager-row .cur { color: var(--brass); font-size: 12px; }
+  .wager-row input {
+    width: 90px;
+    background: var(--ocean);
+    border: 1px solid var(--brass);
+    color: var(--white);
+    padding: 6px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    outline: none;
+  }
+  .wager-row .res { display: flex; gap: 4px; }
+  .mini.chosen.plus { background: var(--sage); color: var(--ocean); }
+  .mini.chosen.minus { background: var(--coral); color: #fff; }
+
+  .winner-display {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--brass-light);
+    margin: 20px 0;
+    line-height: 1.4;
+  }
+
+  .all-scores { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+
+  .final-score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background: var(--teal);
+    border: 1px solid rgba(212,168,82,0.3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+  }
+
+  .final-score-row .fn { color: var(--parchment); }
+  .final-score-row .fs { color: var(--brass); }
+  .final-score-row .fs.negative { color: var(--coral-bright); }
+  .final-score-row.top { border-color: var(--brass); background: rgba(212,168,82,0.12); }
+
+  .modal::after {
+    content: '✦';
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    color: rgba(212,168,82,0.3);
+    font-size: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .board { gap: 3px; }
+    .cell { min-height: 52px; padding: 6px 2px; }
+    .category-header { min-height: 58px; padding: 4px 2px; font-size: 7.5px; }
+    .modal { padding: 18px; }
+    .player-inputs { grid-template-columns: 1fr; }
+    .wager-row { grid-template-columns: 1fr auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="./" style="position:absolute;left:18px;top:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gray);text-decoration:none">&#8592; UNIT 2 NOTES</a>
+  <h1>GEO <span>JEOPARDY</span></h1>
+  <div class="subtitle">AP HUMAN GEOGRAPHY · POPULATION &amp; MIGRATION</div>
+  <svg class="compass" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#d4a852" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#d4a852" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <polygon points="50,6 56,50 50,44 44,50" fill="#e0664a"/>
+    <polygon points="50,94 56,50 50,56 44,50" fill="#d4a852"/>
+    <polygon points="6,50 50,44 56,50 50,56" fill="#d4a852"/>
+    <polygon points="94,50 50,44 44,50 50,56" fill="#d4a852"/>
+    <text x="50" y="4" font-size="9" fill="#efe4c8" text-anchor="middle" font-family="monospace">N</text>
+  </svg>
+</header>
+
+<!-- SETUP SCREEN -->
+<div id="setup-screen">
+  <div class="setup-title">EXPEDITION ROSTER</div>
+  <p class="setup-hint">SELECT NUMBER OF PLAYERS (1–8)</p>
+  <div class="btn-count" id="count-buttons"></div>
+  <div class="player-inputs" id="player-inputs"></div>
+  <p class="setup-hint" style="margin-top:4px">WRONG ANSWERS</p>
+  <div class="btn-count">
+    <button class="btn-sm active" id="pen-on" onclick="setPenalty(true)">LOSE POINTS</button>
+    <button class="btn-sm" id="pen-off" onclick="setPenalty(false)">NO PENALTY</button>
+  </div>
+  <button class="btn" onclick="startGame()">BEGIN EXPEDITION</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game-screen">
+  <div class="scoreboard" id="scoreboard"></div>
+  <div class="turn-indicator" id="turn-indicator"></div>
+  <div class="board" id="board"></div>
+  <div style="text-align:center;margin-top:8px;">
+    <button class="btn-sm" onclick="showFinal()" id="final-btn" style="display:none">⚡ FINAL ROUND</button>
+  </div>
+  <div class="final-jeopardy" id="final-jeopardy"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-category" id="modal-cat"></div>
+    <div class="modal-value" id="modal-val"></div>
+    <div class="modal-question" id="modal-q"></div>
+    <div class="options" id="modal-options"></div>
+    <div class="modal-answer" id="modal-a"></div>
+    <div class="modal-controls">
+      <div class="award" id="award"></div>
+      <button class="btn-reveal" id="reveal-btn" onclick="revealAnswer(null)">REVEAL ANSWER</button>
+      <button class="btn-close" onclick="closeModal()">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ───────────────────────────────────────────────
+   QUESTION BANK — AP Human Geography Unit 2
+   Each entry: q (prompt), o (five options), c (index of correct), ex (explanation)
+   Rows run $200 (easiest) → $1000 (hardest)
+─────────────────────────────────────────────── */
+const DATA = {
+  categories: [
+    { tag: "2.1–2.2", name: "Distribution & Density" },
+    { tag: "2.3", name: "Population Composition" },
+    { tag: "2.4", name: "Population Dynamics" },
+    { tag: "2.5–2.6", name: "The DTM & Malthus" },
+    { tag: "2.7–2.9", name: "Policies, Women & Aging" },
+    { tag: "2.10", name: "Causes of Migration" },
+    { tag: "2.11–2.12", name: "Types & Effects of Migration" },
+  ],
+  values: [200, 400, 600, 800, 1000],
+  questions: [
+    // 2.1–2.2 DISTRIBUTION & DENSITY
+    [
+      { q: "The number of people per unit of ARABLE (farmable) land is called:",
+        o: ["Arithmetic density", "Agricultural density", "Carrying capacity", "Physiological density", "Population distribution"], c: 3,
+        ex: "Physiological density = total population ÷ arable land. It shows how much pressure a population puts on the land that feeds it. Agricultural density counts only farmers." },
+      { q: "Very few people live in central Australia. Which PHYSICAL factor best explains this pattern?",
+        o: ["A dry climate that makes farming without irrigation nearly impossible", "Government limits on where people may settle", "A lack of jobs in the region", "Long distances from Asian trading partners", "Ties to homelands in coastal cities"], c: 0,
+        ex: "Climate is a physical factor. The other options are human factors — politics, economics, and culture — which also shape distribution but are not physical." },
+      { q: "Egypt's physiological density is many times higher than its arithmetic density. What BEST explains the difference?",
+        o: ["Most Egyptians work as farmers", "Egypt's total land area is very small", "Only a small share of Egypt's land — mainly along the Nile — can be farmed", "Egypt's population is shrinking quickly", "Egypt imports almost no food"], c: 2,
+        ex: "Arithmetic density divides people by ALL land, including the huge, nearly empty desert. Physiological density divides only by arable land, which in Egypt is a thin strip along the Nile — so the number is far higher." },
+      { q: "Countries A and B have the same physiological density, but Country A's agricultural density is 15 and Country B's is 450. What is the MOST likely explanation?",
+        o: ["Country A has much more arable land than Country B", "Country B imports more of its food than Country A", "Country A's population is growing faster", "Country A farms with machines and few workers, so it is likely more economically developed", "Country B has a lower arithmetic density than Country A"], c: 3,
+        ex: "Same physiological density means the same pressure on farmland. Very few farmers per square kilometer in Country A points to mechanized, commercial farming — a sign of a more developed economy." },
+      { q: "Which statement about overpopulation is MOST accurate?",
+        o: ["A country is overpopulated once its arithmetic density passes 100 people per km²", "Overpopulation means more people than available resources can sustainably support, so even a thinly settled region can be overpopulated", "The densest countries in the world are always the most overpopulated", "Carrying capacity is fixed by climate and cannot be changed by technology or trade", "Overpopulation depends only on a country's total number of people"], c: 1,
+        ex: "Overpopulation is about people relative to resources (carrying capacity), not density. A dense, wealthy country can import food and use technology; an overgrazed dry region can exceed its carrying capacity with few people." },
+    ],
+    // 2.3 POPULATION COMPOSITION
+    [
+      { q: "In a population pyramid, each horizontal bar shows:",
+        o: ["The number of births in a single year", "The males or females in one age group, usually five years wide", "One generation of about 25 years", "The population of one region of the country", "The number of deaths in that age group"], c: 1,
+        ex: "Each bar is a cohort — usually five years wide (0–4, 5–9, ...). Males are on one side and females on the other." },
+      { q: "A population pyramid with a very wide base that narrows quickly toward the top indicates:",
+        o: ["An aging population that will soon shrink", "A population with roughly equal numbers in every age group", "Heavy immigration of retirees", "High birth rates and rapid population growth", "A very low dependency ratio"], c: 3,
+        ex: "An expansive pyramid: each generation of children is larger than the one before, which means high birth rates and fast growth — typical of DTM Stage 2." },
+      { q: "Qatar's population has far more men than women at ages 25–44, but a normal balance among children. What is the MOST likely cause?",
+        o: ["Sex-selective abortion", "Higher death rates among women", "Women leaving the country to attend university", "War deaths among women", "Large numbers of male guest workers arriving from other countries"], c: 4,
+        ex: "A normal balance among children rules out sex-selective births. A huge surplus of working-age men is the fingerprint of male labor migration — common in Gulf states." },
+      { q: "A college town's pyramid shows a sharp spike at ages 18–24 that the national pyramid does not. This BEST shows that:",
+        o: ["The town had a baby boom about 20 years ago", "Population composition can look very different at the local scale because of migration", "The town has a very high birth rate", "National pyramids are always inaccurate", "The town is in Stage 2 of the demographic transition"], c: 1,
+        ex: "Students move in for school and leave after. Local-scale pyramids reveal migration patterns that national pyramids average away." },
+      { q: "A country's pyramid has a narrow base and a large bulge at ages 55–64. Which prediction is MOST supported?",
+        o: ["Demand for new elementary schools will rise sharply", "Birth rates will soon rise above replacement", "Over the next 10–15 years, spending on pensions and health care will rise while the workforce shrinks", "The country is about to enter Stage 2 of the DTM", "The sex ratio will rise above 120"], c: 2,
+        ex: "The large 55–64 cohort is about to retire, and the narrow base means fewer young workers will replace them — more retirees, fewer workers, higher costs for pensions and care." },
+    ],
+    // 2.4 POPULATION DYNAMICS
+    [
+      { q: "The average number of children a woman would have in her lifetime, at current rates, is the:",
+        o: ["Crude birth rate", "Rate of natural increase", "Total fertility rate", "Infant mortality rate", "Dependency ratio"], c: 2,
+        ex: "Total fertility rate (TFR) measures children per woman. The crude birth rate measures births per 1,000 people in the whole population." },
+      { q: "A country has a crude birth rate of 30 and a crude death rate of 10 (per 1,000). What is its rate of natural increase?",
+        o: ["20%", "3%", "0.2%", "2%", "40%"], c: 3,
+        ex: "RNI = (CBR − CDR) ÷ 10 = (30 − 10) ÷ 10 = 2%." },
+      { q: "Using the rule of 70, a population growing steadily at 2% a year will double in about:",
+        o: ["35 years", "70 years", "140 years", "20 years", "14 years"], c: 0,
+        ex: "Doubling time ≈ 70 ÷ growth rate = 70 ÷ 2 = 35 years." },
+      { q: "Why is replacement-level fertility about 2.1 children per woman rather than exactly 2.0?",
+        o: ["Women live longer than men", "Immigration adds extra people each year", "Governments set the target at 2.1", "Twins and triplets are common in most countries", "Some children die before adulthood, and slightly more boys than girls are born"], c: 4,
+        ex: "The extra 0.1 makes up for child deaths and for the natural sex ratio at birth (about 105 boys per 100 girls). Where child mortality is high, replacement level is higher than 2.1." },
+      { q: "Germany has had more deaths than births for decades, yet its population has held steady or grown. What BEST explains this?",
+        o: ["Its rate of natural increase has actually been positive", "Net immigration has been larger than the natural decrease", "Life expectancy has fallen sharply", "Its total fertility rate is above replacement level", "Its census has undercounted deaths"], c: 1,
+        ex: "Total change = natural increase + net migration. Immigrants — mostly young adults — have more than offset the gap between deaths and births." },
+    ],
+    // 2.5–2.6 THE DTM & MALTHUS
+    [
+      { q: "Thomas Malthus argued that population grows ______ while the food supply grows ______.",
+        o: ["arithmetically ... geometrically", "geometrically ... arithmetically", "slowly ... quickly", "exponentially ... exponentially", "steadily ... not at all"], c: 1,
+        ex: "Malthus (1798): population doubles (1, 2, 4, 8 ...) while food increases by a fixed amount (1, 2, 3, 4 ...), so population eventually outruns food." },
+      { q: "In Stage 2 of the demographic transition model, population grows rapidly mainly because:",
+        o: ["Birth rates rise sharply", "Large numbers of immigrants arrive", "Death rates fall while birth rates stay high", "Both birth and death rates fall at the same speed", "Birth rates fall faster than death rates"], c: 2,
+        ex: "Better food supply, clean water, sanitation, and vaccines cut the death rate, but family-size habits change slowly, so births stay high. The widening gap is natural increase." },
+      { q: "A country's birth rate has fallen below its death rate, and its population is shrinking. Which DTM stage is it in?",
+        o: ["Stage 1", "Stage 2", "Stage 3", "Stage 4", "Stage 5"], c: 4,
+        ex: "Stage 5 (declining): very low birth rates and an aging population mean deaths outnumber births. Japan, South Korea, Italy, and China are examples." },
+      { q: "According to the epidemiological transition, as a country develops, the leading causes of death shift from:",
+        o: ["Infectious and parasitic diseases to degenerative diseases such as heart disease and cancer", "Heart disease and cancer to infectious diseases", "Accidents to famine", "Chronic diseases to war", "Old age to childhood diseases"], c: 0,
+        ex: "Sanitation, nutrition, and medicine bring infectious disease under control, so people live long enough to die of chronic, degenerative diseases instead." },
+      { q: "Which statement would Ester Boserup MOST likely make in response to Malthus?",
+        o: ["Population will always outrun food, so famine is unavoidable", "Rising population pressure pushes farmers to work the land harder and adopt new methods, so food production rises", "Population growth has no effect on farming", "The only way to prevent famine is strict limits on births", "Food shortages are caused only by drought"], c: 1,
+        ex: "Boserup (1965) reversed Malthus's arrow: population growth CAUSES agricultural intensification and innovation, so food production responds to population." },
+    ],
+    // 2.7–2.9 POLICIES, WOMEN & AGING
+    [
+      { q: "A government that offers cash payments, paid parental leave, and cheap childcare to encourage people to have more children is following a(n) ______ policy.",
+        o: ["Antinatalist", "Pronatalist", "Immigration", "Guest worker", "Family reunification"], c: 1,
+        ex: "Pronatalist policies encourage births, usually in countries with very low fertility and aging populations." },
+      { q: "A country has 20 children (ages 0–14), 50 working-age adults (15–64), and 30 older adults (65+) for every 100 people. What is its dependency ratio?",
+        o: ["30", "60", "100", "50", "200"], c: 2,
+        ex: "Dependency ratio = (0–14 + 65+) ÷ (15–64) × 100 = (20 + 30) ÷ 50 × 100 = 100." },
+      { q: "Which was an UNINTENDED effect of China's one-child policy?",
+        o: ["A sex ratio at birth far above normal, with many more boys than girls", "A sharp rise in birth rates", "A younger population with fewer older people", "A large surplus of women of marrying age", "A rapid increase in family size in rural areas"], c: 0,
+        ex: "With strong son preference and limits on births, sex-selective abortion pushed the sex ratio at birth to about 118 boys per 100 girls in the 2000s." },
+      { q: "Why does more schooling for girls tend to lower a country's total fertility rate?",
+        o: ["It raises infant mortality, so families have fewer children", "It moves the country back into Stage 2 of the DTM", "It increases the dependency ratio", "It reduces life expectancy for women", "Educated women tend to marry later, work for pay, and have better access to contraception"], c: 4,
+        ex: "Schooling delays marriage, raises the opportunity cost of children through paid work, and improves knowledge of and access to contraception. Each is a mechanism that lowers fertility." },
+      { q: "Why is increasing immigration a FASTER response to a shrinking workforce than a pronatalist policy?",
+        o: ["Immigrants usually arrive as working-age adults, while babies born now will not join the workforce for about 20 years", "Immigrants never have children of their own", "Pronatalist policies always lower birth rates", "Immigration lowers the number of retirees", "Pronatalist policies are illegal in most countries"], c: 0,
+        ex: "Migrants are mostly young adults who can work and pay taxes immediately. A new baby adds to the youth dependency ratio for two decades before entering the labor force." },
+    ],
+    // 2.10 CAUSES OF MIGRATION
+    [
+      { q: "A condition at the place of ORIGIN that encourages people to leave is called a:",
+        o: ["Pull factor", "Intervening opportunity", "Push factor", "Remittance", "Chain migration"], c: 2,
+        ex: "Push factors act at the origin (war, unemployment, drought). Pull factors attract people to the destination." },
+      { q: "Years of drought destroy crops and pasture, and farm families leave the region. The drought is which type of push factor?",
+        o: ["Political", "Cultural", "Demographic", "Environmental", "Economic"], c: 3,
+        ex: "Drought is an environmental push factor. It leads to economic hardship, but the cause named in the question is environmental." },
+      { q: "A migrant sets out for the capital city but settles permanently in a closer regional city that has factory jobs. The regional city is:",
+        o: ["An intervening obstacle", "An intervening opportunity", "A case of distance decay", "A push factor", "A form of transhumance"], c: 1,
+        ex: "An intervening opportunity is a closer place offering what the migrant wants, which captures them before they reach the original destination." },
+      { q: "Which of the following is one of Ravenstein's laws of migration?",
+        o: ["Most migrants are children", "Most migration flows from cities to the countryside", "Most migrants move only a short distance", "Families are more likely than individuals to migrate internationally", "Migration decreases as industry and transportation develop"], c: 2,
+        ex: "Ravenstein observed that most migrants move short distances, that each flow produces a counterflow, and that the main direction is from rural areas toward cities." },
+      { q: "From an origin of 2 million people, City X (2 million people) is 100 km away and City Y (9 million people) is 300 km away. Using the gravity model (P₁ × P₂ ÷ distance), which city should attract MORE migrants from the origin?",
+        o: ["City X, because closer cities always attract more migrants", "They will attract exactly the same number", "City X, because smaller cities offer more jobs per person", "City Y, because its much larger population outweighs the greater distance", "It cannot be predicted without knowing wages in each city"], c: 3,
+        ex: "X: (2 × 2) ÷ 100 = 0.04. Y: (2 × 9) ÷ 300 = 0.06. Size and distance pull in opposite directions; here size wins." },
+    ],
+    // 2.11–2.12 TYPES & EFFECTS OF MIGRATION
+    [
+      { q: "A family flees fighting in their region but stays inside their own country. They are best described as:",
+        o: ["Refugees", "Asylum seekers", "Guest workers", "Transnational migrants", "Internally displaced persons"], c: 4,
+        ex: "Internally displaced persons (IDPs) are forced from home but have not crossed an international border. They are the largest group of forcibly displaced people." },
+      { q: "A man moves from a village in Guatemala to a neighborhood in Houston because his brother and cousins already live there and can help him find work. This is:",
+        o: ["Step migration", "Chain migration", "Transhumance", "Forced migration", "Rural-to-urban migration within one country"], c: 1,
+        ex: "Chain migration follows family or community networks to a place where earlier migrants from the same origin already live. Over time it builds ethnic neighborhoods." },
+      { q: "Herders move their cattle to high mountain pastures every summer and back down to valleys every winter. This seasonal movement is called:",
+        o: ["Transhumance", "Step migration", "Guest worker migration", "Counterflow", "Internal displacement"], c: 0,
+        ex: "Transhumance is the seasonal movement of herders and livestock between pastures. It is a voluntary, repeated movement, not permanent migration to a new home." },
+      { q: "Which is an effect of emigration on the ORIGIN country?",
+        o: ["Labor shortages in farming and construction are filled", "New ethnic enclaves appear in its cities", "Immigration becomes a major issue in its elections", "Money sent home by migrants helps families pay for housing, schooling, and health care", "Its workforce becomes younger"], c: 3,
+        ex: "Remittances flow back to the origin. The other options describe effects on the DESTINATION — always check which end of the move a question asks about." },
+      { q: "Families leave a low-lying Pacific island because rising seas have ruined their wells and farmland, and they resettle in New Zealand. Why are they usually NOT considered refugees under the 1951 Refugee Convention?",
+        o: ["They crossed an international border", "They moved voluntarily for higher wages", "They are not fleeing persecution for race, religion, nationality, social group, or political opinion", "They have not yet applied for asylum", "Refugee status applies only to people fleeing war"], c: 2,
+        ex: "The legal definition of a refugee requires a well-founded fear of persecution. Environmental displacement does not meet it on its own — a recognized gap in international law, even though such migrants are often called 'climate refugees.'" },
+    ],
+  ],
+  final: {
+    category: "POPULATION & MIGRATION",
+    q: "A country has a total fertility rate of 1.1, more deaths than births each year, and a fast-rising elderly dependency ratio. Its government responds by recruiting foreign workers on temporary contracts to staff hospitals and nursing homes. Which pair BEST describes the country's DTM stage and the type of migration it is encouraging?",
+    o: ["Stage 2; chain migration", "Stage 3; transhumance", "Stage 5; guest worker migration", "Stage 4; refugee migration", "Stage 5; step migration"],
+    c: 2,
+    ex: "Fertility far below replacement plus more deaths than births is Stage 5. Temporary, legally permitted work contracts in another country define guest worker migration — a common response to an aging population's labor shortage."
+  }
+};
+
+const MAX_PLAYERS = 8;
+const LETTERS = ["A", "B", "C", "D", "E"];
+const TOTAL_CELLS = DATA.categories.length * DATA.values.length;
+
+let players = [];
+let scores = [];
+let currentPlayer = 0;
+let playerCount = 2;
+let usedCells = new Set();
+let currentCell = null;
+let answered = false;   // has an option been picked / answer revealed for the open cell
+let wasCorrect = null;  // true / false / null (revealed without a pick)
+let penalize = true;    // wrong answers subtract points
+let marks = [];         // per-team mark for the open cell: 1 correct, -1 wrong, 0 none
+
+function setPenalty(on) {
+  penalize = on;
+  document.getElementById('pen-on').classList.toggle('active', on);
+  document.getElementById('pen-off').classList.toggle('active', !on);
+}
+
+/* ─── SETUP ─── */
+function buildSetup() {
+  const cb = document.getElementById('count-buttons');
+  cb.innerHTML = '';
+  for (let n = 1; n <= MAX_PLAYERS; n++) {
+    const b = document.createElement('button');
+    b.className = 'btn-sm' + (n === playerCount ? ' active' : '');
+    b.id = `p${n}btn`;
+    b.textContent = n;
+    b.onclick = () => setPlayerCount(n);
+    cb.appendChild(b);
+  }
+  const pi = document.getElementById('player-inputs');
+  pi.innerHTML = '';
+  for (let i = 1; i <= MAX_PLAYERS; i++) {
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.id = `name${i}`;
+    inp.placeholder = `EXPLORER ${i}`;
+    inp.maxLength = 18;
+    pi.appendChild(inp);
+  }
+  setPlayerCount(playerCount);
+}
+
+function setPlayerCount(n) {
+  playerCount = n;
+  for (let i = 1; i <= MAX_PLAYERS; i++) {
+    document.getElementById(`p${i}btn`).classList.toggle('active', i === n);
+    document.getElementById(`name${i}`).style.display = i <= n ? 'block' : 'none';
+  }
+}
+
+function startGame() {
+  players = [];
+  scores = [];
+  for (let i = 0; i < playerCount; i++) {
+    const input = document.getElementById(`name${i+1}`);
+    const name = input.value.trim() || `EXPLORER ${i+1}`;
+    players.push(name.toUpperCase());
+    scores.push(0);
+  }
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'block';
+  renderScoreboard();
+  renderBoard();
+  updateTurnIndicator();
+}
+
+/* ─── SCOREBOARD / BOARD ─── */
+function fmt(n) { return (n < 0 ? '-' : '') + '$' + Math.abs(n).toLocaleString(); }
+
+function renderScoreboard() {
+  const sb = document.getElementById('scoreboard');
+  sb.innerHTML = players.map((p, i) => `
+    <div class="player-score ${i === currentPlayer && playerCount > 1 ? 'active-player' : ''}">
+      <div class="player-name" title="${p}">${p}</div>
+      <div class="score-display ${scores[i] < 0 ? 'negative' : ''}" id="score-${i}">${fmt(scores[i])}</div>
+    </div>
+  `).join('');
+}
+
+function updateTurnIndicator() {
+  const ti = document.getElementById('turn-indicator');
+  ti.innerHTML = playerCount > 1 ? `BOARD CONTROL (PICKS NEXT): <span>${players[currentPlayer]}</span>` : '';
+}
+
+function renderBoard() {
+  const board = document.getElementById('board');
+  board.innerHTML = '';
+
+  DATA.categories.forEach(cat => {
+    const div = document.createElement('div');
+    div.className = 'category-header';
+    div.innerHTML = `<small>${cat.tag}</small>${cat.name}`;
+    board.appendChild(div);
+  });
+
+  for (let row = 0; row < DATA.values.length; row++) {
+    for (let col = 0; col < DATA.categories.length; col++) {
+      const cellKey = `${col}-${row}`;
+      const used = usedCells.has(cellKey);
+      const div = document.createElement('div');
+      div.className = 'cell' + (used ? ' used' : '');
+      div.textContent = used ? '' : DATA.values[row].toLocaleString();
+      if (!used) div.onclick = () => openModal(col, row, cellKey);
+      board.appendChild(div);
+    }
+  }
+
+  if (usedCells.size >= Math.ceil(TOTAL_CELLS * 0.6)) {
+    document.getElementById('final-btn').style.display = 'inline-block';
+  }
+}
+
+/* ─── QUESTION MODAL ─── */
+function openModal(col, row, cellKey) {
+  currentCell = { col, row, cellKey };
+  answered = false;
+  wasCorrect = null;
+  const q = DATA.questions[col][row];
+  const val = DATA.values[row];
+  const cat = DATA.categories[col];
+
+  document.getElementById('modal-cat').textContent = `${cat.tag} · ${cat.name}`;
+  document.getElementById('modal-val').textContent = val.toLocaleString();
+  document.getElementById('modal-q').textContent = q.q;
+
+  const opts = document.getElementById('modal-options');
+  opts.innerHTML = q.o.map((text, i) => `
+    <button class="option" id="opt-${i}" onclick="pickOption(${i})">
+      <span class="letter">${LETTERS[i]}</span><span>${text}</span>
+    </button>`).join('');
+
+  const a = document.getElementById('modal-a');
+  a.className = 'modal-answer';
+  a.innerHTML = '';
+  document.getElementById('reveal-btn').style.display = 'inline-block';
+  const aw = document.getElementById('award');
+  aw.className = 'award';
+  aw.innerHTML = '';
+  document.getElementById('modal').classList.add('open');
+}
+
+function pickOption(i) {
+  if (answered) return;
+  revealAnswer(i);
+}
+
+function revealAnswer(picked) {
+  if (answered) return;
+  answered = true;
+  const q = DATA.questions[currentCell.col][currentCell.row];
+  const val = DATA.values[currentCell.row];
+
+  // lock and color the options
+  q.o.forEach((_, i) => {
+    const el = document.getElementById(`opt-${i}`);
+    el.classList.add('locked');
+    if (i === q.c) el.classList.add('correct');
+    else if (i === picked) el.classList.add('wrong');
+    else el.classList.add('dim');
+  });
+
+  wasCorrect = picked === null ? null : picked === q.c;
+
+  const a = document.getElementById('modal-a');
+  let verdict = '';
+  if (wasCorrect === true) verdict = `<div class="verdict ok">✓ CORRECT</div>`;
+  if (wasCorrect === false) verdict = `<div class="verdict no">✗ INCORRECT — the answer was ${LETTERS[q.c]}</div>`;
+  a.innerHTML = `${verdict}<strong>ANSWER: ${LETTERS[q.c]} — ${q.o[q.c]}</strong>${q.ex}`;
+  a.classList.add('visible');
+  document.getElementById('reveal-btn').style.display = 'none';
+
+  // award panel — every team answers at once, so mark each team then apply
+  marks = players.map(() => 0);
+  const aw = document.getElementById('award');
+  let html = '';
+  if (playerCount === 1) {
+    html += `<div class="award-primary">` +
+      (wasCorrect === false
+        ? `<button class="btn-award minus" onclick="applyScores()">NO POINTS · CONTINUE</button>`
+        : `<button class="btn-award plus" onclick="marks[0]=1;applyScores()">✓ +$${val.toLocaleString()}</button>`) +
+      `</div>`;
+    if (wasCorrect !== false) {
+      html += `<div class="award-primary"><button class="btn-close" onclick="applyScores()">NO POINTS</button></div>`;
+    }
+  } else {
+    html += `<div class="award-label">MARK EACH TEAM · ✓ +$${val.toLocaleString()}${penalize ? ' · ✗ −$' + val.toLocaleString() : ' · ✗ no change'}</div>`;
+    html += `<div class="award-grid">`;
+    players.forEach((p, i) => {
+      html += `<div class="award-chip" id="chip-${i}"><span class="nm" title="${p}">${p}</span>
+        <button class="mini plus" id="mk-plus-${i}" onclick="setMark(${i}, 1)">✓</button>
+        <button class="mini minus" id="mk-minus-${i}" onclick="setMark(${i}, -1)">✗</button></div>`;
+    });
+    html += `</div>`;
+    html += `<div class="award-tools">
+        <button class="btn-sm" onclick="markAll(1)">ALL ✓</button>
+        <button class="btn-sm" onclick="markAll(-1)">ALL ✗</button>
+        <button class="btn-sm" onclick="markAll(0)">CLEAR</button>
+      </div>
+      <div class="award-summary" id="award-summary">No teams marked yet</div>
+      <div class="award-primary" style="margin-top:10px"><button class="btn-award plus" id="apply-btn" onclick="applyScores()">APPLY SCORES →</button></div>`;
+  }
+  aw.innerHTML = html;
+  aw.className = 'award visible';
+  if (playerCount > 1) updateSummary();
+}
+
+function setMark(i, m) {
+  marks[i] = marks[i] === m ? 0 : m;   // click again to un-mark
+  paintMark(i);
+  updateSummary();
+}
+
+function markAll(m) {
+  marks = players.map(() => m);
+  players.forEach((_, i) => paintMark(i));
+  updateSummary();
+}
+
+function paintMark(i) {
+  const chip = document.getElementById(`chip-${i}`);
+  chip.classList.toggle('ok', marks[i] === 1);
+  chip.classList.toggle('no', marks[i] === -1);
+  document.getElementById(`mk-plus-${i}`).classList.toggle('chosen', marks[i] === 1);
+  document.getElementById(`mk-minus-${i}`).classList.toggle('chosen', marks[i] === -1);
+}
+
+function updateSummary() {
+  const val = DATA.values[currentCell.row];
+  const right = marks.filter(m => m === 1).length;
+  const wrong = marks.filter(m => m === -1).length;
+  const el = document.getElementById('award-summary');
+  if (!right && !wrong) { el.textContent = 'No teams marked — apply will just retire the question'; return; }
+  el.textContent = `${right} correct (+$${val.toLocaleString()} each)` +
+    (wrong ? ` · ${wrong} wrong (${penalize ? '−$' + val.toLocaleString() + ' each' : 'no change'})` : '');
+}
+
+function applyScores() {
+  const val = DATA.values[currentCell.row];
+  marks.forEach((m, i) => {
+    if (m === 1) scores[i] += val;
+    else if (m === -1 && penalize) scores[i] -= val;
+  });
+  usedCells.add(currentCell.cellKey);
+  if (playerCount > 1) currentPlayer = (currentPlayer + 1) % playerCount;
+  finishCell();
+}
+
+function closeModal() {
+  // closing without scoring still retires the cell once it has been revealed
+  if (currentCell && answered) usedCells.add(currentCell.cellKey);
+  finishCell();
+}
+
+function finishCell() {
+  document.getElementById('modal').classList.remove('open');
+  currentCell = null;
+  answered = false;
+  renderScoreboard();
+  renderBoard();
+  updateTurnIndicator();
+}
+
+/* ─── FINAL ROUND ─── */
+let finalRevealed = false;
+let finalResults = []; // per player: +1 / -1 / 0
+
+function showFinal() {
+  document.getElementById('board').style.display = 'none';
+  document.getElementById('final-btn').style.display = 'none';
+  document.getElementById('turn-indicator').style.display = 'none';
+  finalResults = players.map(() => 0);
+
+  const f = DATA.final;
+  const fj = document.getElementById('final-jeopardy');
+  fj.style.display = 'block';
+  fj.innerHTML = `
+    <div class="final-label">⚡ FINAL ROUND ⚡</div>
+    <div class="final-title">${f.category}</div>
+    <div class="final-q">${f.q}</div>
+    <div class="options" id="final-options">
+      ${f.o.map((t, i) => `<div class="option locked" id="fopt-${i}"><span class="letter">${LETTERS[i]}</span><span>${t}</span></div>`).join('')}
+    </div>
+    <div class="wager-rows" id="wager-rows">
+      ${players.map((p, i) => `
+        <div class="wager-row">
+          <span class="nm" title="${p}">${p} <span class="cur">(${fmt(scores[i])})</span></span>
+          <label style="font-size:11px;color:var(--gray)">WAGER</label>
+          <input type="number" min="0" id="wager-${i}" value="${Math.max(0, scores[i])}" max="${Math.max(0, scores[i])}">
+          <span class="res">
+            <button class="mini plus" id="fres-plus-${i}" onclick="setFinalResult(${i}, 1)" title="correct">✓</button>
+            <button class="mini minus" id="fres-minus-${i}" onclick="setFinalResult(${i}, -1)" title="incorrect">✗</button>
+          </span>
+        </div>`).join('')}
+    </div>
+    <p class="setup-hint" style="margin-bottom:14px">ENTER EACH WAGER · REVEAL THE ANSWER · MARK ✓ OR ✗ · SHOW RESULTS</p>
+    <button class="btn" id="final-reveal-btn" onclick="revealFinal()">REVEAL ANSWER</button>
+    <div id="final-answer" class="modal-answer" style="margin-top:20px;text-align:left"></div>
+    <button class="btn" id="final-results-btn" onclick="showResults()" style="display:none;margin-top:8px">SHOW RESULTS</button>
+    <div id="winner-section" style="display:none;">
+      <div class="all-scores" id="all-scores"></div>
+      <div class="winner-display" id="winner-text"></div>
+      <button class="btn" onclick="location.reload()" style="margin-top:16px;">NEW EXPEDITION</button>
+    </div>
+  `;
+}
+
+function setFinalResult(i, r) {
+  finalResults[i] = r;
+  document.getElementById(`fres-plus-${i}`).classList.toggle('chosen', r === 1);
+  document.getElementById(`fres-minus-${i}`).classList.toggle('chosen', r === -1);
+}
+
+function revealFinal() {
+  const f = DATA.final;
+  finalRevealed = true;
+  f.o.forEach((_, i) => {
+    const el = document.getElementById(`fopt-${i}`);
+    el.classList.add(i === f.c ? 'correct' : 'dim');
+  });
+  const fa = document.getElementById('final-answer');
+  fa.innerHTML = `<strong>ANSWER: ${LETTERS[f.c]} — ${f.o[f.c]}</strong>${f.ex}`;
+  fa.classList.add('visible');
+  document.getElementById('final-reveal-btn').style.display = 'none';
+  document.getElementById('final-results-btn').style.display = 'inline-block';
+}
+
+function showResults() {
+  players.forEach((p, i) => {
+    const w = Math.max(0, parseInt(document.getElementById(`wager-${i}`).value, 10) || 0);
+    scores[i] += finalResults[i] * w;
+  });
+  document.getElementById('wager-rows').style.display = 'none';
+  document.getElementById('final-results-btn').style.display = 'none';
+  document.getElementById('winner-section').style.display = 'block';
+  renderScoreboard();
+
+  const maxScore = Math.max(...scores);
+  const order = players.map((p, i) => i).sort((a, b) => scores[b] - scores[a]);
+  document.getElementById('all-scores').innerHTML = order.map(i => `
+    <div class="final-score-row ${scores[i] === maxScore ? 'top' : ''}">
+      <span class="fn">${players[i]}</span>
+      <span class="fs ${scores[i] < 0 ? 'negative' : ''}">${fmt(scores[i])}</span>
+    </div>`).join('');
+
+  const winners = players.filter((p, i) => scores[i] === maxScore);
+  const winnerText = playerCount === 1
+    ? `FINAL SCORE: ${fmt(maxScore)}`
+    : (winners.length > 1
+        ? `TIE: ${winners.join(' & ')}<br><span style="font-size:18px;color:var(--gray)">with ${fmt(maxScore)}</span>`
+        : `CHAMPION: ${winners[0]}<br><span style="font-size:18px;color:var(--gray)">with ${fmt(maxScore)}</span>`);
+  document.getElementById('winner-text').innerHTML = winnerText;
+}
+
+buildSetup();
+</script>
+</body>
+</html>

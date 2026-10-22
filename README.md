@@ -86,6 +86,10 @@ seeker decision tree.
 
 **52 self-check questions** with full answers.
 
+**Review game:** `unit-2/jeopardy.html` — Geo Jeopardy on the Unit 1 engine, seven
+categories covering all twelve topics, 35 multiple-choice clues plus a final round,
+each with an explanation. Linked from the Unit 2 rail, the exam kit, and the landing page.
+
 Current figures (UN World Population Prospects 2024, UNHCR mid-2025, World Bank
 2024 remittances, national statistics for China, Japan, South Korea, and the U.S.)
 are dated in the text and listed in the page footer.
@@ -97,6 +101,7 @@ index.html          course landing page, links to each unit
 unit-1/index.html   Unit 1 notes — the whole unit in one file
 unit-1/jeopardy.html  Unit 1 review game (Geo Jeopardy, 1–8 players, multiple choice)
 unit-2/index.html   Unit 2 notes — the whole unit in one file
+unit-2/jeopardy.html  Unit 2 review game (Geo Jeopardy, same engine as Unit 1)
 README.md
 .nojekyll           serve files as-is, no Jekyll processing
 ```
