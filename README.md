@@ -8,7 +8,7 @@ Student notes for AP Human Geography, built as self-contained web pages — one 
 |---|---|---|
 | 1 | [Thinking Geographically](https://bluegrassbaron.github.io/ap-human-geography/unit-1/) | Complete |
 | 2 | [Population & Migration](https://bluegrassbaron.github.io/ap-human-geography/unit-2/) | Complete |
-| 3 | Cultural Patterns & Processes | Not yet written |
+| 3 | [Cultural Patterns & Processes](https://bluegrassbaron.github.io/ap-human-geography/unit-3/) | Complete |
 | 4 | Political Patterns & Processes | Not yet written |
 | 5 | Agriculture & Rural Land Use | Not yet written |
 | 6 | Cities & Urban Land Use | Not yet written |
@@ -94,6 +94,41 @@ Current figures (UN World Population Prospects 2024, UNHCR mid-2025, World Bank
 2024 remittances, national statistics for China, Japan, South Korea, and the U.S.)
 are dated in the text and listed in the page footer.
 
+## Unit 3 — what's in it
+
+Eight plates, one per CED topic, each opening with the College Board learning
+objective it covers:
+
+| Topic | Learning objective | |
+|---|---|---|
+| 3.1 | `PSO-3.A` | Introduction to Culture |
+| 3.2 | `PSO-3.B` · `PSO-3.C` | Cultural Landscapes |
+| 3.3 | `PSO-3.D` | Cultural Patterns |
+| 3.4 | `IMP-3.A` | Types of Diffusion |
+| 3.5 | `SPS-3.A` | Historical Causes of Diffusion |
+| 3.6 | `SPS-3.A` | Contemporary Causes of Diffusion |
+| 3.7 | `IMP-3.B` | Diffusion of Religion and Language |
+| 3.8 | `SPS-3.B` | Effects of Diffusion |
+
+Plus an **exam kit** appendix: one sentence per topic, a card for each of the
+eight distinctions the exam actually tests (relocation vs. expansion,
+universalizing vs. ethnic, acculturation vs. assimilation, pidgin vs. creole,
+and so on), the command verbs, a term checklist, and four synthesis questions.
+
+Same plate anatomy as Units 1 and 2 — read-to-answer boxes, vocabulary keys,
+"common trap" and exam-technique callouts, check-yourself questions.
+
+**13 diagrams**, all inline SVG. Highlights: bread sorted into artifact,
+sociofact, and mentifact; an annotated streetscape holding every cultural-
+landscape ingredient on one block; a sequent-occupancy cross-section; an
+imaginary country whose cultural boundary ignores its political border; the
+four diffusion types as four panels; the imperial bundle; pidgin-to-creole in
+one move; time–space convergence; the Indo-European family tree; both religion
+hearth regions with their diffusion arrows; and the four outcomes of cultural
+contact as one dial.
+
+**38 self-check questions** with full answers.
+
 ## Repository layout
 
 ```
@@ -102,6 +137,7 @@ unit-1/index.html   Unit 1 notes — the whole unit in one file
 unit-1/jeopardy.html  Unit 1 review game (Geo Jeopardy, 1–8 players, multiple choice)
 unit-2/index.html   Unit 2 notes — the whole unit in one file
 unit-2/jeopardy.html  Unit 2 review game (Geo Jeopardy, same engine as Unit 1)
+unit-3/index.html   Unit 3 notes — the whole unit in one file
 README.md
 .nojekyll           serve files as-is, no Jekyll processing
 ```
